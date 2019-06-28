@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Mortis
+Description=A custom user theme
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/user-theme
+ScriptFile=/usr/share/plymouth/themes/user-theme/script
