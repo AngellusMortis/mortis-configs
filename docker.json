@@ -1,0 +1,24 @@
+{
+    "bip": "172.16.0.1/24",
+    "default-address-pools": [
+        {
+            "base": "172.16.128.1/17",
+            "size": 25
+        }
+    ],
+    "dns": [
+        "172.24.1.253",
+        "172.24.1.254"
+    ],
+    "dns-search": [
+        "uk.ora.com",
+        "east.ora.com",
+        "west.ora.com",
+        "corp.oreilly.com",
+        "oreilly.review",
+        "oreilly.com",
+        "dev-seb.local",
+        "prod-sfo.local",
+        "svc.prod-sfo.local"
+    ]
+}
