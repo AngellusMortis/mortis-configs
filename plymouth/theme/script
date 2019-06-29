@@ -19,9 +19,11 @@ fun init() {
     spinner.sprite.SetImage(rotate_image(0));
     spinner.sprite.SetX(Window.GetWidth() / 2 - spinner.image.GetWidth() / 2);
     spinner.sprite.SetY(Window.GetHeight() / 2 - spinner.image.GetHeight() / 2);
+    spinner.sprite.SetOpacity(1);
+    spinner.sprite.SetZ(100);
     spinner.angle = 0;
     spinner.index = 0;
-    spinner.imagecount = 64;
+    spinner.imagecount = 256;
 
     // Logo
     logo.image = Image("logo.png");
@@ -67,9 +69,7 @@ fun show_dialog(visibility) {
 }
 
 fun refresh_callback() {
-    if (dialog.visible) {
-        spinner.sprite.SetOpacity(0);
-    } else {
+    if (! dialog.visible) {
         spinner.index += 1;
         spinner.index %= spinner.imagecount;
         spinner.sprite.SetImage(rotate_image(spinner.index));
