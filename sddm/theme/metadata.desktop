@@ -1,0 +1,13 @@
+[SddmGreeterTheme]
+Name=Mortis
+Description=A custom user theme
+License=GPL3.0
+Type=sddm-theme
+Version=0.1
+Website=
+Screenshot=screenshot.jpg
+MainScript=Main.qml
+ConfigFile=theme.conf
+Email=
+Theme-Id=user-theme
+Theme-API=2.0
