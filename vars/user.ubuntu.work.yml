@@ -154,9 +154,6 @@ desktop_display_manager_use_plymouth: true
 # Display Manager theme to install
 # path must end in /
 # Theme must be fore the display manager you selected above
-#
-# For Ubuntu, this theme is only copied over, you still have to manually
-# enable it in system settings
 desktop_display_manager_theme: /home/cbailey/dev/system-manager/user/mortis-configs/sddm/theme/
 
 # Path to PNG image to use for User Icon
@@ -202,6 +199,7 @@ extra_packages:
 - libpam-yubico
 - yubikey-manager
 - libpam-ssh-agent-auth
+- qml-module-qtgraphicaleffects
 
 # Set to 'none' to skip installing AUR packages
 extra_aur_packages: none

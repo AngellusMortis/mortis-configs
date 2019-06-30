@@ -1,6 +1,6 @@
 /***********************************************************************/
 
-import QtQuick 2.0
+import QtQuick 2.2
 import QtQuick.Window 2.2
 import QtGraphicalEffects 1.0
 import SddmComponents 2.0
@@ -260,6 +260,118 @@ Item {
         actionPanel.state = 'none'
         loginFrame.input.forceActiveFocus()
       }
+
+      Loader {
+            id: inputPanel
+            state: "hidden"
+            property bool keyboardActive: item ? item.active : false
+            onKeyboardActiveChanged: {
+                if (keyboardActive) {
+                    state = "visible"
+                } else {
+                    state = "hidden";
+                }
+            }
+            source: "components/VirtualKeyboard.qml"
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+
+            function showHide() {
+                state = state == "hidden" ? "visible" : "hidden";
+            }
+
+            states: [
+                State {
+                    name: "visible"
+                    PropertyChanges {
+                        target: mainStack
+                        y: Math.min(0, root.height - inputPanel.height - userListComponent.visibleBoundary)
+                    }
+                    PropertyChanges {
+                        target: inputPanel
+                        y: root.height - inputPanel.height
+                        opacity: 1
+                    }
+                },
+                State {
+                    name: "hidden"
+                    PropertyChanges {
+                        target: mainStack
+                        y: 0
+                    }
+                    PropertyChanges {
+                        target: inputPanel
+                        y: root.height - root.height/4
+                        opacity: 0
+                    }
+                }
+            ]
+            transitions: [
+                Transition {
+                    from: "hidden"
+                    to: "visible"
+                    SequentialAnimation {
+                        ScriptAction {
+                            script: {
+                                inputPanel.item.activated = true;
+                                Qt.inputMethod.show();
+                            }
+                        }
+                        ParallelAnimation {
+                            NumberAnimation {
+                                target: mainStack
+                                property: "y"
+                                duration: units.longDuration
+                                easing.type: Easing.InOutQuad
+                            }
+                            NumberAnimation {
+                                target: inputPanel
+                                property: "y"
+                                duration: units.longDuration
+                                easing.type: Easing.OutQuad
+                            }
+                            OpacityAnimator {
+                                target: inputPanel
+                                duration: units.longDuration
+                                easing.type: Easing.OutQuad
+                            }
+                        }
+                    }
+                },
+                Transition {
+                    from: "visible"
+                    to: "hidden"
+                    SequentialAnimation {
+                        ParallelAnimation {
+                            NumberAnimation {
+                                target: mainStack
+                                property: "y"
+                                duration: units.longDuration
+                                easing.type: Easing.InOutQuad
+                            }
+                            NumberAnimation {
+                                target: inputPanel
+                                property: "y"
+                                duration: units.longDuration
+                                easing.type: Easing.InQuad
+                            }
+                            OpacityAnimator {
+                                target: inputPanel
+                                duration: units.longDuration
+                                easing.type: Easing.InQuad
+                            }
+                        }
+                        ScriptAction {
+                            script: {
+                                Qt.inputMethod.hide();
+                            }
+                        }
+                    }
+                }
+            ]
+        }
     }
   }
 

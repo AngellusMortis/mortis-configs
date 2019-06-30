@@ -56,7 +56,7 @@ Rectangle {
 
             anchors.centerIn: parent
 
-            source: "images/plasma.png"
+            source: "images/logo.png"
 
             // sourceSize.width: size * 3
             // sourceSize.height: size * 3
@@ -65,7 +65,7 @@ Rectangle {
         Image {
             id: busyIndicator
             anchors.centerIn: parent
-            source: "images/busywidget.png"
+            source: "images/spinner.png"
             // sourceSize.height: size
             // sourceSize.width: size
             RotationAnimator on rotation {

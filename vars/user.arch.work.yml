@@ -195,6 +195,7 @@ extra_packages:
 - yubikey-personalization
 - yubikey-personalization-gui
 - libu2f-host
+- qt5-graphicaleffects
 
 # Set to 'none' to skip installing AUR packages
 extra_aur_packages:
