@@ -1,0 +1,292 @@
+## General Settings
+
+# username of main user you do everything as
+local_user: cbailey
+
+# GPG public key ring (~/.gnupg/pubring.kbx)
+gpg_public_key_ring: /home/cbailey/dev/system-manager/user/mortis-configs/pubring.kbx
+
+# SSH authorized keys file (~/.ssh/authorized_keys)
+ssh_authorized_keys: /home/cbailey/dev/system-manager/user/mortis-configs/authorized_keys
+
+# configure the root user as well as the local_user when setting up shells/configs
+configure_root: true
+
+# Standard system locale
+# https://wiki.archlinux.org/index.php/Locale
+system_locale: en_US.UTF-8
+
+# enable tmux support
+use_tmux: true
+
+# enable powerline suport
+use_powerline: true
+
+# powerline colors
+powerline_colorscheme: default
+powerline_prompt_bg_color: 'darkblue'
+powerline_prompt_bg_color_root: 'red'
+powerline_xonsh_prompt_bg_color: '#0087af'
+powerline_xonsh_prompt_bg_color_root: 'RED'
+
+## Pacman AUR settings
+# Only applies to Arch Linux
+
+# must be one of the AUR Helpers supported by ansible-aur: https://github.com/kewlfft/ansible-aur
+# yay, aurman, pacaur, trizen, pikaur
+aur_builder: pikaur
+
+# user to use when installing AUR packages,
+# will automatically be created and given correct permissions
+# should not be main user as it will also be excluded from Login Screen
+aur_user: aur
+
+
+## X11 Forwarding settings
+
+# Install X11 helper script to install, useful if you plan to run remote
+# X11 applications on your local
+x11_copy_script: true
+
+# dictionary of short names for various SSH hosts for X11/GPG helper helper scripts
+host_aliases:
+ - { alias: local, host: 127.0.0.1 }
+ - { alias: work, host: work.angellus.wl.mort.is }
+ - { alias: server, host: server.wl.mort.is }
+ - { alias: de, host: de.mort.is }
+
+# Enable X11 forwaring over SSH on your local system. You must be running
+# sshd for this to work
+x11_enable_forwarding: true
+
+
+## Shell settings
+
+# default login shell for the user
+# supported default shells: bash, zsh
+# set to 'none' if you do not want to change your default shell
+default_shell: zsh
+
+# secondary shell is a unstable non-login shell that gets loaded in rc file
+# for login shell
+# supported default shells: xonsh
+# set to 'none' if you do not want to configure a secondary shell
+secondary_shell: xonsh
+
+# additional shells to config
+# can be any values of default/secondary shells
+# must include default and secondary shell vars from above
+# set to blank if you do not want to configure shells
+enabled_shells:
+  - bash
+  - zsh
+  - xonsh
+
+
+## Git Settings
+
+# name and email for git
+# set both to 'none' to skip configuring Git
+git_email: cbailey@oreilly.com
+git_name: "Christopher Bailey"
+
+# public GPG signing key to use for git
+# Set this to 'none', but above if you want to configure git
+# without a signing key
+git_signing_key: A1FFD3F1D84C4F7A
+
+
+## GPG Helper settings
+
+# Location of GPG agents for gpg-remote helper script
+# default location locally is /run/user/1000/gnupg/S.gpg-agent
+#   where 1000 = your user's uid
+gpg_local_agent: /run/user/1000/gnupg/S.gpg-agent
+gpg_remote_agent: /run/user/1000/gnupg/S.gpg-agent
+
+# WSL specific GPG settings to get Windows 10 GPG Agent in WSL
+# See https://codingnest.com/how-to-use-gpg-with-yubikey-wsl/ for setup
+wsl_npiperelay_path: none
+windows_gpg_agent_path: none
+
+
+## Cloud Provider Settings
+
+# cloud provider(s) to configure
+# supported: onedrive
+# set to empty value to not install a cloud provider
+cloud_providers:
+- onedrive
+
+# Absolute path to sync list file
+# https://github.com/abraunegg/onedrive/blob/master/docs/USAGE.md#selective-sync
+onedrive_sync_list: /home/cbailey/dev/system-manager/user/mortis-configs/sync_list
+
+## Desktop Settings
+
+# DEs to install and setup
+# supported: kde
+# only applies to Linux
+# set to empty value to not manage desktop environments
+desktop_environments:
+- kde
+
+# KDE theme to install
+# path must end in /
+kde_theme: /home/cbailey/dev/system-manager/user/mortis-configs/kde/theme/
+
+# Display Manager to use
+# supported: sddm
+# only applies to Linux
+# set to 'none' to not configure display manager
+# NOTE: See "Changing Display Managers" in README about changing your default
+# WARNING: sddm will not work on Ubuntu, not without the Drivers working
+# TODO: Fix sddm for Ubuntu
+desktop_display_manager: sddm
+
+# Whether or not you already have Plymouth installed and connfigured
+desktop_display_manager_use_plymouth: true
+
+# Display Manager theme to install
+# path must end in /
+# Theme must be fore the display manager you selected above
+desktop_display_manager_theme: /home/cbailey/dev/system-manager/user/mortis-configs/sddm/theme/
+
+# Path to PNG image to use for User Icon
+desktop_display_manager_user_icon: /home/cbailey/dev/system-manager/user/mortis-configs/sddm/face.icon
+
+# Network Manager to use
+# supported: networkmanager
+# only applies to Linux
+# set to 'none' to not configure network manager
+desktop_network_manager: networkmanager
+
+# Network Manager connection configs
+# Set to empty to not configure any connections
+network_manager_configs:
+- "/home/cbailey/dev/system-manager/user/mortis-configs/network/O'Reilly.nmconnection"
+- "/home/cbailey/dev/system-manager/user/mortis-configs/network/Wired connection 1.nmconnection"
+
+
+## Graphics Drivers Settings
+# WARNING: Only currently applies to Arch Linux Installs
+# TODO: Add Ubuntu support
+
+install_intel_drivers: true
+
+install_nvidia_drivers: true
+
+
+## Extras Settings
+
+# Install list of arbitary packages
+# set to empty to not install any
+extra_packages:
+- chromium
+- firefox-developer-edition
+- bluez
+- bluez-utils
+- adapta-kde
+- kvantum-theme-adapta
+- papirus-icon-theme
+- yubico-pam
+- yubikey-manager
+- yubikey-manager-qt
+- yubikey-personalization
+- yubikey-personalization-gui
+- libu2f-host
+
+# Set to 'none' to skip installing AUR packages
+extra_aur_packages:
+- plasma5-applets-volumewin7mixer
+- papirus-libreoffice-theme
+- pam_ssh_agent_auth
+
+# extra arbitary user directories to make relative to ~
+extra_user_dirs:
+- .pip
+- dev
+
+# extra arbitary user files to copy
+# set to empty to not copy any
+extra_user_files:
+- { src: /home/cbailey/dev/system-manager/user/mortis-configs/pip.conf, dest: .pip/pip.conf }
+- { src: /home/cbailey/dev/system-manager/user/mortis-configs/oreilly-remote.code-workspace, dest: dev/oreilly-remote.code-workspace }
+
+# extra arbitary user files to copy
+# set to empty to not copy any
+extra_system_files:
+- { src: /home/cbailey/dev/system-manager/user/mortis-configs/pam/sudo, dest: /etc/pam.d/sudo }
+- { src: /home/cbailey/dev/system-manager/user/mortis-configs/pam/system-login, dest: /etc/pam.d/system-login }
+
+## Network Utils Settings
+
+# Install and set up OpenSSH Server
+setup_sshd: true
+
+# Install and set up Samba Network Shares
+setup_samba: true
+
+# path to optional Samba config
+# set to 'none' to not copy one
+samba_config: /home/cbailey/dev/system-manager/user/mortis-configs/smb.conf
+
+# Install and setup iptable filewall
+setup_iptables: true
+
+# IP address or network range (CIDR) of IP addresses without restrictions
+# set empty to not have any
+iptables_whitelisted_networks:
+- 192.168.0.0/21
+
+
+## Dev Utils Settings
+
+# setup and install Docker
+setup_docker: true
+
+# optional Docker daemon.json file
+# set to 'none' to not copy one
+docker_config: /home/cbailey/dev/system-manager/user/mortis-configs/docker.json
+
+# optional extra docker host option (-H)
+# set to 'none' to only run on default
+# unix socket (unix:///var/run/docker.sock)
+extra_docker_host: tcp://192.168.5.10:2376
+
+# setup and install NodeJS
+setup_nodejs: true
+
+# setup and install Kubernetes
+setup_k8s: true
+
+# setup and install Google Cloud SDK
+setup_gcloud: true
+
+# list of git repos to clone
+git_repos:
+- { url: "git@github.com:AngellusMortis/system-manager.git", dest: dev/system-manager, branch: master }
+- { url: "git@github.com:oreillymedia/chassis.git", dest: dev/chassis, branch: develop }
+- { url: "git@github.com:oreillymedia/groot.git", dest: dev/groot, branch: master }
+- { url: "git@github.com:oreillymedia/groot-frontend.git", dest: dev/groot-frontend, branch: master }
+- { url: "git@github.com:safarijv/heron.git", dest: dev/heron, branch: develop }
+- { url: "git@github.com:oreillymedia/local-platform.git", dest: dev/local-platform, branch: master }
+- { url: "git@github.com:oreillymedia/avram.git", dest: dev/avram, branch: master }
+
+
+## Extra Personalization settings
+
+# Grub background
+# WARNING: Do NOT set a Grub background and a Grub theme
+grub_background: /home/cbailey/dev/system-manager/user/mortis-configs/grub/background.png
+
+# Grub theme to install
+# path must end in /
+# there must be a theme.txt file
+grub_theme: none
+# grub_theme: /home/cbailey/dev/system-manager/user/mortis-configs/grub/theme/
+
+# Plymouth theme to install
+# path must end in /
+# there must be a theme.txt file
+plymouth_theme: /home/cbailey/dev/system-manager/user/mortis-configs/plymouth/theme/
