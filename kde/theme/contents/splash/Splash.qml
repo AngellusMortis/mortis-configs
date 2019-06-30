@@ -22,7 +22,7 @@ import QtQuick.Window 2.2
 
 Rectangle {
     id: root
-    color: "#161613"
+    color: "#000000"
 
     property int stage
 
@@ -52,27 +52,27 @@ Rectangle {
         Image {
             id: logo
             //match SDDM/lockscreen avatar positioning
-            property real size: units.gridUnit * 8
+            // property real size: units.gridUnit * 8
 
             anchors.centerIn: parent
 
             source: "images/plasma.png"
 
-            sourceSize.width: size
-            sourceSize.height: size
+            // sourceSize.width: size * 3
+            // sourceSize.height: size * 3
         }
 
         Image {
             id: busyIndicator
             anchors.centerIn: parent
             source: "images/busywidget.png"
-            sourceSize.height: size
-            sourceSize.width: size
+            // sourceSize.height: size
+            // sourceSize.width: size
             RotationAnimator on rotation {
                 id: rotationAnimator
                 from: 0
                 to: 360
-                duration: 6000
+                duration: 5000
                 loops: Animation.Infinite
             }
         }
