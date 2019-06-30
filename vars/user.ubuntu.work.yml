@@ -133,6 +133,9 @@ desktop_environments:
 
 # KDE theme to install
 # path must end in /
+#
+# This theme is only copied over, you still have to manually
+# enable it in system settings
 kde_theme: /home/cbailey/dev/system-manager/user/mortis-configs/kde/theme/
 
 # Display Manager to use
@@ -144,12 +147,16 @@ kde_theme: /home/cbailey/dev/system-manager/user/mortis-configs/kde/theme/
 # TODO: Fix sddm for Ubuntu
 desktop_display_manager: sddm
 
-# Whether or not you already have Plymouth installed and connfigured
+# Whether or not you already have Plymouth installed and configured
+# (if you are on Ubuntu, the answer is probably yes)
 desktop_display_manager_use_plymouth: true
 
 # Display Manager theme to install
 # path must end in /
 # Theme must be fore the display manager you selected above
+#
+# For Ubuntu, this theme is only copied over, you still have to manually
+# enable it in system settings
 desktop_display_manager_theme: /home/cbailey/dev/system-manager/user/mortis-configs/sddm/theme/
 
 # Path to PNG image to use for User Icon
@@ -169,9 +176,7 @@ network_manager_configs:
 
 
 ## Graphics Drivers Settings
-# WARNING: Only currently applies to Arch Linux Installs
-# TODO: Add Ubuntu support
-
+# WARNING: Only support open source drivers
 install_intel_drivers: true
 
 install_nvidia_drivers: true
@@ -179,28 +184,27 @@ install_nvidia_drivers: true
 
 ## Extras Settings
 
+# Add extra PPA repos, Ubuntu only
+extra_ppas:
+- ppa:papirus/papirus
+- ppa:yubico/stable
+
 # Install list of arbitary packages
 # set to empty to not install any
 extra_packages:
-- chromium
-- firefox-developer-edition
-- bluez
-- bluez-utils
+- chromium-browser
 - adapta-kde
-- kvantum-theme-adapta
-- papirus-icon-theme
-- yubico-pam
-- yubikey-manager
+- libreoffice-style-papirus
+- libpam-u2f
 - yubikey-manager-qt
-- yubikey-personalization
+- yubioath-desktop
 - yubikey-personalization-gui
-- libu2f-host
+- libpam-yubico
+- yubikey-manager
+- libpam-ssh-agent-auth
 
 # Set to 'none' to skip installing AUR packages
-extra_aur_packages:
-- plasma5-applets-volumewin7mixer
-- papirus-libreoffice-theme
-- pam_ssh_agent_auth
+extra_aur_packages: none
 
 # extra arbitary user directories to make relative to ~
 extra_user_dirs:
@@ -216,8 +220,9 @@ extra_user_files:
 # extra arbitary user files to copy
 # set to empty to not copy any
 extra_system_files:
-- { src: /home/cbailey/dev/system-manager/user/mortis-configs/pam/arch/sudo, dest: /etc/pam.d/sudo }
-- { src: /home/cbailey/dev/system-manager/user/mortis-configs/pam/arch/system-login, dest: /etc/pam.d/system-login }
+- { src: /home/cbailey/dev/system-manager/user/mortis-configs/pam/ubuntu/sudo, dest: /etc/pam.d/sudo }
+- { src: /home/cbailey/dev/system-manager/user/mortis-configs/pam/ubuntu/common-auth, dest: /etc/pam.d/system-login }
+- { src: /home/cbailey/dev/system-manager/user/mortis-configs/authorized_keys, dest: /etc/security/authorized_keys }
 
 ## Network Utils Settings
 
