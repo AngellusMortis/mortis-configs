@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "system-manager"
+		},
+		{
+			"path": "system-manager-orm"
+		},
+		{
+			"path": "mortis-configs"
+		}
+	],
+	"settings": {}
+}
