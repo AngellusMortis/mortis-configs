@@ -4,10 +4,10 @@
 local_user: cbailey
 
 # GPG public key ring (~/.gnupg/pubring.kbx)
-gpg_public_key_ring: /home/cbailey/dev/system-manager/user/mortis-configs/pubring.kbx
+gpg_public_key_ring: user/mortis-configs/pubring.kbx
 
 # SSH authorized keys file (~/.ssh/authorized_keys)
-ssh_authorized_keys: /home/cbailey/dev/system-manager/user/mortis-configs/authorized_keys
+ssh_authorized_keys: user/mortis-configs/authorized_keys
 
 # configure the root user as well as the local_user when setting up
 # shells/configs
@@ -124,7 +124,7 @@ cloud_providers:
 # Absolute path to sync list file
 # https://github.com/abraunegg/onedrive/blob/master/docs/USAGE.md#selective-sync
 # Ubuntu requires 19.04
-onedrive_sync_list: /home/cbailey/dev/system-manager/user/mortis-configs/sync_list
+onedrive_sync_list: user/mortis-configs/sync_list
 
 
 ## Desktop Settings
@@ -143,7 +143,7 @@ desktop_environments:
 #
 # This theme is only copied over, you still have to manually
 # enable it in system settings
-kde_theme: /home/cbailey/dev/system-manager/user/mortis-configs/kde/theme/
+kde_theme: user/mortis-configs/kde/theme/
 
 # Display Manager to use
 # supported: sddm, gdm
@@ -160,10 +160,10 @@ desktop_display_manager_use_plymouth: true
 # Display Manager theme to install
 # path must end in /
 # Theme must be fore the display manager you selected above
-desktop_display_manager_theme: /home/cbailey/dev/system-manager/user/mortis-configs/sddm/theme/
+desktop_display_manager_theme: user/mortis-configs/sddm/theme/
 
 # Path to PNG image to use for User Icon
-desktop_display_manager_user_icon: /home/cbailey/dev/system-manager/user/mortis-configs/sddm/face.icon
+desktop_display_manager_user_icon: user/mortis-configs/sddm/face.icon
 
 # Network Manager to use
 # supported: networkmanager
@@ -217,15 +217,15 @@ extra_user_dirs:
 # extra arbitary user files to copy
 # set to empty to not copy any
 extra_user_files:
-- { src: /home/cbailey/dev/system-manager/user/mortis-configs/system-manager.code-workspace, dest: dev/system-manager.code-workspace }
-- { src: /home/cbailey/dev/system-manager/user/mortis-configs/oreilly-remote.code-workspace, dest: dev/oreilly-remote.code-workspace }
+- { src: user/mortis-configs/system-manager.code-workspace, dest: dev/system-manager.code-workspace }
+- { src: user/mortis-configs/oreilly-remote.code-workspace, dest: dev/oreilly-remote.code-workspace }
 
 # extra arbitary system files to copy
 # set to empty to not copy any
 extra_system_files:
-- { src: /home/cbailey/dev/system-manager/user/mortis-configs/pam/ubuntu/sudo, dest: /etc/pam.d/sudo }
-- { src: /home/cbailey/dev/system-manager/user/mortis-configs/pam/ubuntu/common-auth, dest: /etc/pam.d/system-login }
-- { src: /home/cbailey/dev/system-manager/user/mortis-configs/authorized_keys, dest: /etc/security/authorized_keys }
+- { src: user/mortis-configs/pam/ubuntu/sudo, dest: /etc/pam.d/sudo }
+- { src: user/mortis-configs/pam/ubuntu/common-auth, dest: /etc/pam.d/system-login }
+- { src: user/mortis-configs/authorized_keys, dest: /etc/security/authorized_keys }
 
 
 ## Network Utils Settings
@@ -238,7 +238,7 @@ setup_samba: true
 
 # path to optional Samba config
 # set to 'none' to not copy one
-samba_config: /home/cbailey/dev/system-manager/user/mortis-configs/smb.conf
+samba_config: user/mortis-configs/smb.conf
 
 # Install and setup iptable filewall
 setup_iptables: true
@@ -272,15 +272,15 @@ git_repos:
 
 # Grub background
 # WARNING: Do NOT set a Grub background and a Grub theme
-grub_background: /home/cbailey/dev/system-manager/user/mortis-configs/grub/background.png
+grub_background: user/mortis-configs/grub/background.png
 
 # Grub theme to install
 # path must end in /
 # there must be a theme.txt file
 grub_theme: none
-# grub_theme: /home/cbailey/dev/system-manager/user/mortis-configs/grub/theme/
+# grub_theme: user/mortis-configs/grub/theme/
 
 # Plymouth theme to install
 # path must end in /
 # there must be a theme.txt file
-plymouth_theme: /home/cbailey/dev/system-manager/user/mortis-configs/plymouth/theme/
+plymouth_theme: user/mortis-configs/plymouth/theme/
