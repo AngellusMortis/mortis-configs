@@ -130,8 +130,9 @@ onedrive_sync_list: /home/cbailey/dev/system-manager/user/mortis-configs/sync_li
 ## Desktop Settings
 
 # DEs to install and setup
-# supported: kde, gnome
+# supported: kde, gnome, gnome-ubuntu
 # only applies to Linux
+# gnome-ubuntu is only avaible for Ubuntu. It installs the default full GNOME DE that comes with Ubuntu
 # set to empty value to not manage desktop environments
 # NOTE: GNOME does not support managing themes
 desktop_environments:
