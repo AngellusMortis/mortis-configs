@@ -276,7 +276,8 @@ setup_gcloud: true
 
 # list of git repos to clone
 git_repos:
-- { url: "git@github.com:AngellusMortis/system-manager.git", dest: dev/system-manager, branch: master }
+# - { url: "git@github.com:AngellusMortis/system-manager.git", dest: dev/system-manager, branch: master }
+# - { url: "git@github.com:AngellusMortis/mortis-configs.git", dest: dev/system-manager/user/mortis-configs, branch: master }
 - { url: "git@github.com:oreillymedia/chassis.git", dest: dev/chassis, branch: develop }
 - { url: "git@github.com:oreillymedia/groot.git", dest: dev/groot, branch: master }
 - { url: "git@github.com:oreillymedia/groot-frontend.git", dest: dev/groot-frontend, branch: master }
