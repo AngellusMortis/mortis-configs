@@ -9,7 +9,8 @@ gpg_public_key_ring: /home/cbailey/dev/system-manager/user/mortis-configs/pubrin
 # SSH authorized keys file (~/.ssh/authorized_keys)
 ssh_authorized_keys: /home/cbailey/dev/system-manager/user/mortis-configs/authorized_keys
 
-# configure the root user as well as the local_user when setting up shells/configs
+# configure the root user as well as the local_user when setting up
+# shells/configs
 configure_root: true
 
 # Standard system locale
@@ -29,10 +30,12 @@ powerline_prompt_bg_color_root: 'red'
 powerline_xonsh_prompt_bg_color: '#0087af'
 powerline_xonsh_prompt_bg_color_root: 'RED'
 
+
 ## Pacman AUR settings
 # Only applies to Arch Linux
 
-# must be one of the AUR Helpers supported by ansible-aur: https://github.com/kewlfft/ansible-aur
+# must be one of the AUR Helpers supported by ansible-aur:
+# https://github.com/kewlfft/ansible-aur
 # yay, aurman, pacaur, trizen, pikaur
 aur_builder: pikaur
 
@@ -48,7 +51,7 @@ aur_user: aur
 # X11 applications on your local
 x11_copy_script: true
 
-# dictionary of short names for various SSH hosts for X11/GPG helper helper scripts
+# dictionary of short names for various SSH hosts for X11/GPG helper scripts
 host_aliases:
  - { alias: local, host: 127.0.0.1 }
  - { alias: work, host: work.angellus.wl.mort.is }
@@ -120,14 +123,17 @@ cloud_providers:
 
 # Absolute path to sync list file
 # https://github.com/abraunegg/onedrive/blob/master/docs/USAGE.md#selective-sync
+# Ubuntu requires 19.04
 onedrive_sync_list: /home/cbailey/dev/system-manager/user/mortis-configs/sync_list
+
 
 ## Desktop Settings
 
 # DEs to install and setup
-# supported: kde
+# supported: kde, gnome
 # only applies to Linux
 # set to empty value to not manage desktop environments
+# NOTE: GNOME does not support managing themes
 desktop_environments:
 - kde
 
@@ -139,12 +145,11 @@ desktop_environments:
 kde_theme: /home/cbailey/dev/system-manager/user/mortis-configs/kde/theme/
 
 # Display Manager to use
-# supported: sddm
+# supported: sddm, gdm
 # only applies to Linux
 # set to 'none' to not configure display manager
 # NOTE: See "Changing Display Managers" in README about changing your default
-# WARNING: sddm will not work on Ubuntu, not without the Drivers working
-# TODO: Fix sddm for Ubuntu
+# NOTE: GDE does not support managing themes
 desktop_display_manager: sddm
 
 # Whether or not you already have Plymouth installed and configured
@@ -182,6 +187,7 @@ install_nvidia_drivers: true
 ## Extras Settings
 
 # Add extra PPA repos, Ubuntu only
+# set to empty to skip
 extra_ppas:
 - ppa:papirus/papirus
 - ppa:yubico/stable
@@ -205,6 +211,7 @@ extra_packages:
 extra_aur_packages: none
 
 # extra arbitary user directories to make relative to ~
+# set to empty to not create any
 extra_user_dirs:
 - .pip
 - dev
@@ -215,7 +222,7 @@ extra_user_files:
 - { src: /home/cbailey/dev/system-manager/user/mortis-configs/pip.conf, dest: .pip/pip.conf }
 - { src: /home/cbailey/dev/system-manager/user/mortis-configs/oreilly-remote.code-workspace, dest: dev/oreilly-remote.code-workspace }
 
-# extra arbitary user files to copy
+# extra arbitary system files to copy
 # set to empty to not copy any
 extra_system_files:
 - { src: /home/cbailey/dev/system-manager/user/mortis-configs/pam/ubuntu/sudo, dest: /etc/pam.d/sudo }
