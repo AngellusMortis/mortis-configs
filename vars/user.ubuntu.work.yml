@@ -251,10 +251,26 @@ iptables_whitelisted_networks:
 
 ## Dev Utils Settings
 
+# setup and install Docker
+setup_docker: true
+
+# optional Docker daemon.json file
+# set to 'none' to not copy one
+docker_config: none
+
 # optional extra docker host option (-H)
 # set to 'none' to only run on default
 # unix socket (unix:///var/run/docker.sock)
 extra_docker_host: tcp://192.168.5.10:2376
+
+# setup and install NodeJS
+setup_nodejs: true
+
+# setup and install Kubernetes
+setup_k8s: true
+
+# setup and install Google Cloud SDK
+setup_gcloud: true
 
 # list of git repos to clone
 git_repos:
