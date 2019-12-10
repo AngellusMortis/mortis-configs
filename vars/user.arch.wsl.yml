@@ -92,7 +92,7 @@ git_name: "Christopher Bailey"
 # public GPG signing key to use for git
 # Set this to 'none', but above if you want to configure git
 # without a signing key
-git_signing_key: A1FFD3F1D84C4F7A
+git_signing_key: 895776E4530BBFF3
 
 ## GPG Helper settings
 
