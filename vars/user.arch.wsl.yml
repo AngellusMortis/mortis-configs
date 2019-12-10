@@ -197,8 +197,8 @@ extra_user_files:
     }
 
 # extra arbitary system files to copy
-# set to 'none' to not copy any
-extra_system_files: none
+# set to empty to not copy any
+extra_system_files:
 
 ## Network Utils Settings
 
