@@ -197,8 +197,8 @@ extra_user_files:
     }
 
 # extra arbitary system files to copy
-# set to empty to not copy any
-extra_system_files:
+# set to '[]' to not copy any
+extra_system_files: []
 
 ## Network Utils Settings
 
@@ -243,7 +243,7 @@ setup_k8s: false
 setup_gcloud: false
 
 # list of git repos to clone
-# set to 'none' to not clone any
+# set to '[]' to not clone any
 git_repos:
   - {
       url: "git@github.com:AngellusMortis/system-manager.git",
