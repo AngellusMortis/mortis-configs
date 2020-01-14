@@ -41,7 +41,7 @@ aur_builder: pikaur
 # user to use when installing AUR packages,
 # will automatically be created and given correct permissions
 # should not be main user as it will also be excluded from Login Screen
-aur_user: aur
+aur_user: cbailey
 
 ## X11 Forwarding settings
 
@@ -54,7 +54,7 @@ host_aliases:
   - { alias: local, host: 127.0.0.1 }
   - { alias: work, host: work.angellus.wl.mort.is }
   - { alias: server, host: server.wl.mort.is }
-  - { alias: de, host: de.mort.is }
+  - { alias: fr, host: fr.mort.is }
 
 # Enable X11 forwaring over SSH on your local system. You must be running
 # sshd for this to work
@@ -86,13 +86,13 @@ enabled_shells:
 
 # name and email for git
 # set both to 'none' to skip configuring Git
-git_email: cbailey@oreilly.com
+git_email: cbailey@mort.is
 git_name: "Christopher Bailey"
 
 # public GPG signing key to use for git
 # Set this to 'none', but above if you want to configure git
 # without a signing key
-git_signing_key: A1FFD3F1D84C4F7A
+git_signing_key: 895776E4530BBFF3
 
 ## GPG Helper settings
 
@@ -216,23 +216,10 @@ extra_user_files:
       src: user/mortis-configs/system-manager.code-workspace,
       dest: dev/system-manager.code-workspace,
     }
-  - {
-      src: user/mortis-configs/oreilly-remote.code-workspace,
-      dest: dev/oreilly-remote.code-workspace,
-    }
 
 # extra arbitary system files to copy
 # set to empty to not copy any
-extra_system_files:
-  - { src: user/mortis-configs/pam/arch/sudo, dest: /etc/pam.d/sudo }
-  - {
-      src: user/mortis-configs/pam/arch/system-login,
-      dest: /etc/pam.d/system-login,
-    }
-  - {
-      src: user/mortis-configs/authorized_keys,
-      dest: /etc/security/authorized_keys,
-    }
+extra_system_files: []
 
 ## Network Utils Settings
 
@@ -281,36 +268,6 @@ setup_gcloud: true
 git_repos:
   # - { url: "git@github.com:AngellusMortis/system-manager.git", dest: dev/system-manager, branch: master }
   # - { url: "git@github.com:AngellusMortis/mortis-configs.git", dest: dev/system-manager/user/mortis-configs, branch: master }
-  - {
-      url: "git@github.com:oreillymedia/chassis.git",
-      dest: dev/chassis,
-      branch: develop,
-    }
-  - {
-      url: "git@github.com:oreillymedia/groot.git",
-      dest: dev/groot,
-      branch: master,
-    }
-  - {
-      url: "git@github.com:oreillymedia/groot-frontend.git",
-      dest: dev/groot-frontend,
-      branch: master,
-    }
-  - {
-      url: "git@github.com:safarijv/heron.git",
-      dest: dev/heron,
-      branch: develop,
-    }
-  - {
-      url: "git@github.com:oreillymedia/local-platform.git",
-      dest: dev/local-platform,
-      branch: master,
-    }
-  - {
-      url: "git@github.com:oreillymedia/avram.git",
-      dest: dev/avram,
-      branch: master,
-    }
 
 ## Extra Personalization settings
 
