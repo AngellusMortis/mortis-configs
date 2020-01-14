@@ -203,6 +203,7 @@ extra_aur_packages:
   - plasma5-applets-volumewin7mixer
   - papirus-libreoffice-theme
   - pam_ssh_agent_auth
+  - qt5-graphicaleffects-git
 
 # extra arbitary user directories to make relative to ~
 # set to empty to not create any
@@ -244,7 +245,7 @@ iptables_whitelisted_networks:
 ## Dev Utils Settings
 
 # setup and install Docker
-setup_docker: true
+setup_docker: false
 
 # optional Docker daemon.json file
 # set to 'none' to not copy one
@@ -256,16 +257,16 @@ docker_config: none
 extra_docker_host: tcp://192.168.5.10:2376
 
 # setup and install NodeJS
-setup_nodejs: true
+setup_nodejs: false
 
 # setup and install Kubernetes
-setup_k8s: true
+setup_k8s: false
 
 # setup and install Google Cloud SDK
-setup_gcloud: true
+setup_gcloud: false
 
 # list of git repos to clone
-git_repos:
+git_repos: []
   # - { url: "git@github.com:AngellusMortis/system-manager.git", dest: dev/system-manager, branch: master }
   # - { url: "git@github.com:AngellusMortis/mortis-configs.git", dest: dev/system-manager/user/mortis-configs, branch: master }
 
