@@ -86,7 +86,7 @@ enabled_shells:
 
 # name and email for git
 # set both to 'none' to skip configuring Git
-git_email: cbailey@mort.is
+git_email: christopherbailey@multimediallc.com
 git_name: "Christopher Bailey"
 
 # public GPG signing key to use for git
@@ -203,7 +203,6 @@ extra_aur_packages:
   - plasma5-applets-volumewin7mixer
   - papirus-libreoffice-theme
   - pam_ssh_agent_auth
-  - qt5-graphicaleffects-git
 
 # extra arbitary user directories to make relative to ~
 # set to empty to not create any
