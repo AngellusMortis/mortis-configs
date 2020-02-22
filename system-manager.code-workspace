@@ -1,14 +1,12 @@
 {
 	"folders": [
 		{
-			"path": "system-manager"
+			"path": "../../../"
 		},
 		{
-			"path": "system-manager-orm"
-		},
-		{
-			"path": "mortis-configs"
+			"path": "."
 		}
 	],
+	"remoteAuthority": "wsl+Arch",
 	"settings": {}
 }

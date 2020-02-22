@@ -211,11 +211,7 @@ extra_user_dirs:
 
 # extra arbitary user files to copy
 # set to empty to not copy any
-extra_user_files:
-  - {
-      src: user/mortis-configs/system-manager.code-workspace,
-      dest: dev/system-manager.code-workspace,
-    }
+extra_user_files:  []
 
 # extra arbitary system files to copy
 # set to empty to not copy any
