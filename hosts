@@ -4,3 +4,8 @@
 [all]
 127.0.0.1 ansible_connection=local
 work.angellus.wl.mort.is
+fr.mort.is
+ark.wl.mort.is
+
+[download]
+fr.mort.is

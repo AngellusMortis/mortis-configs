@@ -1,10 +1,13 @@
 {
 	"folders": [
 		{
-			"path": "../../../"
+			"path": "/home/cbailey/dev/system-manager"
 		},
 		{
 			"path": "."
+		},
+		{
+			"path": "/home/cbailey/dev/mortis-ansible"
 		}
 	],
 	"remoteAuthority": "wsl+Arch",

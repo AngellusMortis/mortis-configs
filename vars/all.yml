@@ -1,0 +1,70 @@
+## General Settings
+
+# username of main user you do everything as
+local_user: cbailey
+
+# GPG public key ring (~/.gnupg/pubring.kbx)
+gpg_public_key_ring: user/mortis-configs/pubring.kbx
+
+# SSH authorized keys file (~/.ssh/authorized_keys)
+ssh_authorized_keys: user/mortis-configs/authorized_keys
+
+# configure the root user as well as the local_user when setting up
+# shells/configs
+configure_root: true
+
+# Standard system locale
+# https://wiki.archlinux.org/index.php/Locale
+system_locale: en_US.UTF-8
+
+# enable powerline suport
+use_powerline: true
+
+# powerline colors
+powerline_colorscheme: default
+powerline_prompt_bg_color: "darkblue"
+powerline_prompt_bg_color_root: "red"
+powerline_xonsh_prompt_bg_color: "#0087af"
+powerline_xonsh_prompt_bg_color_root: "RED"
+
+## Pacman AUR settings
+# Only applies to Arch Linux
+
+# must be one of the AUR Helpers supported by ansible-aur:
+# https://github.com/kewlfft/ansible-aur
+# yay, aurman, pacaur, trizen, pikaur
+aur_builder: pikaur
+
+## X11 Forwarding settings
+
+# Install X11 helper script to install, useful if you plan to run remote
+# X11 applications on your local
+x11_copy_script: true
+
+# dictionary of short names for various SSH hosts for X11/GPG helper scripts
+host_aliases:
+  - { alias: local, host: 127.0.0.1 }
+  - { alias: work, host: work.angellus.wl.mort.is }
+  - { alias: server, host: server.wl.mort.is }
+  - { alias: download, host: fr.mort.is }
+  - { alias: ark, host: ark.wl.mort.is }
+
+# Enable X11 forwaring over SSH on your local system. You must be running
+# sshd for this to work
+x11_enable_forwarding: true
+
+## Shell settings
+
+# default login shell for the user
+# supported default shells: bash, zsh
+# set to 'none' if you do not want to change your default shell
+default_shell: zsh
+
+# additional shells to config
+# can be any values of default/secondary shells
+# must include default and secondary shell vars from above
+# set to blank if you do not want to configure shells
+enabled_shells:
+  - bash
+  - zsh
+  - xonsh
