@@ -1,5 +1,5 @@
 # Custom SSH_AUTH_SOCK env variable
-ssh_auth_sock:
+ssh_auth_sock: '/mnt/c/Users/cbailey/ssh-agent.sock'
 
 # enable tmux support
 use_tmux: true
@@ -7,10 +7,10 @@ use_tmux: true
 # user to use when installing AUR packages,
 # will automatically be created and given correct permissions
 # should not be main user as it will also be excluded from Login Screen
-aur_user: cbailey
+aur_user: aur
 
 # Manually export DISPLAY variable to localhost (useful for WSL)
-x11_export_display: false
+x11_export_display: true
 
 # secondary shell is a unstable non-login shell that gets loaded in rc file
 # for login shell
@@ -22,7 +22,7 @@ secondary_shell: xonsh
 
 # name and email for git
 # set both to 'none' to skip configuring Git
-git_email: christopherbailey@multimediallc.com
+git_email: cbailey@mort.is
 git_name: "Christopher Bailey"
 
 # public GPG signing key to use for git
@@ -33,8 +33,6 @@ git_signing_key: 895776E4530BBFF3
 ## GPG Helper settings
 
 # Location of GPG agents for gpg-remote helper script
-# default location locally is /run/user/1000/gnupg/S.gpg-agent
-#   where 1000 = your user's uid
 gpg_local_agent: /run/user/1000/gnupg/S.gpg-agent
 gpg_remote_agent: /run/user/1000/gnupg/S.gpg-agent
 
@@ -49,12 +47,11 @@ windows_gpg_agent_path: none
 # supported: onedrive
 # set to empty value to not install a cloud provider
 cloud_providers:
-  - onedrive
 
 # Absolute path to sync list file
 # https://github.com/abraunegg/onedrive/blob/master/docs/USAGE.md#selective-sync
 # Ubuntu requires 19.04
-onedrive_sync_list: user/mortis-configs/sync_list
+onedrive_sync_list: none
 
 ## Desktop Settings
 
@@ -65,14 +62,13 @@ onedrive_sync_list: user/mortis-configs/sync_list
 # set to empty value to not manage desktop environments
 # NOTE: GNOME does not support managing themes
 desktop_environments:
-  - kde
 
 # KDE theme to install
 # path must end in /
 #
 # This theme is only copied over, you still have to manually
 # enable it in system settings
-kde_theme: user/mortis-configs/kde/theme/
+kde_theme:
 
 # Display Manager to use
 # supported: sddm, gdm
@@ -80,25 +76,25 @@ kde_theme: user/mortis-configs/kde/theme/
 # set to 'none' to not configure display manager
 # NOTE: See "Changing Display Managers" in README about changing your default
 # NOTE: GDE does not support managing themes
-desktop_display_manager: sddm
+desktop_display_manager: none
 
 # Whether or not you already have Plymouth installed and configured
 # (if you are on Ubuntu, the answer is probably yes)
-desktop_display_manager_use_plymouth: true
+desktop_display_manager_use_plymouth: false
 
 # Display Manager theme to install
 # path must end in /
 # Theme must be fore the display manager you selected above
-desktop_display_manager_theme: user/mortis-configs/sddm/theme/
+desktop_display_manager_theme: none
 
 # Path to PNG image to use for User Icon
-desktop_display_manager_user_icon: user/mortis-configs/sddm/face.icon
+desktop_display_manager_user_icon: none
 
 # Network Manager to use
 # supported: networkmanager
 # only applies to Linux
 # set to 'none' to not configure network manager
-desktop_network_manager: networkmanager
+desktop_network_manager: none
 
 # Network Manager connection configs
 # Set to empty to not configure any connections
@@ -106,39 +102,25 @@ network_manager_configs:
 
 ## Graphics Drivers Settings
 # WARNING: Only support open source drivers
-install_intel_drivers: true
+install_intel_drivers: false
 
-install_nvidia_drivers: true
+install_nvidia_drivers: false
 
 ## Extras Settings
 
 # Add extra PPA repos, Ubuntu only
 # set to empty to skip
-extra_ppas:
+extra_ppas: []
+    # - "deb http://ppa.launchpad.net/ansible/ansible/ubuntu bionic main"
+    # - "deb [arch=amd64] https://download.docker.com/linux/debian buster stable"
 
 # Install list of arbitary packages
 # set to empty to not install any
 extra_packages:
-  - chromium
-  - firefox-developer-edition
-  - bluez
-  - bluez-utils
-  - adapta-kde
-  - kvantum-theme-adapta
-  - papirus-icon-theme
-  - yubico-pam
-  - yubikey-manager
-  - yubikey-manager-qt
-  - yubikey-personalization
-  - yubikey-personalization-gui
-  - libu2f-host
-  - qt5-graphicaleffects
+    - nfs-utils
 
-# Set to 'none' to skip installing AUR packages
-extra_aur_packages:
-  - plasma5-applets-volumewin7mixer
-  - papirus-libreoffice-theme
-  - pam_ssh_agent_auth
+# Set to '[]' to skip installing AUR packages
+extra_aur_packages: []
 
 # Extra systemd services to enable
 # Set to '[]' to skip
@@ -146,37 +128,37 @@ extra_systemd: []
 
 # extra arbitary user directories to make relative to ~
 # set to empty to not create any
-extra_user_dirs:
-  - dev
+extra_user_dirs: []
 
 # extra arbitary user files to copy
 # set to empty to not copy any
-extra_user_files:  []
+extra_user_files: []
 
 # extra arbitary system directories to create
 # set to '[]' to not copy any
 extra_system_dirs: []
 
 # extra arbitary system files to copy
-# set to empty to not copy any
+# set to '[]' to not copy any
 extra_system_files: []
 
 # extra drives to mount
 # set to '[]' to not mount anything
-extra_mounts: []
-
+extra_mounts:
+    - { path: /unraid/backup, src: unraid.wl.mort.is:/mnt/user/backup, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+    - { path: /unraid/public, src: unraid.wl.mort.is:/mnt/user/public, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
 
 ## Network Utils Settings
 
 # Install and set up OpenSSH Server
-setup_sshd: true
+setup_sshd: false
 
 # Install and set up Samba Network Shares
-setup_samba: true
+setup_samba: false
 
 # path to optional Samba config
 # set to 'none' to not copy one
-samba_config: user/mortis-configs/templates/smb.work.conf
+samba_config: none
 
 # Install and set up NFS Network Shares
 setup_nfs: false
@@ -186,12 +168,11 @@ setup_nfs: false
 nfs_config: none
 
 # Install and setup iptable filewall
-setup_iptables: true
+setup_iptables: false
 
 # IP address or network range (CIDR) of IP addresses without restrictions
 # set empty to not have any
-iptables_whitelisted_networks:
-  - 192.168.0.0/21
+iptables_whitelisted_networks: []
 
 # TCP Ports to whitelist
 # set to '[]' to not have any
@@ -208,7 +189,7 @@ iptables_whitelisted_udp_ports: []
 ## Dev Utils Settings
 
 # setup and install Docker
-setup_docker: true
+setup_docker: false
 
 # optional Docker daemon.json file
 # set to 'none' to not copy one
@@ -217,10 +198,10 @@ docker_config: none
 # optional extra docker host option (-H)
 # set to 'none' to only run on default
 # unix socket (unix:///var/run/docker.sock)
-extra_docker_host: tcp://192.168.5.10:2376
+extra_docker_host: none
 
 # setup and install NodeJS
-setup_nodejs: true
+setup_nodejs: false
 
 # setup and install Kubernetes
 setup_k8s: false
@@ -229,18 +210,27 @@ setup_k8s: false
 setup_gcloud: false
 
 # list of git repos to clone
+# set to '[]' to not clone any
 git_repos: []
-  # - { url: "git@github.com:AngellusMortis/system-manager.git", dest: dev/system-manager, branch: master }
-  # - { url: "git@github.com:AngellusMortis/mortis-configs.git", dest: dev/system-manager/user/mortis-configs, branch: master }
+  # - {
+  #     url: "git@github.com:AngellusMortis/system-manager.git",
+  #     dest: dev/system-manager,
+  #     branch: master,
+  #   }
+  # - {
+  #     url: "git@github.com:AngellusMortis/mortis-configs.git",
+  #     dest: dev/system-manager/files/user/mortis-configs,
+  #     branch: master,
+  #   }
 
 ## Extra Personalization settings
 
 # Customize Boot
-customize_boot: true
+customize_boot: false
 
 # Grub background
 # WARNING: Do NOT set a Grub background and a Grub theme
-grub_background: user/mortis-configs/grub/background.png
+grub_background: none
 
 # Grub theme to install
 # path must end in /
@@ -251,7 +241,7 @@ grub_theme: none
 # Plymouth theme to install
 # path must end in /
 # there must be a theme.txt file
-plymouth_theme: user/mortis-configs/plymouth/theme/
+plymouth_theme: none
 
 
 ## Crons

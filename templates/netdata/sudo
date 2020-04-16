@@ -1,0 +1,1 @@
+netdata ALL=(ALL) NOPASSWD: /usr/bin/smbstatus

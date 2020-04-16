@@ -1,0 +1,8 @@
+install_pihole: true
+
+# list of domains to whitelist for Pihole
+pihole_whitelist: []
+
+# dns hosts file
+# set to null to skip
+dns_hosts: 'user/mortis-configs/templates/hosts'

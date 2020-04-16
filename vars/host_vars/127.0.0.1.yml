@@ -140,6 +140,10 @@ extra_system_dirs: []
 # set to '[]' to not copy any
 extra_system_files: []
 
+# extra drives to mount
+# set to '[]' to not mount anything
+extra_mounts: []
+
 ## Network Utils Settings
 
 # Install and set up OpenSSH Server
