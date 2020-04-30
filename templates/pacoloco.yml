@@ -1,0 +1,14 @@
+cache_dir: /unraid/public/pacoloco/
+port: 9129
+purge_files_after: 2592000 # purge file after 30 days
+repos:
+  archlinux:
+    urls:
+    - http://mirror.vtti.vt.edu/archlinux
+    - http://arch.mirror.constant.com
+    - http://mirror.kaminski.io/archlinux
+    - http://mirrors.acm.wpi.edu/archlinux
+    - http://mirrors.gigenet.com/archlinux
+  manjaro-arm:
+    urls:
+    - http://repo.ialab.dsu.edu/manjaro/arm-stable

@@ -3,6 +3,10 @@
 # username of main user you do everything as
 local_user: cbailey
 
+# additional users to create/setup
+extra_users: []
+# - { user: media, use_tmux: false }
+
 # GPG public key ring (~/.gnupg/pubring.kbx)
 gpg_public_key_ring: user/mortis-configs/pubring.kbx
 
@@ -78,3 +82,9 @@ pihole_whitelist: []
 # dns hosts file
 # set to '' to skip
 dns_hosts: ''
+
+
+## NodeJS/NPM
+# Extra NPM packages to install
+# set to '[]' to skip
+extra_npm: []

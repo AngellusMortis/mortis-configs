@@ -1,0 +1,44 @@
+# additional users to create/setup
+extra_users:
+  - { user: kiosk, use_tmux: false }
+
+# Install list of arbitary packages
+# set to empty to not install any
+extra_packages:
+  - netdata
+  - nfs-utils
+  - chromium
+  - xorg-server
+  - xorg-apps
+  - xorg-xinit
+  - unclutter
+  - xterm
+  - ttf-dejavu
+  - bluez
+  - bluez-utils
+
+# extra arbitary system directories to create
+# set to '[]' to not copy any
+extra_system_dirs:
+  - { path: /etc/systemd/system/getty@tty1.service.d, owner: room, recurse: false, mode: '755' }
+
+# Extra systemd services to enable
+# Set to '[]' to skip
+extra_systemd:
+  - netdata.service
+  - bluetooth.service
+  - getty@tty1.service
+
+# extra arbitary system files to copy
+# set to '[]' to not copy any
+extra_system_files:
+  - { src: user/mortis-configs/templates/netdata/apps_groups.conf, dest: /etc/netdata/apps_groups.conf }
+  - { src: user/mortis-configs/templates/netdata/netdata.pi-4.conf, dest: /etc/netdata/netdata.conf }
+  - { src: user/mortis-configs/templates/netdata/python.d.conf, dest: /etc/netdata/python.d.conf }
+  - { src: user/mortis-configs/templates/sysctl.conf, dest: /etc/sysctl.d/90-extra-tuning.conf }
+  - { src: user/mortis-configs/templates/netdata/stream.internal.conf, dest: /etc/netdata/stream.conf }
+  - { src: user/mortis-configs/templates/mirrorlist.manjaro-arm, dest: /etc/pacman.d/mirrorlist }
+  - { src: user/mortis-configs/templates/kiosk/bashrc, dest: /home/kiosk/.bashrc }
+  - { src: user/mortis-configs/templates/kiosk/bashrc, dest: /home/kiosk/.bashrc }
+  - { src: user/mortis-configs/templates/kiosk/xinitrc, dest: /home/kiosk/.xinitrc }
+  - { src: user/mortis-configs/templates/kiosk/getty@tty1.service.conf, dest: /etc/systemd/system/getty@tty1.service.d/override.conf }

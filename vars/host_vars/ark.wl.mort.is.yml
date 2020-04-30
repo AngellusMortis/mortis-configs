@@ -153,12 +153,13 @@ extra_system_files:
   - { src: user/mortis-configs/templates/sysctl.conf, dest: /etc/sysctl.d/90-extra-tuning.conf }
   - { src: user/mortis-configs/templates/netdata/sudo, dest: /etc/sudoers.d/netdata-allow-to-sudo-smbstatus }
   - { src: user/mortis-configs/templates/netdata/stream.internal.conf, dest: /etc/netdata/stream.conf }
+  - { src: user/mortis-configs/templates/mirrorlist.archlinux, dest: /etc/pacman.d/mirrorlist }
 
 # extra drives to mount
 # set to '[]' to not mount anything
 extra_mounts:
-  - { path: /unraid/backup, src: unraid.wl.mort.is:/mnt/user/backup, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
-  - { path: /unraid/public, src: unraid.wl.mort.is:/mnt/user/public, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+  - { path: /unraid/backup, src: unraid-server.wl.mort.is:/mnt/user/backup, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+  - { path: /unraid/public, src: unraid-server.wl.mort.is:/mnt/user/public, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
 
 ## Network Utils Settings
 

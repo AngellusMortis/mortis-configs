@@ -7,9 +7,26 @@ work.angellus.wl.mort.is
 fr.mort.is
 ark.wl.mort.is
 192.168.1.30
+pi-2.wl.mort.is
+pi-3.wl.mort.is
+pi-4.wl.mort.is
+# pi-5.wl.mort.is
 
 [pi]
 192.168.1.30
+pi-2.wl.mort.is
+pi-3.wl.mort.is
+pi-4.wl.mort.is
+# pi-5.wl.mort.is
+
+[local-arch]
+work.angellus.wl.mort.is
+ark.wl.mort.is
+192.168.1.30
+pi-2.wl.mort.is
+pi-3.wl.mort.is
+pi-4.wl.mort.is
+# pi-5.wl.mort.is
 
 [download]
 fr.mort.is

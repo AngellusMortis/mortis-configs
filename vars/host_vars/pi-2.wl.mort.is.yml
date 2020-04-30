@@ -1,0 +1,64 @@
+# Set to '[]' to skip installing AUR packages
+extra_aur_packages:
+  - pacoloco-git
+
+# Extra systemd services to enable
+# Set to '[]' to skip
+extra_systemd:
+  - netdata.service
+  - pacoloco.service
+
+# extra arbitary system files to copy
+# set to '[]' to not copy any
+extra_system_files:
+  - { src: user/mortis-configs/templates/netdata/apps_groups.conf, dest: /etc/netdata/apps_groups.conf }
+  - { src: user/mortis-configs/templates/netdata/netdata.pi-2.conf, dest: /etc/netdata/netdata.conf }
+  - { src: user/mortis-configs/templates/netdata/python.d.conf, dest: /etc/netdata/python.d.conf }
+  - { src: user/mortis-configs/templates/sysctl.conf, dest: /etc/sysctl.d/90-extra-tuning.conf }
+  - { src: user/mortis-configs/templates/netdata/stream.internal.conf, dest: /etc/netdata/stream.conf }
+  - { src: user/mortis-configs/templates/mirrorlist.manjaro-arm, dest: /etc/pacman.d/mirrorlist }
+  - { src: user/mortis-configs/templates/pacoloco.yml, dest: /etc/pacoloco.yaml }
+
+# extra drives to mount
+# set to '[]' to not mount anything
+extra_mounts:
+  - { path: /unraid/backup, src: unraid-server.wl.mort.is:/mnt/user/backup, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+  - { path: /unraid/public, src: unraid-server.wl.mort.is:/mnt/user/public, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+  - { path: /unraid/appdata, src: unraid-server.wl.mort.is:/mnt/user/appdata, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+
+
+## nginx/Let's Encrypt
+
+# email to use for Let's Encrypt certs
+# set to empty to not config nginx/Let's encrypt
+letencrypt_email: cbailey@mort.is
+
+# domains to get SSL certs for
+# set to '[]' to not config nginx/Let's encrypt
+letencrypt_domains:
+  - "wl.mort.is"
+  - "*.wl.mort.is"
+
+# nginx proxies to set up
+# set to '[]' to not config nginx reverse proxies
+nginx_proxies:
+- { domain: 'backup.wl.mort.is', ip: '192.168.1.10', port: '7810', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+- { domain: 'dev.wl.mort.is', ip: '192.168.1.15', port: '9000', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+- { domain: 'download.wl.mort.is', ip: '10.8.0.14', port: '8112', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+- { domain: 'index.wl.mort.is', ip: '10.8.0.14', port: '9117', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+- { domain: 'iot.wl.mort.is', ip: '192.168.1.32', port: '8123', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+- { domain: 'nodered.wl.mort.is', ip: '192.168.1.32', port: '1880', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+- { domain: 'media.wl.mort.is', ip: '192.168.1.10', port: '3579', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null, websockets: false }
+- { domain: 'monitor.wl.mort.is', ip: '192.168.1.10', port: '19999', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+- { domain: 'movies.wl.mort.is', ip: '192.168.1.10', port: '7878', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+- { domain: 'music.wl.mort.is', ip: '192.168.1.10', port: '8686', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+- { domain: 'network.wl.mort.is', ip: '192.168.1.30', port: '8443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+- { domain: 'plex.wl.mort.is', ip: '192.168.1.10', port: '32400', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null }
+- { domain: 'r.wl.mort.is', ip: 'router.wl.mort.is', port: '8443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+- { domain: 'sync.wl.mort.is', ip: '192.168.1.10', port: '8384', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+- { domain: 'tautulli.wl.mort.is', ip: '192.168.1.10', port: '8181', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+- { domain: 'television.wl.mort.is', ip: '192.168.1.10', port: '8989', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+- { domain: 'unraid.wl.mort.is', ip: '192.168.1.10', port: '7443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+- { domain: 'watch.wl.mort.is', custom: true, custom_file: user/mortis-configs/templates/nginx/watch.wl.mort.is.conf }
+- { domain: 'almond.wl.mort.is', custom: true, custom_file: user/mortis-configs/templates/nginx/almond.wl.mort.is.conf }
+- { domain: 'wl.mort.is', custom: true, custom_file: user/mortis-configs/templates/nginx/wl.mort.is.conf }

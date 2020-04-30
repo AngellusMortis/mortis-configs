@@ -159,7 +159,8 @@ extra_system_dirs: []
 
 # extra arbitary system files to copy
 # set to empty to not copy any
-extra_system_files: []
+extra_system_files:
+  - { src: user/mortis-configs/templates/mirrorlist.archlinux, dest: /etc/pacman.d/mirrorlist }
 
 # extra drives to mount
 # set to '[]' to not mount anything

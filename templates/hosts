@@ -8,22 +8,35 @@
 # server
 192.168.1.5     switch switch.wl.mort.is
 
-192.168.1.10    pi.hole pi.hole.wl.mort.is unraid unraid.wl.mort.is vpn vpn.wl.mort.is
-192.168.1.10    plex plex.wl.mort.is tautulli tautulli.wl.mort.is  media media.wl.mort.is watch watch.wl.mort.is
-192.168.1.10    music music.wl.mort.is television television.wl.mort.is movies movies.wl.mort.is
+# Unraid
+192.168.1.10    unraid-server unraid-server.wl.mort.is vpn vpn.wl.mort.is
 192.168.1.10    download download.wl.mort.is index index.wl.mort.is
-192.168.1.10    r r.wl.mort.is dev dev.wl.mort.is monitor monitor.wl.mort.is dns dns.wl.mort.is
-192.168.1.10    sync sync.wl.mort.is iot iot.wl.mort.is backup backup.wl.mort.is
-
-192.168.1.15    server server.wl.mort.is server-f1 server-f1.wl.mort.is angellus-server angellus-server.wl.mort.is wl.mort.is
+192.168.1.15    server server.wl.mort.is server-f1 server-f1.wl.mort.is
+192.168.1.15    angellus-server angellus-server.wl.mort.is wl.mort.is
 
 192.168.1.20    server-f0 server-f0.wl.mort.is
 
-192.168.1.30    pi-1 pi-1.wl.mort.is
-192.168.1.31    pi-2 pi-2.wl.mort.is
-192.168.1.32    pi-3 pi-3.wl.mort.is dns-1 dns-1.wl.mort.is
-192.168.1.33    pi-4 pi-4.wl.mort.is dns-2 dns-2.wl.mort.is
+# PIs
+192.168.1.30    pi-1 pi-1.wl.mort.is pi.hole pi.hole.wl.mort.is dns dns.wl.mort.is
 
+# Nginx
+192.168.1.31    pi-2 pi-2.wl.mort.is unraid unraid.wl.mort.is
+192.168.1.31    plex plex.wl.mort.is tautulli tautulli.wl.mort.is
+192.168.1.31    media media.wl.mort.is watch watch.wl.mort.is
+192.168.1.31    music music.wl.mort.is television television.wl.mort.is
+192.168.1.31    movies movies.wl.mort.is r r.wl.mort.is dev dev.wl.mort.is
+192.168.1.31    monitor monitor.wl.mort.is network network.wl.mort.is
+192.168.1.31    sync sync.wl.mort.is backup backup.wl.mort.is
+192.168.1.31    iot iot.wl.mort.is nodered nodered.wl.mort.is
+192.168.1.31    wl.mort.is almond almond.wl.mort.is
+
+# Home Assisant
+192.168.1.32    pi-3 pi-3.wl.mort.is
+
+# 192.168.1.33    pi-4 pi-4.wl.mort.is
+192.168.1.34    pi-4 pi-4.wl.mort.is
+
+# other servers
 192.168.1.40    ark-f0 ark-f0.wl.mort.is
 192.168.1.41    ark ark-f1 ark.wl.mort.is ark-f1.wl.mort.is
 

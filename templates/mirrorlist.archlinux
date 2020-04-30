@@ -1,0 +1,11 @@
+Server = http://pi-2.wl.mort.is:9129/repo/archlinux/$repo/os/$arch
+## United States
+Server = http://mirror.vtti.vt.edu/archlinux/$repo/os/$arch
+## United States
+Server = http://arch.mirror.constant.com/$repo/os/$arch
+## United States
+Server = http://mirror.kaminski.io/archlinux/$repo/os/$arch
+## United States
+Server = http://mirrors.acm.wpi.edu/archlinux/$repo/os/$arch
+## United States
+Server = http://mirrors.gigenet.com/archlinux/$repo/os/$arch

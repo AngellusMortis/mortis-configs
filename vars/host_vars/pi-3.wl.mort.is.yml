@@ -1,0 +1,65 @@
+# enable tmux support
+use_tmux: true
+
+# additional users to create/setup
+extra_users:
+- { user: node-red, use_tmux: false }
+
+# Install list of arbitary packages
+# set to empty to not install any
+extra_packages:
+  - netdata
+  - nfs-utils
+  - home-assistant
+  # rabbitmq-plugins enable rabbitmq_mqtt
+  - rabbitmq
+  - npm
+
+# Set to '[]' to skip installing AUR packages
+extra_aur_packages:
+  - nodejs-node-red
+
+# Extra systemd services to enable
+# Set to '[]' to skip
+extra_systemd:
+  - netdata.service
+  - home-assistant.service
+  - rabbitmq.service
+  - node-red.service
+  - room-assistant.service
+
+# extra arbitary system directories to create
+# set to '[]' to not copy any
+extra_system_dirs:
+  - { path: /home/node-red/room-assistant, owner: node-red, recurse: false, mode: '755' }
+  - { path: /home/node-red/room-assistant/config, owner: node-red, recurse: false, mode: '755' }
+
+# extra arbitary system files to copy
+# set to '[]' to not copy any
+extra_system_files:
+  - { src: user/mortis-configs/templates/netdata/apps_groups.conf, dest: /etc/netdata/apps_groups.conf }
+  - { src: user/mortis-configs/templates/netdata/netdata.pi-3.conf, dest: /etc/netdata/netdata.conf }
+  - { src: user/mortis-configs/templates/netdata/python.d.conf, dest: /etc/netdata/python.d.conf }
+  - { src: user/mortis-configs/templates/sysctl.conf, dest: /etc/sysctl.d/90-extra-tuning.conf }
+  - { src: user/mortis-configs/templates/netdata/stream.internal.conf, dest: /etc/netdata/stream.conf }
+  - { src: user/mortis-configs/templates/mirrorlist.manjaro-arm, dest: /etc/pacman.d/mirrorlist }
+  - { src: user/mortis-configs/templates/rabbitmq/enabled_plugins, dest: /etc/rabbitmq/enabled_plugins }
+  - { src: user/mortis-configs/templates/rabbitmq/rabbitmq.conf, dest: /etc/rabbitmq/rabbitmq.conf }
+  - { src: user/mortis-configs/templates/rabbitmq/rabbitmq-env.conf, dest: /etc/rabbitmq/rabbitmq-env.conf }
+  - { src: user/mortis-configs/templates/node-red.service, dest: /etc/systemd/system/node-red.service }
+  - { src: user/mortis-configs/templates/room-assistant/pi-3.yml, dest: /home/node-red/room-assistant/config/local.yml }
+  - { src: user/mortis-configs/templates/room-assistant.service, dest: /etc/systemd/system/room-assistant.service }
+
+# extra drives to mount
+# set to '[]' to not mount anything
+extra_mounts:
+  - { path: /unraid/backup, src: unraid-server.wl.mort.is:/mnt/user/backup, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+  - { path: /unraid/public, src: unraid-server.wl.mort.is:/mnt/user/public, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+  - { path: /etc/letsencrypt, src: pi-2.wl.mort.is:/etc/letsencrypt, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+
+
+## NodeJS/NPM
+# Extra NPM packages to install
+# set to '[]' to skip
+extra_npm:
+  - room-assistant

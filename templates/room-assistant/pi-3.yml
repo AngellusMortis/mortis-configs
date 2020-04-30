@@ -1,0 +1,24 @@
+global:
+  instanceName: computer-room
+  integrations:
+  - bluetoothLowEnergy
+  - homeAssistant
+  cluster:
+    networkInterface: eth0
+    port: 6425
+    weight: 20
+    autoDiscovery: false
+    peerAddresses: []
+homeAssistant:
+  mqttUrl: 'mqtt://127.0.0.1:1883'
+  mqttOptions:
+    username: mqtt
+    password: MDrqydZ44ehwraZrrtv8pnXvGsrVvUZp
+bluetoothLowEnergy:
+  whitelist:
+  - 445ecdc2d425
+  maxDistance: 2
+  tagOverrides:
+    445ecdc2d425:
+      name: phone.angellus (Bluetooth)
+      # measuredPower: -61

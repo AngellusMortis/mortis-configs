@@ -2,7 +2,7 @@
 ssh_auth_sock: '/mnt/c/Users/cbailey/ssh-agent.sock'
 
 # enable tmux support
-use_tmux: true
+use_tmux: false
 
 # user to use when installing AUR packages,
 # will automatically be created and given correct permissions
@@ -117,6 +117,7 @@ extra_ppas: []
 # Install list of arbitary packages
 # set to empty to not install any
 extra_packages:
+    - netdata
     - nfs-utils
 
 # Set to '[]' to skip installing AUR packages
@@ -124,7 +125,8 @@ extra_aur_packages: []
 
 # Extra systemd services to enable
 # Set to '[]' to skip
-extra_systemd: []
+extra_systemd:
+  - netdata.service
 
 # extra arbitary user directories to make relative to ~
 # set to empty to not create any
@@ -140,13 +142,18 @@ extra_system_dirs: []
 
 # extra arbitary system files to copy
 # set to '[]' to not copy any
-extra_system_files: []
+extra_system_files:
+  - { src: user/mortis-configs/templates/netdata/apps_groups.conf, dest: /etc/netdata/apps_groups.conf }
+  - { src: user/mortis-configs/templates/netdata/python.d.conf, dest: /etc/netdata/python.d.conf }
+  - { src: user/mortis-configs/templates/sysctl.conf, dest: /etc/sysctl.d/90-extra-tuning.conf }
+  - { src: user/mortis-configs/templates/netdata/stream.internal.conf, dest: /etc/netdata/stream.conf }
+  - { src: user/mortis-configs/templates/mirrorlist.manjaro-arm, dest: /etc/pacman.d/mirrorlist }
 
 # extra drives to mount
 # set to '[]' to not mount anything
 extra_mounts:
-    - { path: /unraid/backup, src: unraid.wl.mort.is:/mnt/user/backup, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
-    - { path: /unraid/public, src: unraid.wl.mort.is:/mnt/user/public, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+    - { path: /unraid/backup, src: unraid-server.wl.mort.is:/mnt/user/backup, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+    - { path: /unraid/public, src: unraid-server.wl.mort.is:/mnt/user/public, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
 
 ## Network Utils Settings
 
