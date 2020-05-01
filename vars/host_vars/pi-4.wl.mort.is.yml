@@ -1,6 +1,7 @@
 # additional users to create/setup
 extra_users:
-  - { user: kiosk, use_tmux: false }
+  - { user: kiosk, configure: false }
+  - { user: room-assistant, configure: false }
 
 # Install list of arbitary packages
 # set to empty to not install any
@@ -9,18 +10,25 @@ extra_packages:
   - nfs-utils
   - chromium
   - xorg-server
-  - xorg-apps
+  # - xorg-apps
   - xorg-xinit
   - unclutter
-  - xterm
   - ttf-dejavu
   - bluez
-  - bluez-utils
+  - avahi
+  - nss-mdns
+
+# Set to '[]' to skip installing AUR packages
+extra_aur_packages:
+  # gpg --recv-keys 06CA9F5D1DCF2659
+  - bluez-utils-compat
 
 # extra arbitary system directories to create
 # set to '[]' to not copy any
 extra_system_dirs:
-  - { path: /etc/systemd/system/getty@tty1.service.d, owner: room, recurse: false, mode: '755' }
+  - { path: /etc/systemd/system/getty@tty1.service.d, owner: root, recurse: false, mode: '755' }
+  - { path: /home/room-assistant/config, owner: room-assistant, recurse: false, mode: '755' }
+
 
 # Extra systemd services to enable
 # Set to '[]' to skip
@@ -28,6 +36,8 @@ extra_systemd:
   - netdata.service
   - bluetooth.service
   - getty@tty1.service
+  - room-assistant.service
+  - avahi-daemon.service
 
 # extra arbitary system files to copy
 # set to '[]' to not copy any
@@ -42,3 +52,12 @@ extra_system_files:
   - { src: user/mortis-configs/templates/kiosk/bashrc, dest: /home/kiosk/.bashrc }
   - { src: user/mortis-configs/templates/kiosk/xinitrc, dest: /home/kiosk/.xinitrc }
   - { src: user/mortis-configs/templates/kiosk/getty@tty1.service.conf, dest: /etc/systemd/system/getty@tty1.service.d/override.conf }
+  - { src: user/mortis-configs/templates/room-assistant/pi-4.yml, dest: /home/room-assistant/config/local.yml }
+  - { src: user/mortis-configs/templates/room-assistant.service, dest: /etc/systemd/system/room-assistant.service }
+  - { src: user/mortis-configs/templates/room-assistant/nsswitch.conf, dest: /etc/nsswitch.conf }
+
+## NodeJS/NPM
+# Extra NPM packages to install
+# set to '[]' to skip
+extra_npm:
+  - room-assistant

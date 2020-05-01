@@ -1,17 +1,17 @@
 global:
-  instanceName: computer-room
+  instanceName: bedroom
   integrations:
   - bluetoothClassic
   - homeAssistant
   cluster:
-    networkInterface: eth0
+    networkInterface: wlan0
     port: 6425
-    weight: 100
+    weight: 10
     autoDiscovery: false
     peerAddresses:
-    - pi-4.wl.mort.is:6425
+    - pi-3.wl.mort.is:6425
 homeAssistant:
-  mqttUrl: 'mqtt://127.0.0.1:1883'
+  mqttUrl: 'mqtt://pi-3.wl.mort.is:1883'
   mqttOptions:
     username: mqtt
     password: MDrqydZ44ehwraZrrtv8pnXvGsrVvUZp
@@ -20,7 +20,7 @@ bluetoothClassic:
   interval: 6
   timeoutCycles: 2
   minRssi:
-    default: -5
+    default: -10
   addresses:
     - '44:5E:CD:C2:D4:25'
     - '44:5E:CD:C2:0C:04'

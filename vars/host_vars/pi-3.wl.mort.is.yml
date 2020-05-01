@@ -3,7 +3,8 @@ use_tmux: true
 
 # additional users to create/setup
 extra_users:
-- { user: node-red, use_tmux: false }
+- { user: node-red, configure: false }
+- { user: room-assistant, configure: false }
 
 # Install list of arbitary packages
 # set to empty to not install any
@@ -14,25 +15,31 @@ extra_packages:
   # rabbitmq-plugins enable rabbitmq_mqtt
   - rabbitmq
   - npm
+  - bluez
+  - avahi
+  - nss-mdns
 
 # Set to '[]' to skip installing AUR packages
 extra_aur_packages:
   - nodejs-node-red
+  # gpg --recv-keys 06CA9F5D1DCF2659
+  - bluez-utils-compat
 
 # Extra systemd services to enable
 # Set to '[]' to skip
 extra_systemd:
   - netdata.service
   - home-assistant.service
+  - bluetooth.service
   - rabbitmq.service
   - node-red.service
   - room-assistant.service
+  - avahi-daemon.service
 
 # extra arbitary system directories to create
 # set to '[]' to not copy any
 extra_system_dirs:
-  - { path: /home/node-red/room-assistant, owner: node-red, recurse: false, mode: '755' }
-  - { path: /home/node-red/room-assistant/config, owner: node-red, recurse: false, mode: '755' }
+  - { path: /home/room-assistant/config, owner: room-assistant, recurse: false, mode: '755' }
 
 # extra arbitary system files to copy
 # set to '[]' to not copy any
@@ -47,8 +54,9 @@ extra_system_files:
   - { src: user/mortis-configs/templates/rabbitmq/rabbitmq.conf, dest: /etc/rabbitmq/rabbitmq.conf }
   - { src: user/mortis-configs/templates/rabbitmq/rabbitmq-env.conf, dest: /etc/rabbitmq/rabbitmq-env.conf }
   - { src: user/mortis-configs/templates/node-red.service, dest: /etc/systemd/system/node-red.service }
-  - { src: user/mortis-configs/templates/room-assistant/pi-3.yml, dest: /home/node-red/room-assistant/config/local.yml }
+  - { src: user/mortis-configs/templates/room-assistant/pi-3.yml, dest: /home/room-assistant/config/local.yml }
   - { src: user/mortis-configs/templates/room-assistant.service, dest: /etc/systemd/system/room-assistant.service }
+  - { src: user/mortis-configs/templates/room-assistant/nsswitch.conf, dest: /etc/nsswitch.conf }
 
 # extra drives to mount
 # set to '[]' to not mount anything

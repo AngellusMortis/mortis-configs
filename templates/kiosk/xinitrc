@@ -1,11 +1,10 @@
 #!/bin/sh
 
 xset +dpms
-xset s 1
-xset s default
+xset s 60 60
 
 unclutter &
-chromium https://iot.wl.mort.is/lovelace-kiosk/home \
+chromium --app=https://iot.wl.mort.is/lovelace-kiosk/home \
     --window-size=800,480 --start-fullscreen --kiosk \
     --noerrdialogs --disable-translate --no-first-run \
     --fast --fast-start --disable-infobars --disable-features=TranslateUI \
