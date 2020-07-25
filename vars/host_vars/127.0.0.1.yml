@@ -110,7 +110,7 @@ install_nvidia_drivers: false
 
 # Add extra PPA repos, Ubuntu only
 # set to empty to skip
-extra_ppas:
+extra_ppas: []
 
 # Install list of arbitary packages
 # set to empty to not install any
