@@ -1,3 +1,7 @@
+
+# whether or not machine has systemd (like WSL)
+has_systemd: true
+
 # Custom SSH_AUTH_SOCK env variable
 ssh_auth_sock: '/mnt/c/Users/cbailey/ssh-agent.sock'
 
