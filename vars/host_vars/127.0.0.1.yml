@@ -3,7 +3,7 @@
 has_systemd: true
 
 # Custom SSH_AUTH_SOCK env variable
-ssh_auth_sock: '/mnt/c/Users/cbailey/ssh-agent.sock'
+ssh_auth_sock: '/home/cbailey/.ssh/wsl-ssh-agent.sock'
 
 # enable tmux support
 use_tmux: true
@@ -43,7 +43,7 @@ gpg_remote_agent: /run/user/1000/gnupg/S.gpg-agent
 # WSL specific GPG settings to get Windows 10 GPG Agent in WSL
 # See https://codingnest.com/how-to-use-gpg-with-yubikey-wsl/ for setup
 wsl_npiperelay_path: "/mnt/c/Users/cbailey/Syncthing/cbailey/Development/npiperelay.exe"
-windows_ssh_auth_sock_path: "/\/\./\pipe/\ssh-pageant"
+windows_ssh_auth_sock_path: "/\\/\\./\\pipe/\\ssh-pageant"
 windows_gpg_agent_path: "C:/Users/cbailey/AppData/Roaming/gnupg/S.gpg-agent"
 
 ## Cloud Provider Settings
