@@ -16,6 +16,8 @@ gpg_public_key_ring: user/mortis-configs/pubring.kbx
 # SSH authorized keys file (~/.ssh/authorized_keys)
 ssh_authorized_keys: user/mortis-configs/authorized_keys
 
+windows_ssh_auth_sock_path: null
+
 # configure the root user as well as the local_user when setting up
 # shells/configs
 configure_root: true
@@ -33,6 +35,7 @@ powerline_prompt_bg_color: "darkblue"
 powerline_prompt_bg_color_root: "red"
 powerline_xonsh_prompt_bg_color: "#0087af"
 powerline_xonsh_prompt_bg_color_root: "RED"
+
 
 ## Pacman AUR settings
 # Only applies to Arch Linux
