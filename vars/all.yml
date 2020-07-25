@@ -51,7 +51,7 @@ host_aliases:
   - { alias: work, host: work.angellus.wl.mort.is }
   - { alias: server, host: server.wl.mort.is }
   - { alias: download, host: fr.mort.is }
-  - { alias: ark, host: ark.wl.mort.is }
+  - { alias: ark, host: games.wl.mort.is }
 
 # Enable X11 forwaring over SSH on your local system. You must be running
 # sshd for this to work

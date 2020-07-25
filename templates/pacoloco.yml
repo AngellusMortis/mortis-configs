@@ -12,3 +12,6 @@ repos:
   manjaro-arm:
     urls:
     - http://repo.ialab.dsu.edu/manjaro/arm-stable
+  archlinux-arm:
+    urls:
+    - http://mirror.archlinuxarm.org/

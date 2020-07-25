@@ -1,5 +1,5 @@
 global:
-  instanceName: bedroom
+  instanceName: living-room
   integrations:
   - bluetoothClassic
   - homeAssistant
@@ -9,7 +9,7 @@ cluster:
   weight: 10
   autoDiscovery: false
   peerAddresses:
-  - pi-5.wl.mort.is:6425
+  - pi-4.wl.mort.is:6425
   - pi-6.wl.mort.is:6425
 homeAssistant:
   mqttUrl: 'mqtt://pi-3.wl.mort.is:1883'
@@ -21,8 +21,7 @@ bluetoothClassic:
   interval: 6
   timeoutCycles: 2
   minRssi:
-    '44:5E:CD:C2:D4:25': -1
-    default: -5
+    default: -10
   addresses:
     - '44:5E:CD:C2:D4:25'
     - '44:5E:CD:C2:0C:04'

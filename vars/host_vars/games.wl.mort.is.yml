@@ -148,7 +148,7 @@ extra_system_dirs:
 # set to '[]' to not copy any
 extra_system_files:
   - { src: user/mortis-configs/templates/netdata/apps_groups.conf, dest: /etc/netdata/apps_groups.conf }
-  - { src: user/mortis-configs/templates/netdata/netdata.ark.wl.mort.is.conf, dest: /etc/netdata/netdata.conf }
+  - { src: user/mortis-configs/templates/netdata/netdata.games.wl.mort.is.conf, dest: /etc/netdata/netdata.conf }
   - { src: user/mortis-configs/templates/netdata/python.d.conf, dest: /etc/netdata/python.d.conf }
   - { src: user/mortis-configs/templates/sysctl.conf, dest: /etc/sysctl.d/90-extra-tuning.conf }
   - { src: user/mortis-configs/templates/netdata/sudo, dest: /etc/sudoers.d/netdata-allow-to-sudo-smbstatus }

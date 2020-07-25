@@ -209,12 +209,13 @@ iptables_whitelisted_networks: []
 # set to '[]' to not have any
 iptables_whitelisted_tcp_ports:
 - { port: 22, source: 99.78.119.161/29 } # SSH
+- { port: 80, source: 99.78.119.161/29 } # HTTP
+- { port: 443, source: 99.78.119.161/29 } # HTTPS
 - { port: 56881:56889, source: } # Deluge
 
 # UDP Ports to whitelist
 # set to '[]' to not have any
 iptables_whitelisted_udp_ports:
-- { port: 1194, source: } # VPN
 - { port: 56881:56889, source: } # Deluge
 
 ## Dev Utils Settings
@@ -289,13 +290,16 @@ extra_crons:
 
 # email to use for Let's Encrypt certs
 # set to empty to not config nginx/Let's encrypt
-letencrypt_email:
+letencrypt_email: cbailey@mort.is
 
 # domains to get SSL certs for
 # set to '[]' to not config nginx/Let's encrypt
-letencrypt_domains: []
+letencrypt_domains:
+  - "fr.mort.is"
+  - "*.fr.mort.is"
 
 # nginx proxies to set up
 # set to '[]' to not config nginx reverse proxies
-nginx_proxies: []
-#  - { domain: 'example.com', ip: '127.0.0.1', port: '8000', type: 'proxy', cors: true, cors_domain: 'example.com', media_root: null, static_root: null, internal: true, stats_ip: null }
+nginx_proxies:
+- { domain: 'download.fr.mort.is', ip: '127.0.0.1', port: '8112', type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null }
+- { domain: 'index.fr.mort.is', ip: '127.0.0.1', port: '9117', type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null }

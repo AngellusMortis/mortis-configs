@@ -4,7 +4,6 @@ use_tmux: true
 # additional users to create/setup
 extra_users:
 - { user: node-red, configure: false }
-- { user: room-assistant, configure: false }
 
 # Install list of arbitary packages
 # set to empty to not install any
@@ -15,9 +14,7 @@ extra_packages:
   # rabbitmq-plugins enable rabbitmq_mqtt
   - rabbitmq
   - npm
-  - bluez
-  - avahi
-  - nss-mdns
+  - rsync
 
 # Set to '[]' to skip installing AUR packages
 extra_aur_packages:
@@ -33,13 +30,6 @@ extra_systemd:
   - bluetooth.service
   - rabbitmq.service
   - node-red.service
-  - room-assistant.service
-  - avahi-daemon.service
-
-# extra arbitary system directories to create
-# set to '[]' to not copy any
-extra_system_dirs:
-  - { path: /home/room-assistant/config, owner: room-assistant, recurse: false, mode: '755' }
 
 # extra arbitary system files to copy
 # set to '[]' to not copy any
@@ -54,9 +44,6 @@ extra_system_files:
   - { src: user/mortis-configs/templates/rabbitmq/rabbitmq.conf, dest: /etc/rabbitmq/rabbitmq.conf }
   - { src: user/mortis-configs/templates/rabbitmq/rabbitmq-env.conf, dest: /etc/rabbitmq/rabbitmq-env.conf }
   - { src: user/mortis-configs/templates/node-red.service, dest: /etc/systemd/system/node-red.service }
-  - { src: user/mortis-configs/templates/room-assistant/pi-3.yml, dest: /home/room-assistant/config/local.yml }
-  - { src: user/mortis-configs/templates/room-assistant.service, dest: /etc/systemd/system/room-assistant.service }
-  - { src: user/mortis-configs/templates/room-assistant/nsswitch.conf, dest: /etc/nsswitch.conf }
 
 # extra drives to mount
 # set to '[]' to not mount anything
@@ -66,8 +53,11 @@ extra_mounts:
   - { path: /etc/letsencrypt, src: pi-2.wl.mort.is:/etc/letsencrypt, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
 
 
-## NodeJS/NPM
-# Extra NPM packages to install
+# Crons to set up
 # set to '[]' to skip
-extra_npm:
-  - room-assistant
+extra_crons:
+- name: 'home assistant backup'
+  minute: "0"
+  hour: "*/2"
+  job: "rsync -av --delete /var/lib/hass/ /unraid/backup/hass/"
+  user: hass

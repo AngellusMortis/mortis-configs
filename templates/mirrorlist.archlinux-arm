@@ -1,0 +1,3 @@
+Server = http://pi-2.wl.mort.is:9129/repo/archlinux-arm/$arch/$repo
+## Geo-IP based mirror selection and load balancing
+Server = http://mirror.archlinuxarm.org/$arch/$repo

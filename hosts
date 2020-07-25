@@ -5,28 +5,38 @@
 127.0.0.1 ansible_connection=local
 work.angellus.wl.mort.is
 fr.mort.is
-ark.wl.mort.is
-192.168.1.30
+server-2.wl.mort.is
+# games.wl.mort.is
+pi-1.wl.mort.is ansible_host=192.168.1.10
 pi-2.wl.mort.is
 pi-3.wl.mort.is
 pi-4.wl.mort.is
-# pi-5.wl.mort.is
+pi-5.wl.mort.is
+pi-6.wl.mort.is
 
 [pi]
-192.168.1.30
+pi-1.wl.mort.is ansible_host=192.168.1.10
 pi-2.wl.mort.is
 pi-3.wl.mort.is
 pi-4.wl.mort.is
-# pi-5.wl.mort.is
+pi-5.wl.mort.is
+pi-6.wl.mort.is
 
-[local-arch]
+[roomassistant]
+pi-4.wl.mort.is
+pi-5.wl.mort.is
+pi-6.wl.mort.is
+
+[localarch]
 work.angellus.wl.mort.is
-ark.wl.mort.is
-192.168.1.30
+server-2.wl.mort.is
+# games.wl.mort.is
+pi-1.wl.mort.is ansible_host=192.168.1.10
 pi-2.wl.mort.is
 pi-3.wl.mort.is
 pi-4.wl.mort.is
-# pi-5.wl.mort.is
+pi-5.wl.mort.is
+pi-6.wl.mort.is
 
 [download]
 fr.mort.is

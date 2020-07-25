@@ -38,7 +38,7 @@ gpg_remote_agent: /run/user/1000/gnupg/S.gpg-agent
 
 # WSL specific GPG settings to get Windows 10 GPG Agent in WSL
 # See https://codingnest.com/how-to-use-gpg-with-yubikey-wsl/ for setup
-wsl_npiperelay_path: "/mnt/c/Users/cbailey/OneDrive/Development/npiperelay.exe"
+wsl_npiperelay_path: "/mnt/c/Users/cbailey/Syncthing/cbailey/Development/npiperelay.exe"
 windows_gpg_agent_path: "C:/Users/cbailey/AppData/Roaming/gnupg/S.gpg-agent"
 
 ## Cloud Provider Settings

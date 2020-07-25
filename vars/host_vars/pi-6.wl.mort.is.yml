@@ -34,12 +34,12 @@ extra_systemd:
 # set to '[]' to not copy any
 extra_system_files:
   - { src: user/mortis-configs/templates/netdata/apps_groups.conf, dest: /etc/netdata/apps_groups.conf }
-  - { src: user/mortis-configs/templates/netdata/netdata.pi-5.conf, dest: /etc/netdata/netdata.conf }
+  - { src: user/mortis-configs/templates/netdata/netdata.pi-6.conf, dest: /etc/netdata/netdata.conf }
   - { src: user/mortis-configs/templates/netdata/python.d.conf, dest: /etc/netdata/python.d.conf }
   - { src: user/mortis-configs/templates/sysctl.conf, dest: /etc/sysctl.d/90-extra-tuning.conf }
   - { src: user/mortis-configs/templates/netdata/stream.internal.conf, dest: /etc/netdata/stream.conf }
   - { src: user/mortis-configs/templates/mirrorlist.archlinux-arm, dest: /etc/pacman.d/mirrorlist }
-  - { src: user/mortis-configs/templates/room-assistant/pi-5.yml, dest: /home/room-assistant/config/local.yml }
+  - { src: user/mortis-configs/templates/room-assistant/pi-6.yml, dest: /home/room-assistant/config/local.yml }
   - { src: user/mortis-configs/templates/room-assistant.service, dest: /etc/systemd/system/room-assistant.service }
   - { src: user/mortis-configs/templates/room-assistant/nsswitch.conf, dest: /etc/nsswitch.conf }
 

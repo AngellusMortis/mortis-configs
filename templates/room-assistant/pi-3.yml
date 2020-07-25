@@ -3,13 +3,14 @@ global:
   integrations:
   - bluetoothClassic
   - homeAssistant
-  cluster:
-    networkInterface: eth0
-    port: 6425
-    weight: 100
-    autoDiscovery: false
-    peerAddresses:
-    - pi-4.wl.mort.is:6425
+cluster:
+  networkInterface: eth0
+  port: 6425
+  weight: 100
+  autoDiscovery: false
+  peerAddresses:
+  - pi-4.wl.mort.is:6425
+  - pi-5.wl.mort.is:6425
 homeAssistant:
   mqttUrl: 'mqtt://127.0.0.1:1883'
   mqttOptions:
@@ -20,7 +21,7 @@ bluetoothClassic:
   interval: 6
   timeoutCycles: 2
   minRssi:
-    default: -5
+    default: -12
   addresses:
     - '44:5E:CD:C2:D4:25'
     - '44:5E:CD:C2:0C:04'
