@@ -2,6 +2,7 @@
 
 rm /etc/ansible/hosts -f
 rm ~cbailey/dev/system-manager/host_vars -f
+mkdir -p ~cbailey/dev/system-manager/group_vars/all/
 rm ~cbailey/dev/system-manager/group_vars/all/user.yml -f
 rm ~cbailey/dev/system-manager/group_vars/pi -f
 
