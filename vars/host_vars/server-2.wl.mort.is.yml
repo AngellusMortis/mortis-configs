@@ -117,6 +117,8 @@ extra_ppas:
 # Install list of arbitary packages
 # set to '[]' to not install any
 extra_packages:
+    - docker
+    - docker-compose
     - netdata
     - nfs-utils
 
@@ -126,6 +128,7 @@ extra_aur_packages: []
 # Extra systemd services to enable
 # Set to '[]' to skip
 extra_systemd:
+    - docker.service
     - netdata.service
 
 # extra arbitary user directories to make relative to ~
@@ -165,18 +168,18 @@ extra_mounts:
 setup_sshd: false
 
 # Install and set up Samba Network Shares
-setup_samba: false
+setup_samba: true
 
 # path to optional Samba config
 # set to 'none' to not copy one
-samba_config: none
+samba_config: user/mortis-configs/templates/smb.conf
 
 # Install and set up NFS Network Shares
-setup_nfs: false
+setup_nfs: true
 
 # path to optional NFS config
 # set to 'none' to not copy one
-nfs_config: none
+nfs_config: user/mortis-configs/templates/exports.server-2
 
 # Install and setup iptable filewall
 setup_iptables: false

@@ -16,6 +16,8 @@
 192.168.2.10    monitor monitor.wl.mort.is network network.wl.mort.is router router.wl.mort.is
 192.168.2.10    sync sync.wl.mort.is backup backup.wl.mort.is
 192.168.2.10    iot iot.wl.mort.is nodered nodered.wl.mort.is
+192.168.2.10    testing-boundlexx testing-boundlexx.wl.mort.is local-boundlexx local-boundlexx.wl.mort.is
+192.168.2.10    boundlexx boundlexx.wl.mort.is prometheus-boundlexx.wl.mort.is grafana-boundlexx.wl.mort.is
 192.168.2.10    wl.mort.is almond almond.wl.mort.is
 
 ## home assistant

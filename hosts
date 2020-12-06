@@ -13,6 +13,8 @@ pi-3.wl.mort.is
 pi-4.wl.mort.is
 pi-5.wl.mort.is
 pi-6.wl.mort.is
+192.99.9.80
+192.168.1.42
 
 [pi]
 pi-1.wl.mort.is ansible_host=192.168.1.10
@@ -21,6 +23,7 @@ pi-3.wl.mort.is
 pi-4.wl.mort.is
 pi-5.wl.mort.is
 pi-6.wl.mort.is
+192.168.1.42
 
 [roomassistant]
 pi-4.wl.mort.is
