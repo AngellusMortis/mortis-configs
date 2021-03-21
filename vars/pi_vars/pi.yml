@@ -16,7 +16,7 @@ x11_export_display: true
 # for login shell
 # supported default shells: xonsh
 # set to 'none' if you do not want to configure a secondary shell
-secondary_shell: xonsh
+secondary_shell: none
 
 ## Git Settings
 
@@ -143,6 +143,7 @@ extra_system_dirs: []
 # extra arbitary system files to copy
 # set to '[]' to not copy any
 extra_system_files:
+  - { src: user/mortis-configs/templates/netdata/.opt-out, dest: /etc/netdata/.opt-out-from-anonymous-statistics }
   - { src: user/mortis-configs/templates/netdata/apps_groups.conf, dest: /etc/netdata/apps_groups.conf }
   - { src: user/mortis-configs/templates/netdata/python.d.conf, dest: /etc/netdata/python.d.conf }
   - { src: user/mortis-configs/templates/sysctl.conf, dest: /etc/sysctl.d/90-extra-tuning.conf }
@@ -154,6 +155,7 @@ extra_system_files:
 extra_mounts:
     - { path: /unraid/backup, src: unraid-server.wl.mort.is:/mnt/user/backup, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
     - { path: /unraid/public, src: unraid-server.wl.mort.is:/mnt/user/public, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+    - { path: /unraid/media, src: unraid-server.wl.mort.is:/mnt/user/media, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
 
 ## Network Utils Settings
 
@@ -275,3 +277,6 @@ letencrypt_domains: []
 # set to '[]' to not config nginx reverse proxies
 nginx_proxies: []
 #  - { domain: 'example.com', ip: '127.0.0.1', port: '8000', type: 'proxy', cors: true, cors_domain: 'example.com', media_root: null, static_root: null, internal: true, stats_ip: null }
+
+# promtail / Loki setup
+loki_target: "http://server-2.wl.mort.is:3100/loki/api/v1/push"

@@ -16,7 +16,7 @@ x11_export_display: false
 # for login shell
 # supported default shells: xonsh
 # set to 'none' if you do not want to configure a secondary shell
-secondary_shell: xonsh
+secondary_shell: none
 
 ## Git Settings
 
@@ -147,6 +147,7 @@ extra_system_dirs:
 # extra arbitary system files to copy
 # set to '[]' to not copy any
 extra_system_files:
+  - { src: user/mortis-configs/templates/netdata/.opt-out, dest: /etc/netdata/.opt-out-from-anonymous-statistics }
   - { src: user/mortis-configs/templates/netdata/apps_groups.conf, dest: /etc/netdata/apps_groups.conf }
   - { src: user/mortis-configs/templates/netdata/netdata.games.wl.mort.is.conf, dest: /etc/netdata/netdata.conf }
   - { src: user/mortis-configs/templates/netdata/python.d.conf, dest: /etc/netdata/python.d.conf }

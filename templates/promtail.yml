@@ -1,0 +1,117 @@
+server:
+  disable: false
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://server-2.wl.mort.is:3100/loki/api/v1/push
+
+scrape_configs:
+- job_name: boundlexx-live
+  pipeline_stages:
+  - match:
+      selector: '{app="nginx"}'
+      stages:
+      - regex:
+          # logline example: 127.0.0.1 - - [21/Apr/2020:13:59:45 +0000] "GET /?foo=bar HTTP/1.1" 200 612 "http://example.com/lekkebot.html" "curl/7.58.0"
+          expression: '(?P<addr>[^ ]+) - (?P<proxy_addr>[^ ]+) - (?P<user>[^ ]*) \[(?P<ctime>.*)\] \"(?P<method>[^ ]*) (?P<uri>[^ ]*) (?P<proto>[^ ]*)\" (?P<status>[\d]+) (?P<rsize>[\d]+) \"(?P<referer>(?P<referer_site>-|https?:\/\/[^\/]*\/).*)\" \"(?P<user_agent>[^\"]*)\"? rt=(?P<msec>[\d\.]+) uct=(?P<ucsec>[\d\.]+) uht=(?P<uhsec>[\d\.]+) urt=(?P<ursec>[\d\.]+)'
+      - template:
+          source: 'msec'
+          template: '{{ Replace .Value "." "" -1 }}'
+      - template:
+          source: 'msec'
+          template: '{{ TrimPrefix .Value "0" }}'
+      - template:
+          source: 'msec'
+          template: '{{ TrimPrefix .Value "0" }}'
+      - template:
+          source: 'msec'
+          template: '{{ TrimPrefix .Value "0" }}'
+      - match:
+          selector: '{proxy_addr!="-"}'
+          stages:
+          - labels:
+              real_addr: proxy_addr
+      - match:
+          selector: '{proxy_addr="-"}'
+          stages:
+          - labels:
+              real_addr: addr
+      - labels:
+          addr:
+          proxy_addr:
+          method:
+          uri:
+          proto:
+          status:
+          rsize:
+          referer:
+          referer_site:
+          user_agent:
+          msec:
+          ucsec:
+          uhsec:
+          ursec:
+  static_configs:
+  - targets:
+    - localhost
+    labels:
+      __path__: /var/log/nginx/boundlexx.wl.mort.is/*.log
+      app: nginx
+      nginx_app: boundlexx-live
+      group: live
+- job_name: boundlexx-live-cloudflare
+  pipeline_stages:
+  - match:
+      selector: '{app="nginx"}'
+      stages:
+      - regex:
+          # logline example: 127.0.0.1 - - [21/Apr/2020:13:59:45 +0000] "GET /?foo=bar HTTP/1.1" 200 612 "http://example.com/lekkebot.html" "curl/7.58.0"
+          expression: '(?P<addr>[^ ]+) - (?P<proxy_addr>[^ ]+) - (?P<user>[^ ]*) \[(?P<ctime>.*)\] \"(?P<method>[^ ]*) (?P<uri>[^ ]*) (?P<proto>[^ ]*)\" (?P<status>[\d]+) (?P<rsize>[\d]+) \"(?P<referer>[^\"]*)\" \"(?P<user_agent>[^\"]*)\"? rt=(?P<msec>[\d\.]+) uct=(?P<ucsec>[\d\.]+) uht=(?P<uhsec>[\d\.]+) urt=(?P<ursec>[\d\.]+)'
+      - template:
+          source: 'msec'
+          template: '{{ Replace .Value "." "" -1 }}'
+      - template:
+          source: 'msec'
+          template: '{{ TrimPrefix .Value "0" }}'
+      - template:
+          source: 'msec'
+          template: '{{ TrimPrefix .Value "0" }}'
+      - template:
+          source: 'msec'
+          template: '{{ TrimPrefix .Value "0" }}'
+      - match:
+          selector: '{proxy_addr!="-"}'
+          stages:
+          - labels:
+              real_addr: proxy_addr
+      - match:
+          selector: '{proxy_addr="-"}'
+          stages:
+          - labels:
+              real_addr: addr
+      - labels:
+          addr:
+          proxy_addr:
+          method:
+          uri:
+          proto:
+          status:
+          rsize:
+          referer:
+          user_agent:
+          msec:
+          ucsec:
+          uhsec:
+          ursec:
+  static_configs:
+  - targets:
+    - localhost
+    labels:
+      __path__: /var/log/nginx/boundlexx.app/*.log
+      app: nginx
+      nginx_app: boundlexx-live-cloudflare
+      group: live

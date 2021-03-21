@@ -10,18 +10,19 @@
 # core services
 ## nginx
 192.168.2.10    pi-2 pi-2.wl.mort.is unraid unraid.wl.mort.is
-192.168.2.10    plex plex.wl.mort.is media media.wl.mort.is watch watch.wl.mort.is
+192.168.2.10    plex plex.wl.mort.is media media.wl.mort.is
 192.168.2.10    music music.wl.mort.is television television.wl.mort.is
 192.168.2.10    movies movies.wl.mort.is r r.wl.mort.is dev dev.wl.mort.is
-192.168.2.10    monitor monitor.wl.mort.is network network.wl.mort.is router router.wl.mort.is
+192.168.2.10    docker docker.wl.mort.is monitor monitor.wl.mort.is prometheus prometheus.wl.mort.is
+192.168.2.10    collect collect.wl.mort.is influxdb influxdb.wl.mort.is
+192.168.2.10    unifi unifi.wl.mort.is router router.wl.mort.is
 192.168.2.10    sync sync.wl.mort.is backup backup.wl.mort.is
-192.168.2.10    iot iot.wl.mort.is nodered nodered.wl.mort.is
 192.168.2.10    testing-boundlexx testing-boundlexx.wl.mort.is local-boundlexx local-boundlexx.wl.mort.is
 192.168.2.10    boundlexx boundlexx.wl.mort.is prometheus-boundlexx.wl.mort.is grafana-boundlexx.wl.mort.is
-192.168.2.10    wl.mort.is almond almond.wl.mort.is
+192.168.2.10    wl.mort.is
 
 ## home assistant
-192.168.2.11    pi-3 pi-3.wl.mort.is
+192.168.2.11    pi-3 pi-3.wl.mort.is home home.wl.mort.is
 
 # media services
 ## unraid
@@ -40,13 +41,11 @@
 # personal devices
 192.168.20.10    angellus angellus.wl.mort.is pc.angellus pc.angellus.wl.mort.is angellus-pc angellus-pc.wl.mort.is
 192.168.20.11    gnome gnome.wl.mort.is pc.gnome pc.gnome.wl.mort.is gnome-pc gnome-pc.wl.mort.is
-# 192.168.2.50    book.angellus book.angellus.wl.mort.is angellus-book angellus-book.wl.mort.is
+192.168.20.12    book.angellus book.angellus.wl.mort.is angellus-book angellus-book.wl.mort.is
 
 # phones
-# 192.168.4.20    phone.angellus phone.angellus.wl.mort.is angellus-phone angellus-phone.wl.mort.is
-# 192.168.4.21    phone-old.gnome phone-old.gnome.wl.mort.is gnome-phone-old gnome-phone-old.wl.mort.is
-# 192.168.4.22    phone-wp.angellus phone-wp.angellus.wl.mort.is angellus-wp angellus-wp.wl.mort.is
-# 192.168.4.23    phone.gnome phone.gnome.wl.mort.is gnome-phone gnome-phone.wl.mort.is
+192.168.20.13    phone.angellus phone.angellus.wl.mort.is angellus-phone angellus-phone.wl.mort.is
+192.168.20.23    phone.gnome phone.gnome.wl.mort.is gnome-phone gnome-phone.wl.mort.is
 
 # "work" devices
 192.168.22.10    work.angellus work.angellus.wl.mort.is work-wired.angellus work-wired.angellus.wl.mort.is
@@ -67,6 +66,6 @@
 # 192.168.7.50    ee-phone ee-phone.wl.mort.is
 
 # room assistant
-192.168.50.10   pi-4 pi-4.wl.mort.is ra-bedroom ra-bedroom.wl.mort.is
-192.168.50.11   pi-5 pi-5.wl.mort.is ra-living-room ra-living-room.wl.mort.is
-192.168.50.12   pi-6 pi-6.wl.mort.is ra-computer-room ra-computer-room.wl.mort.is
+192.168.50.10   pi-4 pi-4.wl.mort.is ra-er ra-er.wl.mort.is
+# 192.168.50.11   pi-5 pi-5.wl.mort.is ra-living-room ra-living-room.wl.mort.is
+# 192.168.50.12   pi-6 pi-6.wl.mort.is ra-computer-room ra-computer-room.wl.mort.is

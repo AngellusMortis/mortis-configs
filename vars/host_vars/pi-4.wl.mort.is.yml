@@ -1,7 +1,14 @@
 # additional users to create/setup
 extra_users:
+  - { user: pulse, configure: false }
   - { user: kiosk, configure: false }
   - { user: room-assistant, configure: false }
+  # TODO: add users to pulse-access group
+  # set pulse user's home directory to /var/run/pulse
+  # disable brcm43438.service
+  # pactl set-port-latency-offset bluez_card.78_44_01_14_4B_9D headset-output 45000
+  # enable load-module module-udev-detect tsched=1 in /etc/pulse/default.pa
+  # enable load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1
 
 # Install list of arbitary packages
 # set to empty to not install any
@@ -29,7 +36,6 @@ extra_system_dirs:
   - { path: /etc/systemd/system/getty@tty1.service.d, owner: root, recurse: false, mode: '755' }
   - { path: /home/room-assistant/config, owner: room-assistant, recurse: false, mode: '755' }
 
-
 # Extra systemd services to enable
 # Set to '[]' to skip
 extra_systemd:
@@ -38,10 +44,13 @@ extra_systemd:
   - getty@tty1.service
   - room-assistant.service
   - avahi-daemon.service
+  - wpa_supplicant@wlan0.service
+  - dhcpcd.service
 
 # extra arbitary system files to copy
 # set to '[]' to not copy any
 extra_system_files:
+  - { src: user/mortis-configs/templates/netdata/.opt-out, dest: /etc/netdata/.opt-out-from-anonymous-statistics }
   - { src: user/mortis-configs/templates/netdata/apps_groups.conf, dest: /etc/netdata/apps_groups.conf }
   - { src: user/mortis-configs/templates/netdata/netdata.pi-4.conf, dest: /etc/netdata/netdata.conf }
   - { src: user/mortis-configs/templates/netdata/python.d.conf, dest: /etc/netdata/python.d.conf }
@@ -49,15 +58,43 @@ extra_system_files:
   - { src: user/mortis-configs/templates/netdata/stream.internal.conf, dest: /etc/netdata/stream.conf }
   - { src: user/mortis-configs/templates/mirrorlist.manjaro-arm, dest: /etc/pacman.d/mirrorlist }
   - { src: user/mortis-configs/templates/kiosk/bashrc, dest: /home/kiosk/.bashrc }
-  - { src: user/mortis-configs/templates/kiosk/bashrc, dest: /home/kiosk/.bashrc }
   - { src: user/mortis-configs/templates/kiosk/xinitrc, dest: /home/kiosk/.xinitrc }
   - { src: user/mortis-configs/templates/kiosk/getty@tty1.service.conf, dest: /etc/systemd/system/getty@tty1.service.d/override.conf }
   - { src: user/mortis-configs/templates/room-assistant/pi-4.yml, dest: /home/room-assistant/config/local.yml }
   - { src: user/mortis-configs/templates/room-assistant.service, dest: /etc/systemd/system/room-assistant.service }
   - { src: user/mortis-configs/templates/room-assistant/nsswitch.conf, dest: /etc/nsswitch.conf }
+  # - { src: user/mortis-configs/templates/pulseaudio.service, dest: /etc/systemd/system/pulseaudio.service }
+  # - { src: user/mortis-configs/templates/pulseaudio.conf, dest: /etc/dbus-1/system.d/pulseaudio.conf }
 
 ## NodeJS/NPM
 # Extra NPM packages to install
 # set to '[]' to skip
 extra_npm:
   - room-assistant
+
+### TODO:
+# lineinfile:
+#   path: /etc/bluetooth/main.conf
+#   regexp: '^AutoEnable=true'
+#   line: AutoEnable=true
+#   insertafter: '^#AutoEnable='
+
+# /etc/wpa_supplicant/wpa_supplicant-wlan0.conf
+# ctrl_interface=/run/wpa_supplicant
+# update_config=1
+
+# lineinfile:
+#   path: /etc/pulse/system.pa
+#   regexp: '^load-module module-bluetooth-policy'
+#   line: load-module module-bluetooth-policy
+
+# lineinfile:
+#   path: /etc/pulse/system.pa
+#   regexp: '^load-module module-bluetooth-discover'
+#   line: load-module module-bluetooth-discover
+
+# network={
+#     ssid="Mortis RA"
+#     scan_ssid=1
+#     psk=# wpa_passphrase "Mortis RA" passphrase >> /etc/wpa_supplicant/wpa_supplicant-wlan0.conf
+# }

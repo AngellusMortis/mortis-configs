@@ -1,9 +1,5 @@
-
-# whether or not machine has systemd (like WSL)
-has_systemd: true
-
 # Custom SSH_AUTH_SOCK env variable
-ssh_auth_sock: '/home/cbailey/.ssh/wsl-ssh-agent.sock'
+ssh_auth_sock:
 
 # enable tmux support
 use_tmux: true
@@ -14,7 +10,7 @@ use_tmux: true
 aur_user: aur
 
 # Manually export DISPLAY variable to localhost (useful for WSL)
-x11_export_display: true
+x11_export_display: false
 
 # secondary shell is a unstable non-login shell that gets loaded in rc file
 # for login shell
@@ -37,14 +33,15 @@ git_signing_key: 895776E4530BBFF3
 ## GPG Helper settings
 
 # Location of GPG agents for gpg-remote helper script
-gpg_local_agent: /home/cbailey/.gnupg/S.gpg-agent
+# default location locally is /run/user/1000/gnupg/S.gpg-agent
+#   where 1000 = your user's uid
+gpg_local_agent: /run/user/1000/gnupg/S.gpg-agent
 gpg_remote_agent: /run/user/1000/gnupg/S.gpg-agent
 
 # WSL specific GPG settings to get Windows 10 GPG Agent in WSL
 # See https://codingnest.com/how-to-use-gpg-with-yubikey-wsl/ for setup
-wsl_npiperelay_path: "/mnt/c/Users/cbailey/Syncthing/cbailey/Development/npiperelay.exe"
-windows_ssh_auth_sock_path: "/\\/\\./\\pipe/\\ssh-pageant"
-windows_gpg_agent_path: "C:/Users/cbailey/AppData/Roaming/gnupg/S.gpg-agent"
+wsl_npiperelay_path: none
+windows_gpg_agent_path: none
 
 ## Cloud Provider Settings
 
@@ -115,18 +112,21 @@ install_nvidia_drivers: false
 
 # Add extra PPA repos, Ubuntu only
 # set to empty to skip
-extra_ppas: []
+extra_ppas:
 
 # Install list of arbitary packages
 # set to empty to not install any
-extra_packages: []
+extra_packages:
+  - nfs-utils
+  - netdata
 
 # Set to '[]' to skip installing AUR packages
 extra_aur_packages: []
 
 # Extra systemd services to enable
 # Set to '[]' to skip
-extra_systemd: []
+extra_systemd:
+  - netdata.service
 
 # extra arbitary user directories to make relative to ~
 # set to empty to not create any
@@ -143,11 +143,19 @@ extra_system_dirs: []
 
 # extra arbitary system files to copy
 # set to '[]' to not copy any
-extra_system_files: []
+extra_system_files:
+  - { src: user/mortis-configs/templates/netdata/.opt-out, dest: /etc/netdata/.opt-out-from-anonymous-statistics }
+  - { src: user/mortis-configs/templates/netdata/apps_groups.conf, dest: /etc/netdata/apps_groups.conf }
+  - { src: user/mortis-configs/templates/netdata/netdata.192.99.9.80.conf, dest: /etc/netdata/netdata.conf }
+  - { src: user/mortis-configs/templates/netdata/python.d.conf, dest: /etc/netdata/python.d.conf }
+  - { src: user/mortis-configs/templates/sysctl.conf, dest: /etc/sysctl.d/90-extra-tuning.conf }
+  - { src: user/mortis-configs/templates/netdata/sudo, dest: /etc/sudoers.d/netdata-allow-to-sudo-smbstatus }
+  - { src: user/mortis-configs/templates/netdata/stream.conf, dest: /etc/netdata/stream.conf }
 
 # extra drives to mount
 # set to '[]' to not mount anything
 extra_mounts: []
+#   - { path: /backup, src: backup.example.com:/mnt/backup, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
 
 ## Network Utils Settings
 
@@ -162,30 +170,29 @@ setup_samba: false
 samba_config: none
 
 # Install and set up NFS Network Shares
-setup_nfs: false
+setup_nfs: true
 
 # path to optional NFS config
 # set to 'none' to not copy one
 nfs_config: none
 
 # Install and setup iptable filewall
-setup_iptables: false
+setup_iptables: true
 
 # IP address or network range (CIDR) of IP addresses without restrictions
-# set empty to not have any
+# set to '[]' to not have any
 iptables_whitelisted_networks: []
 
 # TCP Ports to whitelist
 # set to '[]' to not have any
-iptables_whitelisted_tcp_ports: []
-# - { port: 22, source: 1.2.3.4 }
-# - { port: 80 }
+iptables_whitelisted_tcp_ports:
+- { port: 22, source: 75.118.156.74/32 } # SSH
+- { port: 80, source: } # HTTP
+- { port: 443, source: } # HTTPS
 
 # UDP Ports to whitelist
 # set to '[]' to not have any
 iptables_whitelisted_udp_ports: []
-# - { port: 22, source: 1.2.3.4 }
-# - { port: 80 }
 
 ## Dev Utils Settings
 
@@ -249,23 +256,22 @@ plymouth_theme: none
 # Crons to set up
 # set to '[]' to skip
 extra_crons: []
-#   - name: 'name of cron'
-#     minute: "0"
-#     hour: "0"
-#     job: "/usr/bin/true"
-#     user: root
 
 ## nginx/Let's Encrypt
 
 # email to use for Let's Encrypt certs
 # set to empty to not config nginx/Let's encrypt
-letencrypt_email:
+letencrypt_email: cbailey@mort.is
 
 # domains to get SSL certs for
 # set to '[]' to not config nginx/Let's encrypt
-letencrypt_domains: []
+letencrypt_domains:
+  - "ca.mort.is"
 
 # nginx proxies to set up
 # set to '[]' to not config nginx reverse proxies
-nginx_proxies: []
-#  - { domain: 'example.com', ip: '127.0.0.1', port: '8000', type: 'proxy', cors: true, cors_domain: 'example.com', media_root: null, static_root: null, internal: true, stats_ip: null }
+nginx_proxies:
+  - { domain: 'ca.mort.is', custom: true, custom_file: user/mortis-configs/templates/nginx/ca.mort.is.conf }
+
+# promtail / Loki setup
+loki_target: "http://wl.mort.is:3100/loki/api/v1/push"

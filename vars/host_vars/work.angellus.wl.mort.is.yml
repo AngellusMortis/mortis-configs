@@ -16,7 +16,7 @@ x11_export_display: false
 # for login shell
 # supported default shells: xonsh
 # set to 'none' if you do not want to configure a secondary shell
-secondary_shell: xonsh
+secondary_shell: none
 
 ## Git Settings
 
@@ -280,3 +280,6 @@ letencrypt_domains: []
 # set to '[]' to not config nginx reverse proxies
 nginx_proxies: []
 #  - { domain: 'example.com', ip: '127.0.0.1', port: '8000', type: 'proxy', cors: true, cors_domain: 'example.com', media_root: null, static_root: null, internal: true, stats_ip: null }
+
+# promtail / Loki setup
+loki_target: "http://server-2.wl.mort.is:3100/loki/api/v1/push"

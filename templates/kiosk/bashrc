@@ -1,5 +1,18 @@
 [[ $- != *i* ]] && return
 
 if  [[ -z $DISPLAY ]] && [[ $(tty) = "/dev/tty1" ]]; then
+    # echo "Waiting for pulseaudio..."
+    # sleep 10
+    # bluetoothctl trust 78:44:01:14:4B:9D
+    # bluetoothctl disconnect 78:44:01:14:4B:9D
+    # bluetoothctl connect 78:44:01:14:4B:9D
+    # pacmd set-default-sink 1
+    # pacmd set-sink-volume 1 100000
+    # pactl set-port-latency-offset bluez_card.78_44_01_14_4B_9D headset-output 45000
+
+    # echo "Waiting for bluetooth..."
+    # sleep 10
+
+    # systemctl --user start snapclient
     startx
 fi

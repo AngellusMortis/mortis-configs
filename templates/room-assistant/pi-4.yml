@@ -1,5 +1,5 @@
 global:
-  instanceName: bedroom
+  instanceName: entertainment-room
   integrations:
   - bluetoothClassic
   - homeAssistant
@@ -8,14 +8,14 @@ cluster:
   port: 6425
   weight: 10
   autoDiscovery: false
-  peerAddresses:
-  - pi-5.wl.mort.is:6425
-  - pi-6.wl.mort.is:6425
+  # peerAddresses:
+  # - pi-5.wl.mort.is:6425
+  # - pi-6.wl.mort.is:6425
 homeAssistant:
   mqttUrl: 'mqtt://pi-3.wl.mort.is:1883'
   mqttOptions:
-    username: mqtt
-    password: MDrqydZ44ehwraZrrtv8pnXvGsrVvUZp
+    username: kiosk
+    password: at3z2pMqPMkLmrZ2
 bluetoothClassic:
   hciDeviceId: 0
   interval: 6

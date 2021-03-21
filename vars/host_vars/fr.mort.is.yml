@@ -16,7 +16,7 @@ x11_export_display: false
 # for login shell
 # supported default shells: xonsh
 # set to 'none' if you do not want to configure a secondary shell
-secondary_shell: xonsh
+secondary_shell: none
 
 ## Git Settings
 
@@ -117,16 +117,15 @@ extra_ppas:
 # Install list of arbitary packages
 # set to empty to not install any
 extra_packages:
-  - openvpn
-  - easy-rsa
   - nfs-utils
   - deluge
   - python2-mako
   - netdata
+  - docker
 
 # Set to '[]' to skip installing AUR packages
 extra_aur_packages:
-  - jackett
+  - jackett-bin
 
 # Extra systemd services to enable
 # Set to '[]' to skip
@@ -135,6 +134,7 @@ extra_systemd:
   - deluge-web.service
   - jackett.service
   - netdata.service
+  - docker.service
 
 # extra arbitary user directories to make relative to ~
 # set to empty to not create any
@@ -157,7 +157,6 @@ extra_system_dirs:
   - { path: /media/app/download/torrent/new, owner: deluge, recurse: false, mode: '700' }
   - { path: /srv/deluge, owner: deluge, recurse: true, mode: '700' }
   - { path: /srv/deluge/.config/deluge, owner: deluge, recurse: false, mode: '700' }
-  - { path: /var/log/openvpn-status.log, owner: root, recurse: false, mode: '644', state: 'touch' }
 
 # extra arbitary system files to copy
 # set to '[]' to not copy any
@@ -166,10 +165,10 @@ extra_system_files:
   # - { src: user/mortis-configs/templates/deluge/core.conf, dest: /srv/deluge/.config/deluge/core.conf }
   # - { src: user/mortis-configs/templates/deluge/label.conf, dest: /srv/deluge/.config/deluge/label.conf }
   # - { src: user/mortis-configs/templates/deluge/web.conf, dest: /srv/deluge/.config/deluge/web.conf }
+  - { src: user/mortis-configs/templates/netdata/.opt-out, dest: /etc/netdata/.opt-out-from-anonymous-statistics }
   - { src: user/mortis-configs/templates/netdata/apps_groups.conf, dest: /etc/netdata/apps_groups.conf }
   - { src: user/mortis-configs/templates/netdata/netdata.fr.mort.is.conf, dest: /etc/netdata/netdata.conf }
   - { src: user/mortis-configs/templates/netdata/python.d.conf, dest: /etc/netdata/python.d.conf }
-  - { src: user/mortis-configs/templates/netdata/ovpn_status_log.conf, dest: /etc/netdata/python.d/ovpn_status_log.conf }
   - { src: user/mortis-configs/templates/sysctl.conf, dest: /etc/sysctl.d/90-extra-tuning.conf }
   - { src: user/mortis-configs/templates/netdata/sudo, dest: /etc/sudoers.d/netdata-allow-to-sudo-smbstatus }
   - { src: user/mortis-configs/templates/netdata/stream.conf, dest: /etc/netdata/stream.conf }
@@ -208,9 +207,10 @@ iptables_whitelisted_networks: []
 # TCP Ports to whitelist
 # set to '[]' to not have any
 iptables_whitelisted_tcp_ports:
-- { port: 22, source: 99.78.119.161/29 } # SSH
-- { port: 80, source: 99.78.119.161/29 } # HTTP
-- { port: 443, source: 99.78.119.161/29 } # HTTPS
+- { port: 22, source: 75.118.156.74/32 } # SSH
+- { port: 80, source: 75.118.156.74/32 } # HTTP
+- { port: 443, source: 75.118.156.74/32 } # HTTPS
+- { port: 9354, source: 75.118.156.74/32 } # Deluge Exporter
 - { port: 56881:56889, source: } # Deluge
 
 # UDP Ports to whitelist
@@ -301,5 +301,8 @@ letencrypt_domains:
 # nginx proxies to set up
 # set to '[]' to not config nginx reverse proxies
 nginx_proxies:
-- { domain: 'download.fr.mort.is', ip: '127.0.0.1', port: '8112', type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null }
-- { domain: 'index.fr.mort.is', ip: '127.0.0.1', port: '9117', type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null }
+- { domain: 'download.fr.mort.is', ip: '127.0.0.1', port: '8112', type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null, group: "media" }
+- { domain: 'index.fr.mort.is', ip: '127.0.0.1', port: '9117', type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null, group: "media" }
+
+# promtail / Loki setup
+loki_target: "http://wl.mort.is:3100/loki/api/v1/push"
