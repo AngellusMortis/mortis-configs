@@ -177,7 +177,7 @@ setup_samba: true
 
 # path to optional Samba config
 # set to 'none' to not copy one
-samba_config: user/mortis-configs/templates/smb.work.conf
+samba_config: user/mortis-configs/templates/smb.conf
 
 # Install and set up NFS Network Shares
 setup_nfs: false
@@ -225,10 +225,13 @@ extra_docker_host: tcp://192.168.22.10:2376
 setup_nodejs: true
 
 # setup and install Kubernetes
-setup_k8s: false
+setup_k8s: true
 
 # setup and install Google Cloud SDK
-setup_gcloud: false
+setup_gcloud: true
+
+# setup and install Terraform
+setup_terraform: true
 
 # list of git repos to clone
 git_repos: []

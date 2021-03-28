@@ -10,7 +10,7 @@
 # core services
 ## nginx
 192.168.2.10    pi-2 pi-2.wl.mort.is unraid unraid.wl.mort.is
-192.168.2.10    plex plex.wl.mort.is media media.wl.mort.is
+192.168.2.10    plex plex.wl.mort.is jellyfin jellyfin.wl.mort.is media media.wl.mort.is
 192.168.2.10    music music.wl.mort.is television television.wl.mort.is
 192.168.2.10    movies movies.wl.mort.is r r.wl.mort.is dev dev.wl.mort.is
 192.168.2.10    docker docker.wl.mort.is monitor monitor.wl.mort.is prometheus prometheus.wl.mort.is

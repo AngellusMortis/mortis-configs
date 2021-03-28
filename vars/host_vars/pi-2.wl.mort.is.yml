@@ -38,7 +38,7 @@ extra_mounts:
   - { path: /unraid/backup, src: unraid-server.wl.mort.is:/mnt/user/backup, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
   - { path: /unraid/public, src: unraid-server.wl.mort.is:/mnt/user/public, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
   - { path: /unraid/appdata, src: unraid-server.wl.mort.is:/mnt/user/appdata, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
-  - { path: /mnt/boundlexx/, src: server-2.wl.mort.is:/srv/boundlexx_live/web, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+  - { path: /mnt/boundlexx, src: server-2.wl.mort.is:/srv/docker/boundlexx/live/web, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
 
 
 ## nginx/Let's Encrypt
@@ -64,6 +64,7 @@ nginx_proxies:
 - { domain: 'prometheus.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '9090', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "core" }
 - { domain: 'media.wl.mort.is', ip: 'server-2.wl.mort.is', port: '3579', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null, websockets: false, group: "media" }
 - { domain: 'plex.wl.mort.is', ip: 'server-2.wl.mort.is', port: '32400', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null, group: "media" }
+- { domain: 'jellyfin.wl.mort.is', ip: 'server-2.wl.mort.is', port: '8096', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "media" }
 
 # unraid
 - { domain: 'backup.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '7810', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
@@ -86,9 +87,6 @@ nginx_proxies:
 - { domain: 'testing-boundlexx.wl.mort.is', custom: true, custom_file: user/mortis-configs/templates/nginx/testing-boundlexx.wl.mort.is.conf, group: "boundlexx", env: "testing" }
 
 - { domain: 'boundlexx.wl.mort.is', custom: true, custom_file: user/mortis-configs/templates/nginx/boundlexx.wl.mort.is.conf, group: "boundlexx" }
-- { domain: 'boundlexx.app', ip: 'server-2.wl.mort.is', type: 'uwsgi', socket: 'server-2.wl.mort.is:10000', cors: false, media_root: null, static_root: '/mnt/boundlexx/static', internal: false, stats_ip: null, group: "boundlexx" }
-- { domain: 'origin.boundlexx.app', ip: 'server-2.wl.mort.is', type: 'uwsgi', socket: 'server-2.wl.mort.is:10000', cors: false, media_root: null, static_root: '/mnt/boundlexx/static', internal: false, stats_ip: null, group: "boundlexx" }
-
-- { domain: 'prometheus-boundlexx.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '9090', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "boundlexx" }
-- { domain: 'grafana-boundlexx.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '3060', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "boundlexx" }
-- { domain: 'metabase.boundlexx.app', ip: 'server-2-f1.wl.mort.is', port: '3000', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "boundlexx" }
+- { domain: 'boundlexx.app', ip: 'server-2.wl.mort.is', type: 'uwsgi', socket: 'server-2.wl.mort.is:12000', cors: false, media_root: null, static_root: '/mnt/boundlexx/static', internal: false, stats_ip: null, group: "boundlexx" }
+- { domain: 'origin.boundlexx.app', ip: 'server-2.wl.mort.is', type: 'uwsgi', socket: 'server-2.wl.mort.is:12000', cors: false, media_root: null, static_root: '/mnt/boundlexx/static', internal: false, stats_ip: null, group: "boundlexx" }
+- { domain: 'metabase.boundlexx.app', ip: 'server-2-f1.wl.mort.is', port: '12100', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "boundlexx" }

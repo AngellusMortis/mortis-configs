@@ -1,6 +1,3 @@
-# Custom SSH_AUTH_SOCK env variable
-ssh_auth_sock: '/mnt/c/Users/cbailey/ssh-agent.sock'
-
 # enable tmux support
 use_tmux: false
 

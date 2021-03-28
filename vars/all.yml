@@ -18,6 +18,9 @@ ssh_authorized_keys: user/mortis-configs/authorized_keys
 
 windows_ssh_auth_sock_path: null
 
+# Custom SSH_AUTH_SOCK env variable
+ssh_auth_sock:
+
 # configure the root user as well as the local_user when setting up
 # shells/configs
 configure_root: true
@@ -97,3 +100,15 @@ dns_hosts: ''
 # Extra NPM packages to install
 # set to '[]' to skip
 extra_npm: []
+
+# setup and install NodeJS
+setup_nodejs: false
+
+# setup and install Kubernetes
+setup_k8s: false
+
+# setup and install Google Cloud SDK
+setup_gcloud: false
+
+# setup and install Terraform
+setup_terraform: true
