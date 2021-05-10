@@ -14,10 +14,13 @@ extra_systemd:
   - netdata.service
   - pacoloco.service
 
+# Install and set up NFS Network Shares
+setup_nfs: true
+
 # extra arbitary system directories to create
 # set to '[]' to not copy any
 extra_system_dirs:
-  - { path: /etc/systemd/system/pacoloco.service.d/, owner: root, recurse: false, mode: '755' }
+  - { path: /opt/pacoloco/, owner: pacoloco, recurse: false, mode: '755' }
 
 # extra arbitary system files to copy
 # set to '[]' to not copy any
@@ -28,9 +31,8 @@ extra_system_files:
   - { src: user/mortis-configs/templates/netdata/python.d.conf, dest: /etc/netdata/python.d.conf }
   - { src: user/mortis-configs/templates/sysctl.conf, dest: /etc/sysctl.d/90-extra-tuning.conf }
   - { src: user/mortis-configs/templates/netdata/stream.internal.conf, dest: /etc/netdata/stream.conf }
-  - { src: user/mortis-configs/templates/mirrorlist.manjaro-arm, dest: /etc/pacman.d/mirrorlist }
+  - { src: user/mortis-configs/templates/mirrorlist.archlinux-arm, dest: /etc/pacman.d/mirrorlist }
   - { src: user/mortis-configs/templates/pacoloco.yml, dest: /etc/pacoloco.yaml }
-  - { src: user/mortis-configs/templates/pacoloco.service, dest: /etc/systemd/system/pacoloco.service.d/override.conf }
 
 # extra drives to mount
 # set to '[]' to not mount anything
@@ -38,7 +40,7 @@ extra_mounts:
   - { path: /unraid/backup, src: unraid-server.wl.mort.is:/mnt/user/backup, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
   - { path: /unraid/public, src: unraid-server.wl.mort.is:/mnt/user/public, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
   - { path: /unraid/appdata, src: unraid-server.wl.mort.is:/mnt/user/appdata, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
-  - { path: /mnt/boundlexx, src: server-2.wl.mort.is:/srv/docker/boundlexx/live/web, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+  - { path: /mnt/boundlexx, src: server-2.wl.mort.is:/media/docker/data/boundlexx/live/web, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
 
 
 ## nginx/Let's Encrypt

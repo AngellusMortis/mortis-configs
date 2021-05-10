@@ -1,4 +1,4 @@
-cache_dir: /unraid/public/pacoloco/
+cache_dir: /opt/pacoloco/
 port: 9129
 purge_files_after: 2592000 # purge file after 30 days
 repos:

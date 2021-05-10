@@ -61,9 +61,9 @@
 # 192.168.6.32    switch.gnome switch.gnome.wl.mort.is gnome-switch gnome-switch.wl.mort.is
 
 # misc devices
-# 192.168.7.10    printer printer.wl.mort.is
-# 192.168.7.20    alexa alexa.wl.mort.is
-# 192.168.7.50    ee-phone ee-phone.wl.mort.is
+192.168.52.20    printer printer.wl.mort.is
+# 192.168.7.20   alexa alexa.wl.mort.is
+# 192.168.7.50   ee-phone ee-phone.wl.mort.is
 
 # room assistant
 192.168.50.10   pi-4 pi-4.wl.mort.is ra-er ra-er.wl.mort.is

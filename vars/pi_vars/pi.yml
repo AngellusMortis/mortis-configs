@@ -13,7 +13,7 @@ x11_export_display: true
 # for login shell
 # supported default shells: xonsh
 # set to 'none' if you do not want to configure a secondary shell
-secondary_shell: none
+secondary_shell: xonsh
 
 ## Git Settings
 

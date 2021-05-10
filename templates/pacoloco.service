@@ -1,3 +1,0 @@
-[Unit]
-Requires=unraid-public.mount
-After=unraid-public.mount
