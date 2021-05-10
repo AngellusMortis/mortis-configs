@@ -1,0 +1,4 @@
+Host *.mort.is
+    ForwardAgent yes
+    StreamLocalBindUnlink yes
+    RemoteForward /run/user/1000/gnupg/S.gpg-agent /home/cbailey/.gnupg/S.gpg-agent

@@ -5,6 +5,9 @@ has_systemd: true
 # Custom SSH_AUTH_SOCK env variable
 ssh_auth_sock: '/home/cbailey/.ssh/wsl-ssh-agent.sock'
 
+# Path to SSH config
+ssh_config: user/mortis-configs/ssh_config
+
 # enable tmux support
 use_tmux: true
 
@@ -13,6 +16,10 @@ use_tmux: true
 # should not be main user as it will also be excluded from Login Screen
 aur_user: aur
 
+# Enable X11 forwaring over SSH on your local system. You must be running
+# sshd for this to work
+x11_enable_forwarding: false
+
 # Manually export DISPLAY variable to localhost (useful for WSL)
 x11_export_display: true
 
@@ -20,7 +27,7 @@ x11_export_display: true
 # for login shell
 # supported default shells: xonsh
 # set to 'none' if you do not want to configure a secondary shell
-secondary_shell: none
+secondary_shell: xonsh
 
 ## Git Settings
 

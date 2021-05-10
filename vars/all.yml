@@ -21,6 +21,9 @@ windows_ssh_auth_sock_path: null
 # Custom SSH_AUTH_SOCK env variable
 ssh_auth_sock:
 
+# Path to SSH config
+ssh_config: null
+
 # configure the root user as well as the local_user when setting up
 # shells/configs
 configure_root: true
