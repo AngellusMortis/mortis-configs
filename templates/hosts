@@ -9,17 +9,17 @@
 
 # core services
 ## nginx
-192.168.2.10    pi-2 pi-2.wl.mort.is unraid unraid.wl.mort.is
-192.168.2.10    plex plex.wl.mort.is jellyfin jellyfin.wl.mort.is media media.wl.mort.is
-192.168.2.10    music music.wl.mort.is television television.wl.mort.is
-192.168.2.10    movies movies.wl.mort.is r r.wl.mort.is dev dev.wl.mort.is
-192.168.2.10    docker docker.wl.mort.is monitor monitor.wl.mort.is prometheus prometheus.wl.mort.is
-192.168.2.10    collect collect.wl.mort.is influxdb influxdb.wl.mort.is
-192.168.2.10    unifi unifi.wl.mort.is router router.wl.mort.is
-192.168.2.10    sync sync.wl.mort.is backup backup.wl.mort.is
-192.168.2.10    testing-boundlexx testing-boundlexx.wl.mort.is local-boundlexx local-boundlexx.wl.mort.is
-192.168.2.10    boundlexx boundlexx.wl.mort.is prometheus-boundlexx.wl.mort.is grafana-boundlexx.wl.mort.is
-192.168.2.10    wl.mort.is
+192.168.2.10    pi-2 pi-2.wl.mort.is
+192.168.4.10    plex plex.wl.mort.is jellyfin jellyfin.wl.mort.is media media.wl.mort.is
+192.168.4.10    music music.wl.mort.is television television.wl.mort.is
+192.168.4.10    movies movies.wl.mort.is r r.wl.mort.is dev dev.wl.mort.is
+192.168.4.10    docker docker.wl.mort.is monitor monitor.wl.mort.is prometheus prometheus.wl.mort.is
+192.168.4.10    collect collect.wl.mort.is influxdb influxdb.wl.mort.is
+192.168.4.10    unifi unifi.wl.mort.is router router.wl.mort.is
+192.168.4.10    sync sync.wl.mort.is backup backup.wl.mort.is
+192.168.4.10    testing-boundlexx testing-boundlexx.wl.mort.is local-boundlexx local-boundlexx.wl.mort.is
+192.168.4.10    boundlexx boundlexx.wl.mort.is prometheus-boundlexx.wl.mort.is grafana-boundlexx.wl.mort.is
+192.168.4.10    unraid unraid.wl.mort.is wl.mort.is mc mc.wl.mort.is
 
 ## home assistant
 192.168.2.11    pi-3 pi-3.wl.mort.is home home.wl.mort.is

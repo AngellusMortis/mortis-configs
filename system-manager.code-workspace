@@ -5,12 +5,6 @@
 		},
 		{
 			"path": "."
-		},
-		{
-			"path": "../../../../../../../tmp/hass/private/hass"
-		},
-		{
-			"path": "../../../../media-processing"
 		}
 	],
 	"remoteAuthority": "wsl+Arch",

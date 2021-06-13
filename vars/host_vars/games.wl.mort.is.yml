@@ -181,7 +181,7 @@ setup_nfs: false
 # set to 'none' to not copy one
 nfs_config: none
 
-# Install and setup iptable filewall
+# Install and setup iptable firewall
 setup_iptables: false
 
 # IP address or network range (CIDR) of IP addresses without restrictions

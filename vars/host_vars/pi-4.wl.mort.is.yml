@@ -1,7 +1,6 @@
 # additional users to create/setup
 extra_users:
-  - { user: pulse, configure: false }
-  - { user: kiosk, configure: false }
+  - { user: kiosk, configure: false, groups: ["video", "users"] }
   - { user: room-assistant, configure: false }
   # TODO: add users to pulse-access group
   # set pulse user's home directory to /var/run/pulse

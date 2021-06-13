@@ -16,7 +16,7 @@ x11_export_display: false
 # for login shell
 # supported default shells: xonsh
 # set to 'none' if you do not want to configure a secondary shell
-secondary_shell: none
+secondary_shell: xonsh
 
 ## Git Settings
 
@@ -125,6 +125,7 @@ extra_packages:
 # Set to '[]' to skip installing AUR packages
 extra_aur_packages:
     - portainer-bin
+    - pacoloco-git
 
 # Extra systemd services to enable
 # Set to '[]' to skip
@@ -132,6 +133,7 @@ extra_systemd:
     - docker.service
     - netdata.service
     - portainer.service
+    - pacoloco.service
 
 # extra arbitary user directories to make relative to ~
 # set to '[]' to not create any
@@ -147,6 +149,7 @@ extra_system_dirs:
     - { path: /unraid/backup, owner: root, recurse: false, mode: '777' }
     - { path: /unraid/public, owner: root, recurse: false, mode: '777' }
     - { path: /unraid/media, owner: root, recurse: false, mode: '777' }
+    - { path: /opt/pacoloco/, owner: pacoloco, recurse: false, mode: '755' }
 
 # extra arbitary system files to copy
 # set to '[]' to not copy any
@@ -167,6 +170,9 @@ extra_system_files:
     - { src: user/mortis-configs/templates/netdata/health.d/softnet.conf, dest: /etc/netdata/health.d/softnet.conf }
     - { src: user/mortis-configs/templates/netdata/health.d/tcp_resets.conf, dest: /etc/netdata/health.d/tcp_resets.conf }
     - { src: user/mortis-configs/templates/netdata/health.d/udp_errors.conf, dest: /etc/netdata/health.d/udp_errors.conf }
+    - { src: user/mortis-configs/templates/netdata/health.d/web_log.conf, dest: /etc/netdata/health.d/web_log.conf }
+    - { src: user/mortis-configs/templates/netdata/health.d/apcupsd.conf, dest: /etc/netdata/health.d/apcupsd.conf }
+    - { src: user/mortis-configs/templates/pacoloco.yml, dest: /etc/pacoloco.yaml }
 
 # extra drives to mount
 # set to '[]' to not mount anything
@@ -194,7 +200,7 @@ setup_nfs: true
 # set to 'none' to not copy one
 nfs_config: user/mortis-configs/templates/exports.server-2
 
-# Install and setup iptable filewall
+# Install and setup iptable firewall
 setup_iptables: false
 
 # IP address or network range (CIDR) of IP addresses without restrictions
@@ -286,13 +292,47 @@ letencrypt_email: cbailey@mort.is
 # set to '[]' to not config nginx/Let's encrypt
 letencrypt_domains:
   - "wl.mort.is"
-  - "server-2.wl.mort.is"
-  - "plex.wl.mort.is"
+  - "*.wl.mort.is"
 
 # nginx proxies to set up
 # set to '[]' to not config nginx reverse proxies
-nginx_proxies: []
-#  - { domain: 'example.com', ip: '127.0.0.1', port: '8000', type: 'proxy', cors: true, cors_domain: 'example.com', media_root: null, static_root: null, internal: true, stats_ip: null }
+nginx_proxies:
+# server-2
+- { domain: 'docker.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '9000', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'collect.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '19999', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, proto_header: http, group: "core" }
+- { domain: 'influxdb.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '8086', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'monitor.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '3000', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "core" }
+- { domain: 'prometheus.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '9090', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "core" }
+- { domain: 'media.wl.mort.is', ip: 'server-2.wl.mort.is', port: '3579', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null, websockets: false, group: "media" }
+- { domain: 'plex.wl.mort.is', ip: 'server-2.wl.mort.is', port: '32400', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null, group: "media" }
+- { domain: 'jellyfin.wl.mort.is', ip: 'server-2.wl.mort.is', port: '8096', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "media" }
+
+- { domain: 'mc.wl.mort.is', custom: true, custom_file: user/mortis-configs/templates/nginx/mc.wl.mort.is.conf, group: "games" }
+
+# unraid
+- { domain: 'backup.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '7810', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
+- { domain: 'movies.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '7878', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
+- { domain: 'music.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '8686', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
+- { domain: 'sync.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '8384', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
+- { domain: 'television.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '8989', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
+- { domain: 'unraid.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '7443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+
+# other
+- { domain: 'unifi.wl.mort.is', ip: '192.168.1.1', port: '443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+
+# - { domain: 'dev.wl.mort.is', ip: 'server-2.wl.mort.is', port: '9000', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+# - { domain: 'download.wl.mort.is', ip: '10.8.0.14', port: '8112', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+# - { domain: 'index.wl.mort.is', ip: '10.8.0.14', port: '9117', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
+
+
+# boundlexx
+- { domain: 'local-boundlexx.wl.mort.is', custom: true, custom_file: user/mortis-configs/templates/nginx/local-boundlexx.wl.mort.is.conf, group: "boundlexx", env: "local" }
+- { domain: 'testing-boundlexx.wl.mort.is', custom: true, custom_file: user/mortis-configs/templates/nginx/testing-boundlexx.wl.mort.is.conf, group: "boundlexx", env: "testing" }
+
+- { domain: 'boundlexx.wl.mort.is', custom: true, custom_file: user/mortis-configs/templates/nginx/boundlexx.wl.mort.is.conf, group: "boundlexx" }
+- { domain: 'boundlexx.app', ip: 'server-2.wl.mort.is', type: 'uwsgi', socket: 'server-2.wl.mort.is:12000', cors: false, media_root: null, static_root: '/mnt/boundlexx/static', internal: false, stats_ip: null, group: "boundlexx" }
+- { domain: 'origin.boundlexx.app', ip: 'server-2.wl.mort.is', type: 'uwsgi', socket: 'server-2.wl.mort.is:12000', cors: false, media_root: null, static_root: '/mnt/boundlexx/static', internal: false, stats_ip: null, group: "boundlexx" }
+- { domain: 'metabase.boundlexx.app', ip: 'server-2-f1.wl.mort.is', port: '12100', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "boundlexx" }
 
 # promtail / Loki setup
 loki_target: "http://server-2.wl.mort.is:3100/loki/api/v1/push"

@@ -16,7 +16,7 @@ x11_export_display: false
 # for login shell
 # supported default shells: xonsh
 # set to 'none' if you do not want to configure a secondary shell
-secondary_shell: none
+secondary_shell: xonsh
 
 ## Git Settings
 
@@ -186,12 +186,13 @@ setup_nfs: false
 # set to 'none' to not copy one
 nfs_config: none
 
-# Install and setup iptable filewall
+# Install and setup iptable firewall
 setup_iptables: true
 
 # IP address or network range (CIDR) of IP addresses without restrictions
 # set empty to not have any
 iptables_whitelisted_networks:
+  - 192.168.4.0/24
   - 192.168.20.0/24
   - 172.16.0.0/12
 
@@ -219,7 +220,7 @@ docker_config: none
 # optional extra docker host option (-H)
 # set to 'none' to only run on default
 # unix socket (unix:///var/run/docker.sock)
-extra_docker_host: tcp://192.168.22.10:2376
+extra_docker_host: tcp://192.168.22.10:2375
 
 # setup and install NodeJS
 setup_nodejs: true
