@@ -1,0 +1,19 @@
+# Install list of arbitary packages
+# set to empty to not install any
+extra_packages:
+    - nfs-utils
+    # extra
+    - i2c-tools
+
+# Extra systemd services to enable
+# Set to '[]' to skip
+extra_systemd:
+  #  extra
+  - ssd1306.service
+
+# extra arbitary system files to copy
+# set to '[]' to not copy any
+extra_system_files:
+  - { src: user/mortis-configs/templates/mirrorlist.archlinux-arm, dest: /etc/pacman.d/mirrorlist }
+  # extra
+  - { src: user/mortis-configs/templates/ssd1306.service, dest: /etc/systemd/system/ssd1306.service }

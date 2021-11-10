@@ -43,18 +43,6 @@ gpg_remote_agent: /run/user/1000/gnupg/S.gpg-agent
 wsl_npiperelay_path: none
 windows_gpg_agent_path: none
 
-## Cloud Provider Settings
-
-# cloud provider(s) to configure
-# supported: onedrive
-# set to empty value to not install a cloud provider
-cloud_providers:
-
-# Absolute path to sync list file
-# https://github.com/abraunegg/onedrive/blob/master/docs/USAGE.md#selective-sync
-# Ubuntu requires 19.04
-onedrive_sync_list: none
-
 ## Desktop Settings
 
 # DEs to install and setup
@@ -119,7 +107,6 @@ extra_ppas:
 extra_packages:
     - docker
     - docker-compose
-    - netdata
     - nfs-utils
 
 # Set to '[]' to skip installing AUR packages
@@ -131,7 +118,6 @@ extra_aur_packages:
 # Set to '[]' to skip
 extra_systemd:
     - docker.service
-    - netdata.service
     - portainer.service
     - pacoloco.service
 
@@ -149,29 +135,14 @@ extra_system_dirs:
     - { path: /unraid/backup, owner: root, recurse: false, mode: '777' }
     - { path: /unraid/public, owner: root, recurse: false, mode: '777' }
     - { path: /unraid/media, owner: root, recurse: false, mode: '777' }
+    - { path: /unraid/processing, owner: root, recurse: false, mode: '777' }
     - { path: /opt/pacoloco/, owner: pacoloco, recurse: false, mode: '755' }
 
 # extra arbitary system files to copy
 # set to '[]' to not copy any
 extra_system_files:
     - { src: user/mortis-configs/templates/docker.json, dest: /etc/docker/daemon.json }
-    - { src: user/mortis-configs/templates/netdata/.opt-out, dest: /etc/netdata/.opt-out-from-anonymous-statistics }
-    - { src: user/mortis-configs/templates/netdata/apps_groups.conf, dest: /etc/netdata/apps_groups.conf }
-    - { src: user/mortis-configs/templates/netdata/netdata.server-2.conf, dest: /etc/netdata/netdata.conf }
-    - { src: user/mortis-configs/templates/netdata/python.d.conf, dest: /etc/netdata/python.d.conf }
-    - { src: user/mortis-configs/templates/sysctl.conf, dest: /etc/sysctl.d/90-extra-tuning.conf }
-    - { src: user/mortis-configs/templates/netdata/sudo, dest: /etc/sudoers.d/netdata-allow-to-sudo-smbstatus }
-    - { src: user/mortis-configs/templates/netdata/stream.source.conf, dest: /etc/netdata/stream.conf }
     - { src: user/mortis-configs/templates/mirrorlist.archlinux, dest: /etc/pacman.d/mirrorlist }
-    - { src: user/mortis-configs/templates/netdata/health.d/cgroups.conf, dest: /etc/netdata/health.d/cgroups.conf }
-    - { src: user/mortis-configs/templates/netdata/health.d/disks.conf, dest: /etc/netdata/health.d/disks.conf }
-    - { src: user/mortis-configs/templates/netdata/health.d/net.conf, dest: /etc/netdata/health.d/net.conf }
-    - { src: user/mortis-configs/templates/netdata/health.d/netfilter.conf, dest: /etc/netdata/health.d/netfilter.conf }
-    - { src: user/mortis-configs/templates/netdata/health.d/softnet.conf, dest: /etc/netdata/health.d/softnet.conf }
-    - { src: user/mortis-configs/templates/netdata/health.d/tcp_resets.conf, dest: /etc/netdata/health.d/tcp_resets.conf }
-    - { src: user/mortis-configs/templates/netdata/health.d/udp_errors.conf, dest: /etc/netdata/health.d/udp_errors.conf }
-    - { src: user/mortis-configs/templates/netdata/health.d/web_log.conf, dest: /etc/netdata/health.d/web_log.conf }
-    - { src: user/mortis-configs/templates/netdata/health.d/apcupsd.conf, dest: /etc/netdata/health.d/apcupsd.conf }
     - { src: user/mortis-configs/templates/pacoloco.yml, dest: /etc/pacoloco.yaml }
 
 # extra drives to mount
@@ -180,6 +151,7 @@ extra_mounts:
     - { path: /unraid/backup, src: unraid-server.wl.mort.is:/mnt/user/backup, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
     - { path: /unraid/public, src: unraid-server.wl.mort.is:/mnt/user/public, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
     - { path: /unraid/media, src: unraid-server.wl.mort.is:/mnt/user/media, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+    - { path: /unraid/processing, src: unraid-server.wl.mort.is:/mnt/user/processing, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
 
 ## Network Utils Settings
 
@@ -296,43 +268,17 @@ letencrypt_domains:
 
 # nginx proxies to set up
 # set to '[]' to not config nginx reverse proxies
-nginx_proxies:
-# server-2
-- { domain: 'docker.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '9000', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
-- { domain: 'collect.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '19999', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, proto_header: http, group: "core" }
-- { domain: 'influxdb.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '8086', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
-- { domain: 'monitor.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '3000', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "core" }
-- { domain: 'prometheus.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '9090', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "core" }
-- { domain: 'media.wl.mort.is', ip: 'server-2.wl.mort.is', port: '3579', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null, websockets: false, group: "media" }
-- { domain: 'plex.wl.mort.is', ip: 'server-2.wl.mort.is', port: '32400', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null, group: "media" }
-- { domain: 'jellyfin.wl.mort.is', ip: 'server-2.wl.mort.is', port: '8096', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "media" }
-
-- { domain: 'mc.wl.mort.is', custom: true, custom_file: user/mortis-configs/templates/nginx/mc.wl.mort.is.conf, group: "games" }
-
-# unraid
-- { domain: 'backup.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '7810', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
-- { domain: 'movies.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '7878', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
-- { domain: 'music.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '8686', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
-- { domain: 'sync.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '8384', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
-- { domain: 'television.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '8989', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
-- { domain: 'unraid.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '7443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
-
-# other
-- { domain: 'unifi.wl.mort.is', ip: '192.168.1.1', port: '443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
-
-# - { domain: 'dev.wl.mort.is', ip: 'server-2.wl.mort.is', port: '9000', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
-# - { domain: 'download.wl.mort.is', ip: '10.8.0.14', port: '8112', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
-# - { domain: 'index.wl.mort.is', ip: '10.8.0.14', port: '9117', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null }
-
-
-# boundlexx
-- { domain: 'local-boundlexx.wl.mort.is', custom: true, custom_file: user/mortis-configs/templates/nginx/local-boundlexx.wl.mort.is.conf, group: "boundlexx", env: "local" }
-- { domain: 'testing-boundlexx.wl.mort.is', custom: true, custom_file: user/mortis-configs/templates/nginx/testing-boundlexx.wl.mort.is.conf, group: "boundlexx", env: "testing" }
-
-- { domain: 'boundlexx.wl.mort.is', custom: true, custom_file: user/mortis-configs/templates/nginx/boundlexx.wl.mort.is.conf, group: "boundlexx" }
-- { domain: 'boundlexx.app', ip: 'server-2.wl.mort.is', type: 'uwsgi', socket: 'server-2.wl.mort.is:12000', cors: false, media_root: null, static_root: '/mnt/boundlexx/static', internal: false, stats_ip: null, group: "boundlexx" }
-- { domain: 'origin.boundlexx.app', ip: 'server-2.wl.mort.is', type: 'uwsgi', socket: 'server-2.wl.mort.is:12000', cors: false, media_root: null, static_root: '/mnt/boundlexx/static', internal: false, stats_ip: null, group: "boundlexx" }
-- { domain: 'metabase.boundlexx.app', ip: 'server-2-f1.wl.mort.is', port: '12100', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "boundlexx" }
+nginx_proxies: []
 
 # promtail / Loki setup
 loki_target: "http://server-2.wl.mort.is:3100/loki/api/v1/push"
+
+
+## netdata
+install_netdata: true
+netdata_stream_api_key: "64016863-04c3-4ec6-bc54-95ee6895c7f0"
+netdata_allow_streaming: true
+netdata_stream_to: null
+netdata_enable_web: true
+netdata_ssl_letencrypt_domain: wl.mort.is
+netdata_copy_health_conf: true

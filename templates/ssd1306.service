@@ -1,0 +1,10 @@
+[Unit]
+Description=UCTRONICS ssd1306 OLED display
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/opt/U6143_ssd1306/C/display
+
+[Install]
+WantedBy=multi-user.target

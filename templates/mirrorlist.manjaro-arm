@@ -1,2 +1,2 @@
-Server = http://server-2.wl.mort.is:9129/repo/manjaro-arm/$repo/$arch
+Server = http://pi-3.wl.mort.is:9129/repo/manjaro-arm/$repo/$arch
 Server = http://repo.ialab.dsu.edu/manjaro/arm-stable/$repo/$arch

@@ -3,8 +3,10 @@
 xset +dpms
 xset s 60 60
 
+URL=https://home.wl.mort.is/lovelace/downstairs/
+
 unclutter &
-chromium --app=https://home.wl.mort.is/lovelace/entertainment-room/ \
+chromium $URL --app=$URL \
     --window-size=800,480 --start-fullscreen --kiosk \
     --noerrdialogs --disable-translate --no-first-run \
     --fast --fast-start --disable-infobars --disable-features=TranslateUI \

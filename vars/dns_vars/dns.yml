@@ -1,0 +1,10 @@
+install_pihole: true
+
+# list of domains to whitelist for Pihole
+pihole_whitelist:
+  - collector.newrelic.com
+  - adfoc.us
+
+# dns hosts file
+# set to null to skip
+dns_hosts: 'user/mortis-configs/templates/hosts'

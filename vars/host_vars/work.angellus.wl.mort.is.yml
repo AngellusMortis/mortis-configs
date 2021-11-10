@@ -16,7 +16,7 @@ x11_export_display: false
 # for login shell
 # supported default shells: xonsh
 # set to 'none' if you do not want to configure a secondary shell
-secondary_shell: xonsh
+secondary_shell: none
 
 ## Git Settings
 
@@ -42,19 +42,6 @@ gpg_remote_agent: /run/user/1000/gnupg/S.gpg-agent
 # See https://codingnest.com/how-to-use-gpg-with-yubikey-wsl/ for setup
 wsl_npiperelay_path: none
 windows_gpg_agent_path: none
-
-## Cloud Provider Settings
-
-# cloud provider(s) to configure
-# supported: onedrive
-# set to empty value to not install a cloud provider
-cloud_providers:
-  - onedrive
-
-# Absolute path to sync list file
-# https://github.com/abraunegg/onedrive/blob/master/docs/USAGE.md#selective-sync
-# Ubuntu requires 19.04
-onedrive_sync_list: user/mortis-configs/sync_list
 
 ## Desktop Settings
 

@@ -1,64 +1,75 @@
-# enable tmux support
-use_tmux: true
-
-# additional users to create/setup
-extra_users:
-- { user: node-red, configure: false }
-
-# Install list of arbitary packages
-# set to empty to not install any
-extra_packages:
-  - netdata
-  - nfs-utils
-  - home-assistant
-  # rabbitmq-plugins enable rabbitmq_mqtt
-  - rabbitmq
-  - npm
-  - rsync
-
 # Set to '[]' to skip installing AUR packages
 extra_aur_packages:
-  - nodejs-node-red
-  # gpg --recv-keys 06CA9F5D1DCF2659
-  - bluez-utils-compat
+  - pacoloco-git
 
 # Extra systemd services to enable
 # Set to '[]' to skip
 extra_systemd:
-  - netdata.service
-  - home-assistant.service
-  - bluetooth.service
-  - rabbitmq.service
-  - node-red.service
+  - ssd1306.service
+  # extra
+  - pacoloco.service
+
+# Install and set up NFS Network Shares
+setup_nfs: true
+
+# extra arbitary system directories to create
+# set to '[]' to not copy any
+extra_system_dirs:
+  - { path: /opt/pacoloco/, owner: pacoloco, recurse: false, mode: '755' }
 
 # extra arbitary system files to copy
 # set to '[]' to not copy any
 extra_system_files:
-  - { src: user/mortis-configs/templates/netdata/.opt-out, dest: /etc/netdata/.opt-out-from-anonymous-statistics }
-  - { src: user/mortis-configs/templates/netdata/apps_groups.conf, dest: /etc/netdata/apps_groups.conf }
-  - { src: user/mortis-configs/templates/netdata/netdata.pi-3.conf, dest: /etc/netdata/netdata.conf }
-  - { src: user/mortis-configs/templates/netdata/python.d.conf, dest: /etc/netdata/python.d.conf }
-  - { src: user/mortis-configs/templates/sysctl.conf, dest: /etc/sysctl.d/90-extra-tuning.conf }
-  - { src: user/mortis-configs/templates/netdata/stream.internal.conf, dest: /etc/netdata/stream.conf }
-  - { src: user/mortis-configs/templates/mirrorlist.manjaro-arm, dest: /etc/pacman.d/mirrorlist }
-  - { src: user/mortis-configs/templates/rabbitmq/enabled_plugins, dest: /etc/rabbitmq/enabled_plugins }
-  - { src: user/mortis-configs/templates/rabbitmq/rabbitmq.conf, dest: /etc/rabbitmq/rabbitmq.conf }
-  - { src: user/mortis-configs/templates/rabbitmq/rabbitmq-env.conf, dest: /etc/rabbitmq/rabbitmq-env.conf }
-  - { src: user/mortis-configs/templates/node-red.service, dest: /etc/systemd/system/node-red.service }
+  - { src: user/mortis-configs/templates/mirrorlist.archlinux-arm, dest: /etc/pacman.d/mirrorlist }
+  - { src: user/mortis-configs/templates/ssd1306.service, dest: /etc/systemd/system/ssd1306.service }
+  # extra
+  - { src: user/mortis-configs/templates/pacoloco.yml, dest: /etc/pacoloco.yaml }
 
 # extra drives to mount
 # set to '[]' to not mount anything
 extra_mounts:
   - { path: /unraid/backup, src: unraid-server.wl.mort.is:/mnt/user/backup, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
   - { path: /unraid/public, src: unraid-server.wl.mort.is:/mnt/user/public, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
-  - { path: /etc/letsencrypt, src: pi-2.wl.mort.is:/etc/letsencrypt, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+  - { path: /unraid/appdata, src: unraid-server.wl.mort.is:/mnt/user/appdata, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
 
 
-# Crons to set up
-# set to '[]' to skip
-extra_crons:
-- name: 'home assistant backup'
-  minute: "0"
-  hour: "*/2"
-  job: "rsync -av --delete /var/lib/hass/ /unraid/backup/hass/"
-  user: hass
+## nginx/Let's Encrypt
+
+# email to use for Let's Encrypt certs
+# set to empty to not config nginx/Let's encrypt
+letencrypt_email: cbailey@mort.is
+
+# domains to get SSL certs for
+# set to '[]' to not config nginx/Let's encrypt
+letencrypt_domains:
+  - "wl.mort.is"
+  - "*.wl.mort.is"
+
+# nginx proxies to set up
+# set to '[]' to not config nginx reverse proxies
+nginx_proxies:
+# server-2
+- { domain: 'docker.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '9000', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'collect.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '19999', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, proto_header: http, group: "core" }
+- { domain: 'influxdb.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '8086', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'monitor.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '3000', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'prometheus.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '9090', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'nodered.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '1880', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'paperless.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '8010', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'money.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '8444', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'spectre.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '8445', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'plaid-dev.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '8455', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+
+# unraid
+- { domain: 'backup.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '7810', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
+- { domain: 'movies.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '7878', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
+- { domain: 'music.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '8686', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
+- { domain: 'sync.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '8384', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
+- { domain: 'television.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '8989', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
+- { domain: 'unraid.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '7443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+
+# other
+- { domain: 'unifi.wl.mort.is', ip: '192.168.1.1', port: '443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'network.wl.mort.is', ip: '192.168.1.1', port: '443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'protect.wl.mort.is', ip: '192.168.51.16', port: '443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'power.wl.mort.is', ip: 'iotawatt.wl.mort.is', port: '80', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }

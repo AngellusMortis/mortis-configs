@@ -85,6 +85,21 @@ enabled_shells:
   - zsh
   - xonsh
 
+## netdata
+install_netdata: false
+netdata_stream_api_key: null
+netdata_allow_streaming: false
+netdata_stream_to: null
+netdata_enable_web: false
+netdata_ssl_letencrypt_domain: null
+netdata_copy_health_conf: false
+
+## SSH jail
+install_ssh_jail: false
+ssh_jail_binaries:
+  - /bin/ls
+  - /bin/bash
+
 ## pihole
 install_pihole: false
 

@@ -2,27 +2,25 @@
 ::1             localhost localhost.wl.mort.is
 
 # networking hardware
-192.168.200.1   gateway gatway.wl.mort.is
+192.168.200.1   gateway gateway.wl.mort.is
 192.168.1.1     usg usg.wl.mort.is
-192.168.1.10    pi-1 unifi pi.hole pi-1.wl.mort.is
-192.168.1.10    dns dns.wl.mort.is
+192.168.1.10    pi.hole pi-1 pi-1.wl.mort.is dns-1 dns-1.wl.mort.is
+192.168.1.12    pi-2 pi-2.wl.mort.is dns-2 dns-2.wl.mort.is
 
 # core services
-## nginx
-192.168.2.10    pi-2 pi-2.wl.mort.is
-192.168.4.10    plex plex.wl.mort.is jellyfin jellyfin.wl.mort.is media media.wl.mort.is
-192.168.4.10    music music.wl.mort.is television television.wl.mort.is
-192.168.4.10    movies movies.wl.mort.is r r.wl.mort.is dev dev.wl.mort.is
-192.168.4.10    docker docker.wl.mort.is monitor monitor.wl.mort.is prometheus prometheus.wl.mort.is
-192.168.4.10    collect collect.wl.mort.is influxdb influxdb.wl.mort.is
-192.168.4.10    unifi unifi.wl.mort.is router router.wl.mort.is
-192.168.4.10    sync sync.wl.mort.is backup backup.wl.mort.is
-192.168.4.10    testing-boundlexx testing-boundlexx.wl.mort.is local-boundlexx local-boundlexx.wl.mort.is
-192.168.4.10    boundlexx boundlexx.wl.mort.is prometheus-boundlexx.wl.mort.is grafana-boundlexx.wl.mort.is
-192.168.4.10    unraid unraid.wl.mort.is wl.mort.is mc mc.wl.mort.is
+192.168.2.10    pi-3 pi-3.wl.mort.is
+192.168.2.11    home home.wl.mort.is
 
-## home assistant
-192.168.2.11    pi-3 pi-3.wl.mort.is home home.wl.mort.is
+## nginx internal
+192.168.2.10    music music.wl.mort.is television television.wl.mort.is
+192.168.2.10    movies movies.wl.mort.is r r.wl.mort.is dev dev.wl.mort.is
+192.168.2.10    docker docker.wl.mort.is monitor monitor.wl.mort.is prometheus prometheus.wl.mort.is
+192.168.2.10    collect collect.wl.mort.is influxdb influxdb.wl.mort.is
+192.168.2.10    unifi unifi.wl.mort.is router router.wl.mort.is paperless.wl.mort.is paperless
+192.168.2.10    network network.wl.mort.is protect protect.wl.mort.is
+192.168.2.10    sync sync.wl.mort.is backup backup.wl.mort.is power.wl.mort.is power
+192.168.2.10    unraid unraid.wl.mort.is mc mc.wl.mort.is nodered nodered.wl.mort.is
+192.168.2.10    money money.wl.mort.is spectre spectre.wl.mort.is plaid-dev plaid-dev.wl.mort.is
 
 # media services
 ## unraid
@@ -33,10 +31,16 @@
 # 192.168.1.15    angellus-server angellus-server.wl.mort.is wl.mort.is
 # 192.168.1.20    server-f0 server-f0.wl.mort.is
 
-# game servers
+# public facing
 192.168.4.10    server-2-f0 server-2-f0.wl.mort.is
 192.168.4.10    server-2 server-2.wl.mort.is server-2 server-2.wl.mort.is
 192.168.4.11    server-2-f1 server-2-f1.wl.mort.is
+192.168.4.20    pi-4 pi-4.wl.mort.is
+
+## nginx
+192.168.4.20    plex plex.wl.mort.is jellyfin jellyfin.wl.mort.is media media.wl.mort.is
+192.168.4.20    testing-boundlexx testing-boundlexx.wl.mort.is local-boundlexx local-boundlexx.wl.mort.is
+192.168.4.20    boundlexx boundlexx.wl.mort.is wl.mort.is
 
 # personal devices
 192.168.20.10    angellus angellus.wl.mort.is pc.angellus pc.angellus.wl.mort.is angellus-pc angellus-pc.wl.mort.is
@@ -66,6 +70,9 @@
 # 192.168.7.50   ee-phone ee-phone.wl.mort.is
 
 # room assistant
-192.168.50.10   pi-4 pi-4.wl.mort.is ra-er ra-er.wl.mort.is
-# 192.168.50.11   pi-5 pi-5.wl.mort.is ra-living-room ra-living-room.wl.mort.is
-# 192.168.50.12   pi-6 pi-6.wl.mort.is ra-computer-room ra-computer-room.wl.mort.is
+192.168.52.10   pi-5 pi-5.wl.mort.is ra-er ra-er.wl.mort.is
+
+# IoT Devices
+192.168.52.93   awair-1.wl.mort.is awair-1
+192.168.52.34   iotawatt.wl.mort.is iotawatt
+192.168.52.38   konnected.wl.mort.is konnected

@@ -53,18 +53,6 @@ wsl_npiperelay_path: "/mnt/c/Users/cbailey/Syncthing/cbailey/Development/npipere
 windows_ssh_auth_sock_path: "/\\/\\./\\pipe/\\ssh-pageant"
 windows_gpg_agent_path: "C:/Users/cbailey/AppData/Roaming/gnupg/S.gpg-agent"
 
-## Cloud Provider Settings
-
-# cloud provider(s) to configure
-# supported: onedrive
-# set to empty value to not install a cloud provider
-cloud_providers:
-
-# Absolute path to sync list file
-# https://github.com/abraunegg/onedrive/blob/master/docs/USAGE.md#selective-sync
-# Ubuntu requires 19.04
-onedrive_sync_list: none
-
 ## Desktop Settings
 
 # DEs to install and setup

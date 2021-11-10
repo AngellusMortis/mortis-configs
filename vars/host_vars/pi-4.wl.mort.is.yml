@@ -1,99 +1,107 @@
 # additional users to create/setup
 extra_users:
-  - { user: kiosk, configure: false, groups: ["video", "users"] }
-  - { user: room-assistant, configure: false }
-  # TODO: add users to pulse-access group
-  # set pulse user's home directory to /var/run/pulse
-  # disable brcm43438.service
-  # pactl set-port-latency-offset bluez_card.78_44_01_14_4B_9D headset-output 45000
-  # enable load-module module-udev-detect tsched=1 in /etc/pulse/default.pa
-  # enable load-module module-native-protocol-tcp auth-ip-acl=127.0.0.1
+  - { user: cgolden, configure: false, groups: ["sftponly"] }
+  - { user: jailtest, configure: false, groups: ["sftponly"] }
 
 # Install list of arbitary packages
 # set to empty to not install any
 extra_packages:
-  - netdata
   - nfs-utils
-  - chromium
-  - xorg-server
-  # - xorg-apps
-  - xorg-xinit
-  - unclutter
-  - ttf-dejavu
-  - bluez
-  - avahi
-  - nss-mdns
-
-# Set to '[]' to skip installing AUR packages
-extra_aur_packages:
-  # gpg --recv-keys 06CA9F5D1DCF2659
-  - bluez-utils-compat
-
-# extra arbitary system directories to create
-# set to '[]' to not copy any
-extra_system_dirs:
-  - { path: /etc/systemd/system/getty@tty1.service.d, owner: root, recurse: false, mode: '755' }
-  - { path: /home/room-assistant/config, owner: room-assistant, recurse: false, mode: '755' }
+  - i2c-tools
+  # extra
+  - fail2ban
 
 # Extra systemd services to enable
 # Set to '[]' to skip
 extra_systemd:
-  - netdata.service
-  - bluetooth.service
-  - getty@tty1.service
-  - room-assistant.service
-  - avahi-daemon.service
-  - wpa_supplicant@wlan0.service
-  - dhcpcd.service
+  - ssd1306.service
+  # extra
+  - fail2ban.service
+
+# Install and set up NFS Network Shares
+setup_nfs: true
+
+# extra arbitary system directories to create
+# set to '[]' to not copy any
+extra_system_dirs:
+  - { path: /srv/ssh/jail/media, owner: root, recurse: false, mode: '755' }
+  - { path: /srv/ssh/jail/media/music, owner: root, recurse: false, mode: '755' }
+  - { path: /srv/ssh/jail/media/movies, owner: root, recurse: false, mode: '755' }
+  - { path: /srv/ssh/jail/media/television, owner: root, recurse: false, mode: '755' }
 
 # extra arbitary system files to copy
 # set to '[]' to not copy any
 extra_system_files:
-  - { src: user/mortis-configs/templates/netdata/.opt-out, dest: /etc/netdata/.opt-out-from-anonymous-statistics }
-  - { src: user/mortis-configs/templates/netdata/apps_groups.conf, dest: /etc/netdata/apps_groups.conf }
-  - { src: user/mortis-configs/templates/netdata/netdata.pi-4.conf, dest: /etc/netdata/netdata.conf }
-  - { src: user/mortis-configs/templates/netdata/python.d.conf, dest: /etc/netdata/python.d.conf }
-  - { src: user/mortis-configs/templates/sysctl.conf, dest: /etc/sysctl.d/90-extra-tuning.conf }
-  - { src: user/mortis-configs/templates/netdata/stream.internal.conf, dest: /etc/netdata/stream.conf }
-  - { src: user/mortis-configs/templates/mirrorlist.manjaro-arm, dest: /etc/pacman.d/mirrorlist }
-  - { src: user/mortis-configs/templates/kiosk/bashrc, dest: /home/kiosk/.bashrc }
-  - { src: user/mortis-configs/templates/kiosk/xinitrc, dest: /home/kiosk/.xinitrc }
-  - { src: user/mortis-configs/templates/kiosk/getty@tty1.service.conf, dest: /etc/systemd/system/getty@tty1.service.d/override.conf }
-  - { src: user/mortis-configs/templates/room-assistant/pi-4.yml, dest: /home/room-assistant/config/local.yml }
-  - { src: user/mortis-configs/templates/room-assistant.service, dest: /etc/systemd/system/room-assistant.service }
-  - { src: user/mortis-configs/templates/room-assistant/nsswitch.conf, dest: /etc/nsswitch.conf }
-  # - { src: user/mortis-configs/templates/pulseaudio.service, dest: /etc/systemd/system/pulseaudio.service }
-  # - { src: user/mortis-configs/templates/pulseaudio.conf, dest: /etc/dbus-1/system.d/pulseaudio.conf }
+  - { src: user/mortis-configs/templates/ssd1306.service, dest: /etc/systemd/system/ssd1306.service }
+  # extra
+  - { src: user/mortis-configs/authorized_keys, dest: /etc/ssh/authorized_keys/jailtest }
+  - { src: user/mortis-configs/ssh-jail/cgolden.pub, dest: /etc/ssh/authorized_keys/cgolden }
+  - { src: user/mortis-configs/jail.local, dest: /etc/fail2ban/jail.local }
 
-## NodeJS/NPM
-# Extra NPM packages to install
-# set to '[]' to skip
-extra_npm:
-  - room-assistant
+# extra drives to mount
+# set to '[]' to not mount anything
+extra_mounts:
+  - { path: /unraid/media, src: unraid-server.wl.mort.is:/mnt/user/media, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+  - { path: /mnt/boundlexx, src: server-2.wl.mort.is:/media/docker/data/boundlexx/live/web, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+  - { path: /srv/ssh/jail/media/music, src: /unraid/media/music, fstype: none, opts: bind,remount,ro }
+  - { path: /srv/ssh/jail/media/movies, src: /unraid/media/movies, fstype: none, opts: bind,remount,ro }
+  - { path: /srv/ssh/jail/media/television, src: /unraid/media/television, fstype: none, opts: bind,remount,ro }
 
-### TODO:
-# lineinfile:
-#   path: /etc/bluetooth/main.conf
-#   regexp: '^AutoEnable=true'
-#   line: AutoEnable=true
-#   insertafter: '^#AutoEnable='
 
-# /etc/wpa_supplicant/wpa_supplicant-wlan0.conf
-# ctrl_interface=/run/wpa_supplicant
-# update_config=1
+## nginx/Let's Encrypt
 
-# lineinfile:
-#   path: /etc/pulse/system.pa
-#   regexp: '^load-module module-bluetooth-policy'
-#   line: load-module module-bluetooth-policy
+# email to use for Let's Encrypt certs
+# set to empty to not config nginx/Let's encrypt
+letencrypt_email: cbailey@mort.is
 
-# lineinfile:
-#   path: /etc/pulse/system.pa
-#   regexp: '^load-module module-bluetooth-discover'
-#   line: load-module module-bluetooth-discover
+# domains to get SSL certs for
+# set to '[]' to not config nginx/Let's encrypt
+letencrypt_domains:
+  - "wl.mort.is"
+  - "*.wl.mort.is"
 
-# network={
-#     ssid="Mortis RA"
-#     scan_ssid=1
-#     psk=# wpa_passphrase "Mortis RA" passphrase >> /etc/wpa_supplicant/wpa_supplicant-wlan0.conf
-# }
+# nginx proxies to set up
+# set to '[]' to not config nginx reverse proxies
+nginx_proxies:
+# server-2
+- { domain: 'wl.mort.is', ip: 'home.wl.mort.is', port: '443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null, websockets: false, group: "media", path: "~* /api/(webhook|camera_proxy)/" }
+
+- { domain: 'media.wl.mort.is', ip: 'server-2.wl.mort.is', port: '3579', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null, websockets: false, group: "media" }
+- { domain: 'plex.wl.mort.is', ip: 'server-2.wl.mort.is', port: '32400', protocol: https, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "media" }
+- { domain: 'jellyfin.wl.mort.is', ip: 'server-2.wl.mort.is', port: '8096', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "media" }
+
+# boundlexx
+- { domain: 'local-boundlexx.wl.mort.is', custom: true, custom_file: user/mortis-configs/templates/nginx/local-boundlexx.wl.mort.is.conf, group: "boundlexx", env: "local" }
+- { domain: 'testing-boundlexx.wl.mort.is', custom: true, custom_file: user/mortis-configs/templates/nginx/testing-boundlexx.wl.mort.is.conf, group: "boundlexx", env: "testing" }
+
+- { domain: 'boundlexx.wl.mort.is', custom: true, custom_file: user/mortis-configs/templates/nginx/boundlexx.wl.mort.is.conf, group: "boundlexx" }
+- { domain: 'boundlexx.app', ip: 'server-2.wl.mort.is', type: 'uwsgi', socket: 'server-2.wl.mort.is:12000', cors: false, media_root: null, static_root: '/mnt/boundlexx/static', internal: false, stats_ip: null, group: "boundlexx" }
+- { domain: 'origin.boundlexx.app', ip: 'server-2.wl.mort.is', type: 'uwsgi', socket: 'server-2.wl.mort.is:12000', cors: false, media_root: null, static_root: '/mnt/boundlexx/static', internal: false, stats_ip: null, group: "boundlexx" }
+- { domain: 'metabase.boundlexx.app', ip: 'server-2-f1.wl.mort.is', port: '12100', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "boundlexx" }
+
+## SSH jail
+install_ssh_jail: true
+ssh_jail_binaries:
+  - /bin/awk
+  - /bin/bash
+  - /bin/cut
+  - /bin/df
+  - /bin/du
+  - /bin/echo
+  - /bin/env
+  - /bin/false
+  - /bin/head
+  - /bin/ls
+  - /bin/pwd
+  - /bin/sed
+  - /bin/seq
+  - /bin/sleep
+  - /bin/sort
+  - /bin/tail
+  - /bin/test
+  - /bin/tr
+  - /bin/true
+  - /bin/uniq
+  - /bin/wc
+  - /bin/whoami
+  - /bin/rsync

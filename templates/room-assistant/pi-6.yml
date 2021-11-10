@@ -8,11 +8,11 @@ cluster:
   port: 6425
   weight: 100
   autoDiscovery: false
-  peerAddresses:
-  - pi-4.wl.mort.is:6425
-  - pi-5.wl.mort.is:6425
+  # peerAddresses:
+  # - pi-4.wl.mort.is:6425
+  # - pi-5.wl.mort.is:6425
 homeAssistant:
-  mqttUrl: 'mqtt://pi-3.wl.mort.is:1883'
+  mqttUrl: 'mqtt://home.wl.mort.is:1883'
   mqttOptions:
     username: mqtt
     password: MDrqydZ44ehwraZrrtv8pnXvGsrVvUZp

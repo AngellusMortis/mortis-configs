@@ -43,18 +43,6 @@ gpg_remote_agent: /run/user/1000/gnupg/S.gpg-agent
 wsl_npiperelay_path: none
 windows_gpg_agent_path: none
 
-## Cloud Provider Settings
-
-# cloud provider(s) to configure
-# supported: onedrive
-# set to empty value to not install a cloud provider
-cloud_providers:
-
-# Absolute path to sync list file
-# https://github.com/abraunegg/onedrive/blob/master/docs/USAGE.md#selective-sync
-# Ubuntu requires 19.04
-onedrive_sync_list: none
-
 ## Desktop Settings
 
 # DEs to install and setup

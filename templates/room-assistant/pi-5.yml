@@ -1,5 +1,5 @@
 global:
-  instanceName: living-room
+  instanceName: entertainment-room
   integrations:
   - bluetoothClassic
   - homeAssistant
@@ -8,20 +8,28 @@ cluster:
   port: 6425
   weight: 10
   autoDiscovery: false
-  peerAddresses:
-  - pi-4.wl.mort.is:6425
-  - pi-6.wl.mort.is:6425
+  # peerAddresses:
+  # - pi-5.wl.mort.is:6425
+  # - pi-6.wl.mort.is:6425
 homeAssistant:
-  mqttUrl: 'mqtt://pi-3.wl.mort.is:1883'
+  mqttUrl: 'mqtt://home.mort.is:1883'
   mqttOptions:
-    username: mqtt
-    password: MDrqydZ44ehwraZrrtv8pnXvGsrVvUZp
+    username: kiosk
+    password: at3z2pMqPMkLmrZ2
+  sendAttributes: true
 bluetoothClassic:
   hciDeviceId: 0
   interval: 6
   timeoutCycles: 2
   minRssi:
-    default: -10
+    default: -5
   addresses:
-    - '44:5E:CD:C2:D4:25'
-    - '44:5E:CD:C2:0C:04'
+    - 'FC:34:97:AA:A3:FE'
+    - 'FC:34:97:AA:A4:2D'
+  entityOverrides:
+    'FC:34:97:AA:A3:FE':
+      id: phone-angellus-ra
+      name: Chris's Phone (RA)
+    'FC:34:97:AA:A4:2D':
+      id: phone-gnome-ra
+      name: Sam's Phone (RA)
