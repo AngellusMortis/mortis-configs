@@ -3,7 +3,7 @@
 xset +dpms
 xset s 60 60
 
-URL=https://home.wl.mort.is/lovelace/downstairs/
+URL=https://home.wl.mort.is/lovelace/media/
 
 unclutter &
 chromium $URL --app=$URL \

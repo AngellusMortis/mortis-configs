@@ -25,13 +25,6 @@ extra_system_files:
   # extra
   - { src: user/mortis-configs/templates/pacoloco.yml, dest: /etc/pacoloco.yaml }
 
-# extra drives to mount
-# set to '[]' to not mount anything
-extra_mounts:
-  - { path: /unraid/backup, src: unraid-server.wl.mort.is:/mnt/user/backup, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
-  - { path: /unraid/public, src: unraid-server.wl.mort.is:/mnt/user/public, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
-  - { path: /unraid/appdata, src: unraid-server.wl.mort.is:/mnt/user/appdata, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
-
 
 ## nginx/Let's Encrypt
 
@@ -61,15 +54,16 @@ nginx_proxies:
 - { domain: 'plaid-dev.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '8455', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
 
 # unraid
-- { domain: 'backup.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '7810', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
-- { domain: 'movies.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '7878', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
-- { domain: 'music.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '8686', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
-- { domain: 'sync.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '8384', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
-- { domain: 'television.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '8989', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
-- { domain: 'unraid.wl.mort.is', ip: 'unraid-server.wl.mort.is', port: '7443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'backup.wl.mort.is', ip: 'unraid-control.wl.mort.is', port: '7810', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
+- { domain: 'movies.wl.mort.is', ip: 'unraid-control.wl.mort.is', port: '7878', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
+- { domain: 'music.wl.mort.is', ip: 'unraid-control.wl.mort.is', port: '8686', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
+- { domain: 'sync.wl.mort.is', ip: 'unraid-control.wl.mort.is', port: '8384', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
+- { domain: 'television.wl.mort.is', ip: 'unraid-control.wl.mort.is', port: '8989', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
+- { domain: 'unraid.wl.mort.is', ip: 'unraid-control.wl.mort.is', port: '7443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
 
 # other
 - { domain: 'unifi.wl.mort.is', ip: '192.168.1.1', port: '443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
 - { domain: 'network.wl.mort.is', ip: '192.168.1.1', port: '443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
-- { domain: 'protect.wl.mort.is', ip: '192.168.51.16', port: '443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'protect.wl.mort.is', ip: '192.168.1.16', port: '443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
 - { domain: 'power.wl.mort.is', ip: 'iotawatt.wl.mort.is', port: '80', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'vac-ground.wl.mort.is', ip: 'vacuum-1.wl.mort.is', port: '80', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }

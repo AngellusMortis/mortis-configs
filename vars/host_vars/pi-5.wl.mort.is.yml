@@ -13,6 +13,7 @@ extra_users:
 # set to empty to not install any
 extra_packages:
   - nfs-utils
+  # extra
   - chromium
   - xorg-server
   # - xorg-apps
@@ -37,8 +38,6 @@ extra_system_dirs:
 # Extra systemd services to enable
 # Set to '[]' to skip
 extra_systemd:
-  - netdata.service
-  # extra
   - bluetooth.service
   - getty@tty1.service
   - room-assistant.service
@@ -49,11 +48,6 @@ extra_systemd:
 # extra arbitary system files to copy
 # set to '[]' to not copy any
 extra_system_files:
-  - { src: user/mortis-configs/templates/netdata/.opt-out, dest: /etc/netdata/.opt-out-from-anonymous-statistics }
-  - { src: user/mortis-configs/templates/netdata/apps_groups.conf, dest: /etc/netdata/apps_groups.conf }
-  - { src: user/mortis-configs/templates/netdata/python.d.conf, dest: /etc/netdata/python.d.conf }
-  - { src: user/mortis-configs/templates/sysctl.conf, dest: /etc/sysctl.d/90-extra-tuning.conf }
-  - { src: user/mortis-configs/templates/netdata/stream.internal.conf, dest: /etc/netdata/stream.conf }
   # - { src: user/mortis-configs/templates/mirrorlist.archlinux-arm, dest: /etc/pacman.d/mirrorlist }
   # extra
   - { src: user/mortis-configs/templates/mirrorlist.manjaro-arm, dest: /etc/pacman.d/mirrorlist }

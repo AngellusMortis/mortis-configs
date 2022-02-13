@@ -126,10 +126,7 @@ extra_system_files:
 
 # extra drives to mount
 # set to '[]' to not mount anything
-extra_mounts:
-    - { path: /unraid/backup, src: unraid-server.wl.mort.is:/mnt/user/backup, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
-    - { path: /unraid/public, src: unraid-server.wl.mort.is:/mnt/user/public, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
-    - { path: /unraid/media, src: unraid-server.wl.mort.is:/mnt/user/media, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+extra_mounts: []
 
 ## Network Utils Settings
 

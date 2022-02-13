@@ -24,6 +24,7 @@ setup_nfs: true
 # extra arbitary system directories to create
 # set to '[]' to not copy any
 extra_system_dirs:
+  - { path: /unraid/media, owner: root, recurse: false, mode: '777' }
   - { path: /srv/ssh/jail/media, owner: root, recurse: false, mode: '755' }
   - { path: /srv/ssh/jail/media/music, owner: root, recurse: false, mode: '755' }
   - { path: /srv/ssh/jail/media/movies, owner: root, recurse: false, mode: '755' }
@@ -41,7 +42,7 @@ extra_system_files:
 # extra drives to mount
 # set to '[]' to not mount anything
 extra_mounts:
-  - { path: /unraid/media, src: unraid-server.wl.mort.is:/mnt/user/media, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
+  - { path: /unraid/media, src: unraid-media.wl.mort.is:/mnt/user/media, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
   - { path: /mnt/boundlexx, src: server-2.wl.mort.is:/media/docker/data/boundlexx/live/web, fstype: nfs, opts: defaults,timeo=900,retrans=5,_netdev }
   - { path: /srv/ssh/jail/media/music, src: /unraid/media/music, fstype: none, opts: bind,remount,ro }
   - { path: /srv/ssh/jail/media/movies, src: /unraid/media/movies, fstype: none, opts: bind,remount,ro }
@@ -64,10 +65,10 @@ letencrypt_domains:
 # set to '[]' to not config nginx reverse proxies
 nginx_proxies:
 # server-2
-- { domain: 'wl.mort.is', ip: 'home.wl.mort.is', port: '443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null, websockets: false, group: "media", path: "~* /api/(webhook|camera_proxy)/" }
+- { domain: 'wl.mort.is', ip: '192.168.2.12', port: '8123', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null, websockets: false, group: "media", path: "~* /api/(webhook|camera_proxy|ufp)/" }
 
 - { domain: 'media.wl.mort.is', ip: 'server-2.wl.mort.is', port: '3579', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null, websockets: false, group: "media" }
-- { domain: 'plex.wl.mort.is', ip: 'server-2.wl.mort.is', port: '32400', protocol: https, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "media" }
+- { domain: 'plex.wl.mort.is', ip: 'unraid-media.wl.mort.is', port: '32400', protocol: https, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "media" }
 - { domain: 'jellyfin.wl.mort.is', ip: 'server-2.wl.mort.is', port: '8096', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "media" }
 
 # boundlexx

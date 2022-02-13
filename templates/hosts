@@ -4,12 +4,14 @@
 # networking hardware
 192.168.200.1   gateway gateway.wl.mort.is
 192.168.1.1     usg usg.wl.mort.is
-192.168.1.10    pi.hole pi-1 pi-1.wl.mort.is dns-1 dns-1.wl.mort.is
+192.168.1.10    pi-1 pi-1.wl.mort.is dns-1 dns-1.wl.mort.is pi.hole
 192.168.1.12    pi-2 pi-2.wl.mort.is dns-2 dns-2.wl.mort.is
 
 # core services
 192.168.2.10    pi-3 pi-3.wl.mort.is
-192.168.2.11    home home.wl.mort.is
+192.168.2.12    home home.wl.mort.is
+192.168.51.51   home-test home-test.wl.mort.is
+192.168.2.48    unraid-control unraid-control.wl.mort.is
 
 ## nginx internal
 192.168.2.10    music music.wl.mort.is television television.wl.mort.is
@@ -21,11 +23,11 @@
 192.168.2.10    sync sync.wl.mort.is backup backup.wl.mort.is power.wl.mort.is power
 192.168.2.10    unraid unraid.wl.mort.is mc mc.wl.mort.is nodered nodered.wl.mort.is
 192.168.2.10    money money.wl.mort.is spectre spectre.wl.mort.is plaid-dev plaid-dev.wl.mort.is
+192.168.2.10    vac-ground.wl.mort.is vac-ground
 
 # media services
 ## unraid
-192.168.3.10    unraid-server unraid-server.wl.mort.is vpn vpn.wl.mort.is
-192.168.3.10    download download.wl.mort.is index index.wl.mort.is
+192.168.3.15    unraid-media unraid-media.wl.mort.is
 
 # 192.168.1.15    server server.wl.mort.is server-f1 server-f1.wl.mort.is
 # 192.168.1.15    angellus-server angellus-server.wl.mort.is wl.mort.is
@@ -72,7 +74,9 @@
 # room assistant
 192.168.52.10   pi-5 pi-5.wl.mort.is ra-er ra-er.wl.mort.is
 
+
 # IoT Devices
+192.168.52.11   vacuum-1.wl.mort.is vacuum-1
 192.168.52.93   awair-1.wl.mort.is awair-1
 192.168.52.34   iotawatt.wl.mort.is iotawatt
 192.168.52.38   konnected.wl.mort.is konnected

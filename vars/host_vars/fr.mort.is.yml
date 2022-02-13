@@ -107,7 +107,6 @@ extra_ppas:
 extra_packages:
   - nfs-utils
   - deluge
-  - python2-mako
   - docker
 
 # Set to '[]' to skip installing AUR packages
