@@ -23,7 +23,7 @@
 192.168.2.10    sync sync.wl.mort.is backup backup.wl.mort.is power.wl.mort.is power
 192.168.2.10    unraid unraid.wl.mort.is mc mc.wl.mort.is nodered nodered.wl.mort.is
 192.168.2.10    money money.wl.mort.is spectre spectre.wl.mort.is plaid-dev plaid-dev.wl.mort.is
-192.168.2.10    vac-ground.wl.mort.is vac-ground
+192.168.2.10    vac-ground.wl.mort.is vac-ground vac-downstairs.wl.mort.is vac-downstairs
 
 # media services
 ## unraid
@@ -77,6 +77,7 @@
 
 # IoT Devices
 192.168.52.11   vacuum-1.wl.mort.is vacuum-1
+192.168.52.55   vacuum-2.wl.mort.is vacuum-2
 192.168.52.93   awair-1.wl.mort.is awair-1
 192.168.52.34   iotawatt.wl.mort.is iotawatt
 192.168.52.38   konnected.wl.mort.is konnected

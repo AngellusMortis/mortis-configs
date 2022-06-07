@@ -8,3 +8,7 @@ pihole_whitelist:
 # dns hosts file
 # set to null to skip
 dns_hosts: 'user/mortis-configs/templates/hosts'
+
+pihole_upstream:
+  - https://1.1.1.1/dns-query
+

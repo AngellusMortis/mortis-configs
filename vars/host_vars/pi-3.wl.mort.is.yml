@@ -66,4 +66,5 @@ nginx_proxies:
 - { domain: 'network.wl.mort.is', ip: '192.168.1.1', port: '443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
 - { domain: 'protect.wl.mort.is', ip: '192.168.1.16', port: '443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
 - { domain: 'power.wl.mort.is', ip: 'iotawatt.wl.mort.is', port: '80', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
-- { domain: 'vac-ground.wl.mort.is', ip: 'vacuum-1.wl.mort.is', port: '80', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'vac-ground.wl.mort.is', ip: 'vacuum-2.wl.mort.is', port: '80', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'vac-downstairs.wl.mort.is', ip: 'vacuum-1.wl.mort.is', port: '80', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }

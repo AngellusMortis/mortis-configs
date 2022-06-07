@@ -1,0 +1,2 @@
+pihole_upstream:
+  - https://1.1.1.1/dns-query
