@@ -12,6 +12,9 @@
 192.168.2.12    home home.wl.mort.is
 192.168.51.51   home-test home-test.wl.mort.is
 192.168.2.48    unraid-control unraid-control.wl.mort.is
+192.168.1.59    server-1-idrac server-1-idrac.wl.mort.is
+192.168.2.38    server-1 server-1.wl.mort.is server-1-control server-1-control.wl.mort.is
+192.168.3.35    server-1-media server-1-media.wl.mort.is
 
 ## nginx internal
 192.168.2.10    music music.wl.mort.is television television.wl.mort.is
@@ -67,6 +70,7 @@
 # 192.168.6.32    switch.gnome switch.gnome.wl.mort.is gnome-switch gnome-switch.wl.mort.is
 
 # misc devices
+192.168.51.17    245a4c9ba25905f1f05b06379c6106112d350.id.ui.direct
 192.168.52.20    printer printer.wl.mort.is
 # 192.168.7.20   alexa alexa.wl.mort.is
 # 192.168.7.50   ee-phone ee-phone.wl.mort.is
