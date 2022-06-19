@@ -93,6 +93,8 @@ netdata_stream_to: null
 netdata_enable_web: false
 netdata_ssl_letencrypt_domain: null
 netdata_copy_health_conf: false
+netdata_page_size: null
+netdata_disk_space: null
 
 ## SSH jail
 install_ssh_jail: false

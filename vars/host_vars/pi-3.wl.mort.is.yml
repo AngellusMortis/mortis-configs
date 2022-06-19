@@ -42,16 +42,12 @@ letencrypt_domains:
 # set to '[]' to not config nginx reverse proxies
 nginx_proxies:
 # server-2
-- { domain: 'docker.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '9000', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
-- { domain: 'collect.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '19999', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, proto_header: http, group: "core" }
-- { domain: 'influxdb.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '8086', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
-- { domain: 'monitor.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '3000', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
-- { domain: 'prometheus.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '9090', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
-- { domain: 'nodered.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '1880', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
-- { domain: 'paperless.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '8010', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
-- { domain: 'money.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '8444', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
-- { domain: 'spectre.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '8445', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
-- { domain: 'plaid-dev.wl.mort.is', ip: 'server-2-f1.wl.mort.is', port: '8455', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'docker.wl.mort.is', ip: 'server-1-control.wl.mort.is', port: '9000', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'collect.wl.mort.is', ip: 'server-1-control.wl.mort.is', port: '19999', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, proto_header: http, group: "core" }
+- { domain: 'influxdb.wl.mort.is', ip: 'server-1-control.wl.mort.is', port: '8086', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'monitor.wl.mort.is', ip: 'server-1-control.wl.mort.is', port: '3000', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'prometheus.wl.mort.is', ip: 'server-1-control.wl.mort.is', port: '9090', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
+- { domain: 'paperless.wl.mort.is', ip: 'server-1-control.wl.mort.is', port: '8010', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
 
 # unraid
 - { domain: 'backup.wl.mort.is', ip: 'unraid-control.wl.mort.is', port: '7810', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "media" }
@@ -62,7 +58,6 @@ nginx_proxies:
 - { domain: 'unraid.wl.mort.is', ip: 'unraid-control.wl.mort.is', port: '7443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
 
 # other
-- { domain: 'unifi.wl.mort.is', ip: '192.168.1.1', port: '443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
 - { domain: 'network.wl.mort.is', ip: '192.168.1.1', port: '443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
 - { domain: 'protect.wl.mort.is', ip: '192.168.1.16', port: '443', protocol: https, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }
 - { domain: 'power.wl.mort.is', ip: 'iotawatt.wl.mort.is', port: '80', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: true, stats_ip: null, group: "core" }

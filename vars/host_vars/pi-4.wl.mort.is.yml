@@ -49,6 +49,12 @@ extra_mounts:
   - { path: /srv/ssh/jail/media/television, src: /unraid/media/television, fstype: none, opts: bind,remount,ro }
 
 
+# promtail / Loki setup
+loki_target: "http://server-1-media.wl.mort.is:3100/loki/api/v1/push"
+
+## netdata
+netdata_stream_to: "server-1-media.wl.mort.is:19999:SSL"
+
 ## nginx/Let's Encrypt
 
 # email to use for Let's Encrypt certs
@@ -67,7 +73,7 @@ nginx_proxies:
 # server-2
 - { domain: 'wl.mort.is', ip: '192.168.2.12', port: '8123', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null, websockets: false, group: "media", path: "~* /api/(webhook|camera_proxy|ufp)/" }
 
-- { domain: 'media.wl.mort.is', ip: 'server-2.wl.mort.is', port: '3579', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null, websockets: false, group: "media" }
+- { domain: 'media.wl.mort.is', ip: 'server-1-media.wl.mort.is', port: '3579', protocol: http, type: 'proxy', cors: true, cors_domain: 'mort.is', media_root: null, static_root: null, internal: false, stats_ip: null, websockets: false, group: "media" }
 - { domain: 'plex.wl.mort.is', ip: 'unraid-media.wl.mort.is', port: '32400', protocol: https, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "media" }
 - { domain: 'jellyfin.wl.mort.is', ip: 'server-2.wl.mort.is', port: '8096', protocol: http, type: 'proxy', cors: false, media_root: null, static_root: null, internal: false, stats_ip: null, group: "media" }
 

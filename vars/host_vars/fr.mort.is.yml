@@ -199,7 +199,7 @@ iptables_whitelisted_udp_ports:
 ## Dev Utils Settings
 
 # setup and install Docker
-setup_docker: false
+setup_docker: true
 
 # optional Docker daemon.json file
 # set to 'none' to not copy one

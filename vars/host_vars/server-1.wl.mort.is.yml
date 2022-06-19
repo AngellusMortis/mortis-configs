@@ -255,53 +255,33 @@ plymouth_theme: none
 # set to '[]' to skip
 extra_crons: []
 
-# ## nginx/Let's Encrypt
-
-# # email to use for Let's Encrypt certs
-# # set to empty to not config nginx/Let's encrypt
-# letencrypt_email: cbailey@mort.is
-
-# # domains to get SSL certs for
-# # set to '[]' to not config nginx/Let's encrypt
-# letencrypt_domains:
-#   - "wl.mort.is"
-#   - "*.wl.mort.is"
-
-# # nginx proxies to set up
-# # set to '[]' to not config nginx reverse proxies
-# nginx_proxies: []
-
-# # promtail / Loki setup
-# loki_target: "http://server-2.wl.mort.is:3100/loki/api/v1/push"
-
-
-# ## netdata
-# install_netdata: true
-# netdata_stream_api_key: "64016863-04c3-4ec6-bc54-95ee6895c7f0"
-# netdata_allow_streaming: true
-# netdata_stream_to: null
-# netdata_enable_web: true
-# netdata_ssl_letencrypt_domain: wl.mort.is
-# netdata_copy_health_conf: true
+## nginx/Let's Encrypt
 
 # email to use for Let's Encrypt certs
 # set to empty to not config nginx/Let's encrypt
-letencrypt_email:
+letencrypt_email: cbailey@mort.is
 
 # domains to get SSL certs for
 # set to '[]' to not config nginx/Let's encrypt
-letencrypt_domains: []
+letencrypt_domains:
+  - "wl.mort.is"
+  - "*.wl.mort.is"
 
 # nginx proxies to set up
 # set to '[]' to not config nginx reverse proxies
 nginx_proxies: []
-#  - { domain: 'example.com', ip: '127.0.0.1', port: '8000', type: 'proxy', cors: true, cors_domain: 'example.com', media_root: null, static_root: null, internal: true, stats_ip: null }
+
+# promtail / Loki setup
+loki_target: "http://server-1-control.wl.mort.is:3100/loki/api/v1/push"
+
 
 ## netdata
-install_netdata: false
-netdata_stream_api_key: null
-netdata_allow_streaming: false
+install_netdata: true
+netdata_stream_api_key: "64016863-04c3-4ec6-bc54-95ee6895c7f0"
+netdata_allow_streaming: true
 netdata_stream_to: null
-netdata_enable_web: false
-netdata_ssl_letencrypt_domain: null
-netdata_copy_health_conf: false
+netdata_enable_web: true
+netdata_ssl_letencrypt_domain: wl.mort.is
+netdata_copy_health_conf: true
+netdata_page_size: 1024
+netdata_disk_space: 138428

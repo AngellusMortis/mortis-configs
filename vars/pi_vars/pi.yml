@@ -250,13 +250,13 @@ nginx_proxies: []
 #  - { domain: 'example.com', ip: '127.0.0.1', port: '8000', type: 'proxy', cors: true, cors_domain: 'example.com', media_root: null, static_root: null, internal: true, stats_ip: null }
 
 # promtail / Loki setup
-loki_target: "http://server-2.wl.mort.is:3100/loki/api/v1/push"
+loki_target: "http://server-1-control.wl.mort.is:3100/loki/api/v1/push"
 
 ## netdata
 install_netdata: true
 netdata_stream_api_key: "64016863-04c3-4ec6-bc54-95ee6895c7f0"
 netdata_allow_streaming: false
-netdata_stream_to: "server-2.wl.mort.is:19999:SSL"
+netdata_stream_to: "server-1-control.wl.mort.is:19999:SSL"
 netdata_enable_web: false
 netdata_ssl_letencrypt_domain: null
 netdata_copy_health_conf: false
