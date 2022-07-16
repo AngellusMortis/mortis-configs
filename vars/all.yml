@@ -32,6 +32,9 @@ configure_root: true
 # https://wiki.archlinux.org/index.php/Locale
 system_locale: en_US.UTF-8
 
+# tld for hosts
+tld: wl.mort.is
+
 # enable powerline suport
 use_powerline: true
 

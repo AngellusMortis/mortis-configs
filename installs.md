@@ -1,5 +1,13 @@
 #
 
+## Cluster
+
+curl -sL https://github.com/AngellusMortis/arch-installer/archive/master.tar.gz | tar xz
+cd arch-installer-master
+./install.sh -n cluster-4 -y -v /dev/sda -v /dev/sdb -u cbailey --no-input
+
+## RPI
+
 ```bash
 pacman-key --init
 pacman-key --populate archlinuxarm
@@ -18,8 +26,7 @@ cd U6143_ssd1306/C/
 make clean && sudo make
 
 useradd -m cbailey
-visudo
-# cbailey ALL=(ALL) NOPASSWD: ALL
+echo "cbailey ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/01-admin
 sudo su - cbailey
 mkdir ~/.ssh/
 chmod 700 ~/.ssh/

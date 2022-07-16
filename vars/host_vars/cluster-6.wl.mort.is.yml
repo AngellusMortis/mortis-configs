@@ -1,0 +1,4 @@
+# optional extra docker host option (-H)
+# set to 'none' to only run on default
+# unix socket (unix:///var/run/docker.sock)
+extra_docker_host: tcp://192.168.2.63:2375

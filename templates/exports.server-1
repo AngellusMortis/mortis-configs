@@ -11,4 +11,5 @@
 #
 # Use `exportfs -arv` to reload.
 
-/media/data/docker/data                      192.168.3.10/32(rw,sync,all_squash,anonuid=1004,anongid=1004) 192.168.2.48/32(rw,sync,all_squash,anonuid=1004,anongid=1004) 192.168.3.49/32(rw,sync,all_squash,anonuid=1004,anongid=1004)
+/media/data/docker/data/boundlexx/live/web   192.168.3.20/32(rw,sync,all_squash,anonuid=1004,anongid=1004)
+/media/data/docker/data                      192.168.2.0/24(rw,sync,all_squash,anonuid=1004,anongid=1004) 192.168.3.10/32(rw,sync,all_squash,anonuid=1004,anongid=1004) 192.168.3.49/32(rw,sync,all_squash,anonuid=1004,anongid=1004)

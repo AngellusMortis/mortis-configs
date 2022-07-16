@@ -1,87 +1,112 @@
-127.0.0.1       localhost localhost.wl.mort.is
-::1             localhost localhost.wl.mort.is
+127.0.0.1       localhost
+::1             localhost
 
 # networking hardware
-192.168.200.1   gateway gateway.wl.mort.is
-192.168.1.1     usg usg.wl.mort.is
-192.168.1.10    pi-1 pi-1.wl.mort.is dns-1 dns-1.wl.mort.is pi.hole
-192.168.1.12    pi-2 pi-2.wl.mort.is dns-2 dns-2.wl.mort.is
+192.168.200.1   gateway
+192.168.1.1     usg
+192.168.1.10    pi-1 dns-1 pi.hole
+192.168.1.12    pi-2 dns-2
 
 # core services
-192.168.2.10    pi-3 pi-3.wl.mort.is
-192.168.2.12    home home.wl.mort.is
-192.168.51.51   home-test home-test.wl.mort.is
-192.168.2.48    unraid-control unraid-control.wl.mort.is
-192.168.1.59    server-1-idrac server-1-idrac.wl.mort.is
-192.168.2.38    server-1 server-1.wl.mort.is server-1-control server-1-control.wl.mort.is
-192.168.3.35    server-1-media server-1-media.wl.mort.is
+192.168.2.10    pi-3
+192.168.2.12    home
+192.168.51.51   home-test
+192.168.2.162   unraid-control
+192.168.1.59    server-1-idrac
+192.168.2.38    server-1 server-1-control
+192.168.3.35    server-1-media
+192.168.1.29    server-2-ipmi
+192.168.2.49    server-2 server-2-control
+192.168.3.50    server-2-media
+
+# cluster nodes
+192.168.1.81    cluster-1-ipmi
+192.168.2.70    cluster-1 cluster-1-control
+192.168.3.71    cluster-1-media
+192.168.1.41    cluster-2-ipmi
+192.168.2.75    cluster-2 cluster-2-control
+192.168.3.76    cluster-2-media
+192.168.1.42    cluster-3-ipmi
+192.168.2.61    cluster-3-f0
+192.168.2.83    cluster-3 cluster-3-control
+192.168.3.84    cluster-3-media
+192.168.1.43    cluster-4-ipmi
+192.168.2.62    cluster-4-f0
+192.168.2.33    cluster-4 cluster-4-control
+192.168.3.34    cluster-4-media
+192.168.1.40    cluster-5-ipmi
+192.168.2.85    cluster-5 cluster-5-control
+192.168.3.86    cluster-5-media
+192.168.1.20	cluster-6-ipmi
+192.168.2.63    cluster-6 cluster-6-control
+192.168.3.62    cluster-6-media
+192.168.1.19	cluster-7-ipmi
+192.168.2.29    cluster-7 cluster-7-control
+192.168.3.30    cluster-7-media
+192.168.1.85	cluster-8-ipmi
+192.168.2.82    cluster-8 cluster-8-control
+192.168.3.83    cluster-8-media
+
+# kubernetes
+192.168.2.200  kuard k8s longhorn auth containers keel
+192.168.2.200  media subs books index flaresolverr reader books-db books-db-web
+192.168.2.200  transcode music television movies sync backup unraid
 
 ## nginx internal
-192.168.2.10    music music.wl.mort.is television television.wl.mort.is
-192.168.2.10    movies movies.wl.mort.is r r.wl.mort.is dev dev.wl.mort.is
-192.168.2.10    docker docker.wl.mort.is monitor monitor.wl.mort.is prometheus prometheus.wl.mort.is
-192.168.2.10    collect collect.wl.mort.is influxdb influxdb.wl.mort.is
-192.168.2.10    unifi unifi.wl.mort.is router router.wl.mort.is paperless.wl.mort.is paperless
-192.168.2.10    network network.wl.mort.is protect protect.wl.mort.is
-192.168.2.10    sync sync.wl.mort.is backup backup.wl.mort.is power.wl.mort.is power
-192.168.2.10    unraid unraid.wl.mort.is mc mc.wl.mort.is nodered nodered.wl.mort.is
-192.168.2.10    money money.wl.mort.is spectre spectre.wl.mort.is plaid-dev plaid-dev.wl.mort.is
-192.168.2.10    vac-ground.wl.mort.is vac-ground vac-downstairs.wl.mort.is vac-downstairs
+192.168.2.10    monitor prometheus
+192.168.2.10    collect influxdb
+192.168.2.10    paperless
+192.168.2.10    network protect
+192.168.2.10    power
+192.168.2.10    vac-ground vac-downstairs
 
 # media services
 ## unraid
-192.168.3.15    unraid-media unraid-media.wl.mort.is
-
-# 192.168.1.15    server server.wl.mort.is server-f1 server-f1.wl.mort.is
-# 192.168.1.15    angellus-server angellus-server.wl.mort.is wl.mort.is
-# 192.168.1.20    server-f0 server-f0.wl.mort.is
+192.168.3.15    unraid-media
 
 # public facing
-192.168.4.10    server-2-f0 server-2-f0.wl.mort.is
-192.168.4.10    server-2 server-2.wl.mort.is server-2 server-2.wl.mort.is
-192.168.4.11    server-2-f1 server-2-f1.wl.mort.is
-192.168.4.20    pi-4 pi-4.wl.mort.is
+192.168.3.20    pi-4 wl.mort.is
 
 ## nginx
-192.168.4.20    plex plex.wl.mort.is jellyfin jellyfin.wl.mort.is media media.wl.mort.is
-192.168.4.20    testing-boundlexx testing-boundlexx.wl.mort.is local-boundlexx local-boundlexx.wl.mort.is
-192.168.4.20    boundlexx boundlexx.wl.mort.is wl.mort.is
+192.168.3.20    plex
+192.168.3.20    testing-boundlexx local-boundlexx
+192.168.3.20    boundlexx
 
 # personal devices
-192.168.20.10    angellus angellus.wl.mort.is pc.angellus pc.angellus.wl.mort.is angellus-pc angellus-pc.wl.mort.is
-192.168.20.11    gnome gnome.wl.mort.is pc.gnome pc.gnome.wl.mort.is gnome-pc gnome-pc.wl.mort.is
-192.168.20.12    book.angellus book.angellus.wl.mort.is angellus-book angellus-book.wl.mort.is
+192.168.20.10    angellus pc.angellus angellus-pc
+192.168.20.11    gnome pc.gnome gnome-pc
+192.168.20.12    book.angellus angellus-book
 
 # phones
-192.168.20.13    phone.angellus phone.angellus.wl.mort.is angellus-phone angellus-phone.wl.mort.is
-192.168.20.23    phone.gnome phone.gnome.wl.mort.is gnome-phone gnome-phone.wl.mort.is
+192.168.20.13    phone.angellus angellus-phone
+192.168.20.23    phone.gnome gnome-phone
 
 # "work" devices
-192.168.22.10    work.angellus work.angellus.wl.mort.is work-wired.angellus work-wired.angellus.wl.mort.is
-192.168.22.11    work.gnome work.gnome.wl.mort.is work-wired.gnome work-wired.gnome.wl.mort.is
+192.168.22.10    work.angellus work-wired.angellus
+192.168.22.11    work.gnome work-wired.gnome
 
 # consoles
-192.168.21.10    xbo.angellus xbo.angellus.wl.mort.is angellus-xbo angellus-xbo.wl.mort.is
-192.168.21.11    xbo.gnome xbo.gnome.wl.mort.is gnome-xbo gnome-xbo.wl.mort.is
-# 192.168.6.20    ps3.gnome ps3.gnome.wl.mort.is gnome-ps3 gnome-ps3.wl.mort.is
-# 192.168.6.22    ps4.gnome ps4.gnome.wl.mort.is gnome-ps4 gnome-ps4.wl.mort.is
-# 192.168.6.30    switch.angellus switch.angellus.wl.mort.is angellus-switch angellus-switch.wl.mort.is
-# 192.168.6.31    switch2.gnome switch2.gnome.wl.mort.is gnome-switch2 gnome-switch2.wl.mort.is
-# 192.168.6.32    switch.gnome switch.gnome.wl.mort.is gnome-switch gnome-switch.wl.mort.is
+192.168.21.10    xbo.angellus angellus-xbo
+192.168.21.11    xbo.gnome gnome-xbo
+# 192.168.6.20    ps3.gnome gnome-ps3
+# 192.168.6.22    ps4.gnome gnome-ps4
+# 192.168.6.30    switch.angellus angellus-switch
+# 192.168.6.31    switch2.gnome gnome-switch2
+# 192.168.6.32    switch.gnome gnome-switch
 
 # misc devices
 192.168.51.17    245a4c9ba25905f1f05b06379c6106112d350.id.ui.direct
-192.168.52.20    printer printer.wl.mort.is
-# 192.168.7.20   alexa alexa.wl.mort.is
-# 192.168.7.50   ee-phone ee-phone.wl.mort.is
+192.168.52.20    printer
+# 192.168.7.20   alexa
+# 192.168.7.50   ee-phone
 
 # room assistant
-192.168.52.10   pi-5 pi-5.wl.mort.is ra-er ra-er.wl.mort.is
+192.168.52.10   pi-5 ra-er
 
 
 # IoT Devices
-192.168.52.11   vacuum-1.wl.mort.is vacuum-1
-192.168.52.55   vacuum-2.wl.mort.is vacuum-2
-192.168.52.93   awair-1.wl.mort.is awair-1
-192.168.52.34   iotawatt.wl.mort.is iotawatt
-192.168.52.38   konnected.wl.mort.is konnected
+192.168.52.11   vacuum-1
+192.168.52.55   vacuum-2
+192.168.52.93   awair-1
+192.168.52.34   iotawatt
+192.168.52.38   konnected

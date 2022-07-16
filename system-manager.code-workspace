@@ -5,8 +5,15 @@
 		},
 		{
 			"path": "."
+		},
+		{
+			"path": "../../../../../../../mnt/v/k8s"
 		}
 	],
 	"remoteAuthority": "wsl+Arch",
-	"settings": {}
+	"settings": {
+		"yaml.schemas": {
+			"https://raw.githubusercontent.com/ansible-community/schemas/main/f/ansible-vars.json": "file:///home/cbailey/dev/system-manager/files/user/mortis-configs/vars/cluster_vars/cluster.yml"
+		}
+	}
 }
